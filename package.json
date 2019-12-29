@@ -45,10 +45,10 @@
   "scripts": {
     "build": "gatsby build",
     "heroku-postbuild": "gatsby build",
-    "dev": "gatsby develop -p 4000",
+    "dev": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run dev",
-    "serve": "gatsby serve -p 80"
+    "start": "gatsby serve",
+    "serve": "gatsby serve"
   },
   "repository": {
     "type": "git",
