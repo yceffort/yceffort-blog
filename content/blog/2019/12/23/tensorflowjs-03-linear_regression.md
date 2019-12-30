@@ -18,8 +18,6 @@ tags: [machine-learning, ai, tensorflow]
 
 ## 02. Set up
 
-html
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +35,6 @@ html
   </body>
 </html>
 ```
-
-javascript
 
 ```javascript
 console.log("Hello TensorFlow")
