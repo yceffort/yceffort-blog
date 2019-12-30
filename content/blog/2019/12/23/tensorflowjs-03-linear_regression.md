@@ -6,8 +6,6 @@ layout: post
 tags: [machine-learning, ai, tensorflow]
 ---
 
-출처: [https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html)
-
 # Linear Regression
 
 몇 번째 선형 회귀인지 알 수 없다.
@@ -544,3 +542,5 @@ model.add(tf.layers.dense({ units: 50, activation: "sigmoid" }))
      allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
      sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
    ></iframe>
+
+[출처](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html)
