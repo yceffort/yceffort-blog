@@ -6,6 +6,8 @@ layout: post
 tags: [machine-learning, ai, tensorflow]
 ---
 
+출처: [https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html)
+
 # Linear Regression
 
 몇 번째 선형 회귀인지 알 수 없다.
@@ -398,3 +400,147 @@ console.log("Done Training")
 이는 앞서서 선언한 콜백의 작품이다. 매 epoch마다 전체 데이터의 loss와 mse의 평균을 보여주고 있다. 모델을 훈련시킬 때 마다, 점차 내려가고 있는 것을 알 수 있다. 이 경우 우리의 측정 지표는 error 이므로(mse) 점차 내려가는 것을 보아야 한다.
 
 > 경사하강에 대해 알고 싶으면, [이 비디오](https://www.youtube.com/watch?v=IHZwWFHWa-w)를 참고하라.
+
+## 7. 예측 모델 만들기
+
+모델이 훈련되었으니, 이제 예측을 한번 해볼 차례다. 저력? 에서 고력? 까지의 균일한 범위의 마력을 예측하는 것을 보고 모델이 어떤지 한번 평가해보자.
+
+```javascript
+function testModel(model, inputData, normalizationData) {
+  const { inputMax, inputMin, labelMin, labelMax } = normalizationData
+
+  // 0과 1사이에서 균일한 숫자를 생성하여 예측
+  // min-max 스케일링을 거꾸로 다시 적용하여 데이터를 비정규화 (원래 보던 데이터) 한다.
+  // that we did earlier.
+  const [xs, preds] = tf.tidy(() => {
+    const xs = tf.linspace(0, 1, 100)
+    const preds = model.predict(xs.reshape([100, 1]))
+
+    const unNormXs = xs.mul(inputMax.sub(inputMin)).add(inputMin)
+
+    const unNormPreds = preds.mul(labelMax.sub(labelMin)).add(labelMin)
+
+    // Un-normalize the data
+    return [unNormXs.dataSync(), unNormPreds.dataSync()]
+  })
+
+  const predictedPoints = Array.from(xs).map((val, i) => {
+    return { x: val, y: preds[i] }
+  })
+
+  const originalPoints = inputData.map(d => ({
+    x: d.horsepower,
+    y: d.mpg,
+  }))
+
+  tfvis.render.scatterplot(
+    { name: "Model Predictions vs Original Data" },
+    {
+      values: [originalPoints, predictedPoints],
+      series: ["original", "predicted"],
+    },
+    {
+      xLabel: "Horsepower",
+      yLabel: "MPG",
+      height: 300,
+    }
+  )
+}
+```
+
+위 코드에서 주의해야 할 몇가지가 있다.
+
+```javascript
+const xs = tf.linspace(0, 1, 100)
+const preds = model.predict(xs.reshape([100, 1]))
+```
+
+이 코드에서는 새로운 100개의 예제를 만들어 모델에 제공했다. `Model.predict`는 이 예제들을 어떻게 모델에 적용하는지를 보여준다. 명심해야 할 것은, 학습시킬 때와 마찬가지의 데이터 형태 `[num_examples, num_features_per_example]`를 띄어야 한다는 것이다.
+
+```javascript
+// Un-normalize the data
+const unNormXs = xs.mul(inputMax.sub(inputMin)).add(inputMin)
+
+const unNormPreds = preds.mul(labelMax.sub(labelMin)).add(labelMin)
+```
+
+0~1 형태가 아닌 원래 데이터 형태로 돌아오기 위해, 정규화 하는 과정을 거꾸로 다시 거쳤다.
+
+```javascript
+return [unNormXs.dataSync(), unNormPreds.dataSync()]
+```
+
+[.dataSync](https://js.tensorflow.org/api/latest/#tf.Tensor.dataSync)는 tensor 내에 저장되어 있는 `typedarray`를 가져올 때 쓰는 메소드다. 이 작업을 통해 텐서 값들을 자바스크립트가 이해할 수 있는 값으로 변환할 수 있다. 이 함수는 보통 더 자주 쓰이는 [.data](https://js.tensorflow.org/api/latest/#tf.Tensor.data)의 동기 버전이라고 보면 된다.
+
+마지막으로 `tfjs-vis`를 통해 원래 데이터와 모델이 예측한 값을 시각화 해서 볼 수 있다.
+
+```javascript
+// 예측 값을 만들어서 원래 데이터와 비교
+testModel(model, data, tensorData)
+```
+
+페이지를 새로고침하면, 이제 아래와 같이 모델이 훈련해서 예측한 내용을 볼 수 있다.
+
+![](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/img/210afe5891514fb2.png)
+
+축하합니다. 방금 우리는 간단한 머신러닝 모델을 훈련해보았습니다. 이는 선형회귀라고 하고 알려진 모델로, 주어진 데이터를 바탕으로 선형 예측 모델을 만들어보는 예제 입니다.
+
+## 8. 주요 시사점
+
+이번 머신러닝 모델 학습 모델에서는 아래와 같은 것을 배웠습니다.
+
+작업의 공식화:
+
+- regression / classification 문제인가?
+- supervised / unsupervised learning인가?
+- 입력 데이터의 형태는 어떤가? 출력 데이터는 어떤 형태를 가져야 하는가?
+
+데이터 준비하기:
+
+- 데이터를 클렌징하고, 데이터에서 패턴이 보일 수 있는지 조사하여라
+- 학습 전에 데이터를 무작위로 섞어라
+- 신경망에 학습시키기 용이 하도록 데이터를 정규화 하기. 보통 0~1 또는 -1~1 정도로 한다.
+- 데이터를 텐서로 변환하여라
+
+모델을 만들고 실행시키기:
+
+- `tf.sequential`과 `tf.model`을 사용하여 모델을 정의하고, `tf.layers.*`로 레이어를 추가해라
+- optimizer(보통 adam을 많이 쓴다), 배치크기, epoch횟수와 같은 파라미터를 정하라
+- 문제해결에 적합한 [loss function](https://developers.google.com/machine-learning/glossary/#loss)를 선택하고, 진행률을 예측하는데 도움이 되는 accuracy metric을 선택하기. [meanSquaredError](https://developers.google.com/machine-learning/glossary/#MSE)가 보통 회귀 문제에서 가장 많이 이용되는 손실함수다.
+- 학습 과정에서 손실이 감소하는지 지켜보기
+
+모델 평가하기:
+
+- 학습과정에서 모니터링할 수 있도록 모델에 적합한 evaluation metric 을 선택해라. 한번 학습된 뒤에는, 예측 정확도가 맞는지 확인하기 위해 테스트 예측을 해보아라.
+
+<iframe
+     src="https://codesandbox.io/embed/tensorflowjs-03-linear-regression-65lku?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="tensorflowjs-03-linear-regression"
+     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+></iframe>
+
+## 9. 추가로 해볼만한 것들
+
+- epochs 횟수를 변경해 보아서 실험해보자. 그래프가 평평해지기 위해서는 epochs이 몇번이 필요할까?
+- 히든레이어의 unit수를 늘려보자.
+- 입출력 레이어 사이에 히든레이어를 몇개 더 추가해보자. 추가될 레이어는 예시로 아래와 같은 형태가 될 수도 있다.
+
+```javascript
+model.add(tf.layers.dense({ units: 50, activation: "sigmoid" }))
+```
+
+여기에서 중요한 것은, 히든레이어로 비선형 활성화 함수인 [sigmoid](https://developers.google.com/machine-learning/glossary/#sigmoid_function)를 활용했다는 사실이다. 활성화 함수에 더 알아보고 싶다면, [여기](https://developers.google.com/machine-learning/crash-course/introduction-to-neural-networks/anatomy)를 참조하자.
+
+위 실험을 거친다면, 아래와 같은 모습이 나타날 것이다.
+
+![](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/img/fe7afd4c351901f6.png)
+
+<iframe
+     src="https://codesandbox.io/embed/magical-khayyam-wwg16?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="tensorflowjs-03-linear-regressio-extra-credit"
+     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+   ></iframe>
