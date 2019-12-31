@@ -6,7 +6,7 @@ module.exports = {
   url: "https://yceffort.kr",
   title: "yceffort",
   tagline: "the dumbest developer alive",
-  copyright: "© 2019 willjw3, All rights reserved",
+  copyright: "© 2020 yceffort, All rights reserved",
   author: {
     name: "yceffort",
     bio: "the dumbest developer alive",

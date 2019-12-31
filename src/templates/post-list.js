@@ -40,10 +40,7 @@ const PostList = props => {
 
   return (
     <Layout>
-      <SEO
-        title="Home"
-        keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`]}
-      />
+      keywords={[`gatsby`, `javascript`, `react`, `web development`, `node.js`]}
       <div className="index-main">
         <div className="sidebar px-4 py-2">
           <Sidebar />
