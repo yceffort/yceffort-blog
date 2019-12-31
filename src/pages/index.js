@@ -56,7 +56,7 @@ const IndexPage = ({ data }) => {
           {posts.map(post => {
             const tags = post.node.frontmatter.tags
             return (
-              <div key={post.node.id} className="container mt-5">
+              <div key={post.node.id} className="container mt-5 y_index">
                 <Link to={post.node.fields.slug} className="text-dark">
                   <h2 className="title">{post.node.frontmatter.title}</h2>
                 </Link>
