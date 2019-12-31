@@ -38,8 +38,14 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO
-        title="Home"
-        keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`]}
+        title="yceffort's blog"
+        keywords={[
+          `javascript`,
+          `react`,
+          `web development`,
+          `programming`,
+          `blog`,
+        ]}
       />
       <div className="index-main">
         <div className="sidebar px-4 py-2">
