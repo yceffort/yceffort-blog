@@ -46,7 +46,7 @@ const IndexPage = ({ data }) => {
           `programming`,
           `blog`,
         ]}
-        image="https://yceffort.kr/ogtag.jpg"
+        image="/utils/share.png"
       />
       <div className="index-main">
         <div className="sidebar px-4 py-2">
