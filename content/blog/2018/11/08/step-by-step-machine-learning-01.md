@@ -347,7 +347,7 @@ strat_test_set["income_cat"].value_counts() / len(strat_test_set)
 Name: income_cat, dtype: float64
 ```
 
-얼추 그래프의 분포와 비슷한 양상을 보이고 있다. 최초의 목적은 달성헀으니, 컬럼을 드랍하자.
+얼추 그래프의 분포와 비슷한 양상을 보이고 있다. 최초의 목적은 달성했으니, 컬럼을 드랍하자.
 
 ```python
 for set_ in (strat_train_set, strat_test_set):

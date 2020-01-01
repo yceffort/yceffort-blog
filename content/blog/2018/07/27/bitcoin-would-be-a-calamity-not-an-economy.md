@@ -10,7 +10,7 @@ Bitcoin would be a calamity, not an economy
 
 [원문](https://www.technologyreview.com/s/610783/bitcoin-would-be-a-calamity-not-an-economy/)
 
-[올해 초, 트위터의 CEO 잭 도시는 비트코인이 10년 안에 세계 단일 통화가 될 것이라고 선언헀다.](https://www.cnbc.com/2018/03/21/jack-dorsey-expects-bitcoin-to-become-the-worlds-single-currency-in-about-10-years.html) 띠용띠용~~~  이 발언에서 놀라운 점은 이런 대담한 예측 뿐만 아니라 비트코인이 투기성 투자 외에 다른일에도 유용할 수 있다는 개념이었다. 금융계가 작년에 암호화폐 광풍에 사로잡혀 있는 와중에도 암호화폐에서 '화폐' 의 부분은 대중들의 시선에서 중요하게 인식되고 있었다. 골드만삭스의 임원이 작년에 언급했듯이, 비트코인은 현재 '화폐' 라기 보다는 '자산' 에 가깝다. 사람들이 상품이나 서비스에 대해 비트코인을 교환하는 것이 아니라, 주식이나 채권처럼 '투자' 목적으로 거래하는 것이다.
+[올해 초, 트위터의 CEO 잭 도시는 비트코인이 10년 안에 세계 단일 통화가 될 것이라고 선언했다.](https://www.cnbc.com/2018/03/21/jack-dorsey-expects-bitcoin-to-become-the-worlds-single-currency-in-about-10-years.html) 띠용띠용~~~  이 발언에서 놀라운 점은 이런 대담한 예측 뿐만 아니라 비트코인이 투기성 투자 외에 다른일에도 유용할 수 있다는 개념이었다. 금융계가 작년에 암호화폐 광풍에 사로잡혀 있는 와중에도 암호화폐에서 '화폐' 의 부분은 대중들의 시선에서 중요하게 인식되고 있었다. 골드만삭스의 임원이 작년에 언급했듯이, 비트코인은 현재 '화폐' 라기 보다는 '자산' 에 가깝다. 사람들이 상품이나 서비스에 대해 비트코인을 교환하는 것이 아니라, 주식이나 채권처럼 '투자' 목적으로 거래하는 것이다.
 
 이러한 인식은 현실을 크게 반영한다. 지난 몇 년 동안 비트코인 트랜잭션의 수는 크게 증가하지 않았으며, [학술 연구에 따르면 이러한 거래의 절반이 불법적인 활동과 관련이 있다고 한다.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3102645) 
 

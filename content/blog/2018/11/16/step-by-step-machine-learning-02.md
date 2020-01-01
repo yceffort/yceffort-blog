@@ -172,7 +172,7 @@ array([0.90725, 0.90865, 0.91305])
 - TN (True Negative): 실제 값이 false인데 예측을 false로 했다. (오류)
 - FP (False Positive): 실제 값이 false인데 예측을 true로 했다. (정답)
 - FN (False Negative): 실제 값이 true인데 예측을 false로 했다. (오류)
-- TP (True Positive): 실제 값이 true인데 예측을 true로 헀다. (정답)
+- TP (True Positive): 실제 값이 true인데 예측을 true로 했다. (정답)
 
 ```python
 from sklearn.model_selection import cross_val_predict
