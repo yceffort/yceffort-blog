@@ -742,7 +742,7 @@ const rootReducer = (state, action) => {
 
 ### Whats the purpose of `at` symbol in the Redux connect decorator?
 
-`@`는 자바스크립트에서 데코레이터를 나타낼 떄 쓰는 표현식이다. 데코레이터는 class와 속성에 주석을 달고, 이를 수정할 수 있게 해준다.
+`@`는 자바스크립트에서 데코레이터를 나타낼 때 쓰는 표현식이다. 데코레이터는 class와 속성에 주석을 달고, 이를 수정할 수 있게 해준다.
 
 데코레이터가 없는 redux를 예로 들어보자.
 

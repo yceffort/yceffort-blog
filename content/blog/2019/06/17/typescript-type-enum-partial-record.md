@@ -44,7 +44,7 @@ function numberOrString(parameter: string|number) {
 
 이런 방식을 `Union Type` 이라고 한다. `Union Type`는 하나의 값에 여러가지 타입을 표현할 수 있게 해준다. 사용할 값을 `|`로 구별해서 넣어주면 된다.
 
-처음 문제로 돌아와서, Global한 컬러로 지정하려는 값이 네개 있다고 헀다. 이제 이것은 이렇게 처리하면 된다.
+처음 문제로 돌아와서, Global한 컬러로 지정하려는 값이 네개 있다고 했다. 이제 이것은 이렇게 처리하면 된다.
 
 ```typescript
 export type GlobalColors = 'Red' | 'Blue' | 'Green' | 'Black'

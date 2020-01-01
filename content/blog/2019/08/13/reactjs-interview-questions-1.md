@@ -757,7 +757,7 @@ DOM에서의 변경을 적용할 때, 내부에서 어떤 과정을 거치는지
 
 1. `Render` 컴포넌트가 어떠한 사이드 이펙트 없이 렌더링 된다. 이는 Pure Component에 적용되며, 이 단계에서는 일시정지, 중단, 렌더 재시작등이 가능하다.
 2. `Pre-commit`: 컴포넌트가 실제 변화를 DOM에 반영하기 전에, 리액트가 DOM을 `getSnapshotBeforeUpdate()` 통해서 DOM 을 읽을 수도 있다.
-3. `Commit`: React는 DOM과 함꼐 작동하며, 각각의 라이프 사이클 마지막에 실행되는 것들이 포함된다. `componentDidMount()` `componentDidUpdate()` `componentWillUnmount()`
+3. `Commit`: React는 DOM과 함께 작동하며, 각각의 라이프 사이클 마지막에 실행되는 것들이 포함된다. `componentDidMount()` `componentDidUpdate()` `componentWillUnmount()`
 
    16.3 이후
 
