@@ -3,7 +3,7 @@ title: "Tensorflow.js - 02. 설치하기"
 date: 2019-12-20 13:49:01
 published: true
 layout: post
-tags: [machine-learning, ai, tensorflow]
+tags: [machine-learning, ai, tensorflow, javascript]
 ---
 
 [이전글 보기](/2019/12/20/tensorflowjs-01-get-started/)
@@ -29,21 +29,21 @@ Tensorflow.js를 설치하는 방법은 두 가지가 있습니다.
 
 ```javascript
 // linear regression 모델
-const model = tf.sequential();
-model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
+const model = tf.sequential()
+model.add(tf.layers.dense({ units: 1, inputShape: [1] }))
 
-model.compile({ loss: "meanSquaredError", optimizer: "sgd" });
+model.compile({ loss: "meanSquaredError", optimizer: "sgd" })
 
 // 훈련을 위한 임의 데이터 생성
-const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
-const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+const xs = tf.tensor2d([1, 2, 3, 4], [4, 1])
+const ys = tf.tensor2d([1, 3, 5, 7], [4, 1])
 
 // 데이터 기반으로 훈련시키기
 model.fit(xs, ys, { epochs: 10 }).then(() => {
   // 훈련한 모델을 기반으로 데이터 예측
-  model.predict(tf.tensor2d([5], [1, 1])).print();
+  model.predict(tf.tensor2d([5], [1, 1])).print()
   // dev tool에 결과 값이 나온다.
-});
+})
 ```
 
 ### npm을 이용해서 설치하기
@@ -59,24 +59,24 @@ npm install @tensorflow/tfjs
 ```
 
 ```javascript
-import * as tf from "@tensorflow/tfjs";
+import * as tf from "@tensorflow/tfjs"
 
 // linear regression 모델
-const model = tf.sequential();
-model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
+const model = tf.sequential()
+model.add(tf.layers.dense({ units: 1, inputShape: [1] }))
 
-model.compile({ loss: "meanSquaredError", optimizer: "sgd" });
+model.compile({ loss: "meanSquaredError", optimizer: "sgd" })
 
 // 훈련을 위한 임의 데이터 생성
-const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
-const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+const xs = tf.tensor2d([1, 2, 3, 4], [4, 1])
+const ys = tf.tensor2d([1, 3, 5, 7], [4, 1])
 
 // 데이터 기반으로 훈련시키기
 model.fit(xs, ys, { epochs: 10 }).then(() => {
   // 훈련한 모델을 기반으로 데이터 예측
-  model.predict(tf.tensor2d([5], [1, 1])).print();
+  model.predict(tf.tensor2d([5], [1, 1])).print()
   // 결과 값이 나온다.
-});
+})
 ```
 
 ### Node.js 설치
@@ -114,30 +114,28 @@ npm install @tensorflow/tfjs
 ```
 
 ```javascript
-const tf = require("@tensorflow/tfjs");
+const tf = require("@tensorflow/tfjs")
 
 // 옵셔널
 // '@tensorflow/tfjs-node-gpu' gpu와 사용하고 싶다면
-require("@tensorflow/tfjs-node");
+require("@tensorflow/tfjs-node")
 
 // Train a simple model:
-const model = tf.sequential();
-model.add(
-  tf.layers.dense({ units: 100, activation: "relu", inputShape: [10] })
-);
-model.add(tf.layers.dense({ units: 1, activation: "linear" }));
-model.compile({ optimizer: "sgd", loss: "meanSquaredError" });
+const model = tf.sequential()
+model.add(tf.layers.dense({ units: 100, activation: "relu", inputShape: [10] }))
+model.add(tf.layers.dense({ units: 1, activation: "linear" }))
+model.compile({ optimizer: "sgd", loss: "meanSquaredError" })
 
-const xs = tf.randomNormal([100, 10]);
-const ys = tf.randomNormal([100, 1]);
+const xs = tf.randomNormal([100, 10])
+const ys = tf.randomNormal([100, 1])
 
 model.fit(xs, ys, {
   epochs: 100,
   callbacks: {
     onEpochEnd: (epoch, log) =>
-      console.log(`Epoch ${epoch}: loss = ${log.loss}`)
-  }
-});
+      console.log(`Epoch ${epoch}: loss = ${log.loss}`),
+  },
+})
 ```
 
 ### TypeScript

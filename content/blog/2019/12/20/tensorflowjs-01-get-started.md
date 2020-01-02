@@ -3,7 +3,7 @@ title: "Tensorflow.js - 01. 시작하기"
 date: 2019-12-20 13:49:06
 published: true
 layout: post
-tags: [machine-learning, ai, tensorflow]
+tags: [machine-learning, ai, tensorflow, javascript]
 ---
 
 [https://www.tensorflow.org/js/tutorials](https://www.tensorflow.org/js/tutorials)을 개인적인 학습을 위해 번역한 글입니다. 정확한 번역을 위해서가 아니라, 개인적인 공부를 위해서 하는 것입니다. 오해 ㄴㄴ

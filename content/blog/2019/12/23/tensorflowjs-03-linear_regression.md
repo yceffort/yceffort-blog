@@ -3,7 +3,7 @@ title: "Tensorflow.js - 03. Linear Regression"
 date: 2019-12-23 10:30:29
 published: true
 layout: post
-tags: [machine-learning, ai, tensorflow]
+tags: [machine-learning, ai, tensorflow, javascript]
 ---
 
 # Linear Regression
