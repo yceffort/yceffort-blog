@@ -37,6 +37,7 @@ data = pd.read_csv(string_csv, skiprows=[0, 1, 2, 3, 4, 5])
 data.head()
 ```
 
+<div class="table-responsive">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -91,7 +92,7 @@ data.head()
     </tr>
   </tbody>
 </table>
-
+</div>
 
 ```python
 temp = data['평균기온(℃)']
@@ -135,6 +136,7 @@ train_X = np.array(tmp)
 pd.DataFrame(train_X).head()
 ```
 
+<div class="table-responsive">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -285,6 +287,7 @@ pd.DataFrame(train_X).head()
     </tr>
   </tbody>
 </table>
+</div>
 
 이제 신경망을 구성하려고 한다. 이상탐지를 위해서, 자기부호화기 (auto encoder)를 사용하려고 한다. 다시한번 자기부호화기를 설명하자면, 입력층의 데이터를 압축하여 크기를 축소하고, 그렇게 해서 축소된 정보를 바탕으로 다시 원래 데이터를 복구하는 방법이다. 즉 이 신경망의 목표는 입력층을 암호화하고 다시 바로 복호화 했을때, 이 입력을 다시 제대로 복호화 할 수 있는 파라미터를 찾는 것이다.
 
@@ -309,7 +312,7 @@ class Net(nn.Module):
     x = self.fc4(x)
 
     return x;
-  
+
 model = Net()
 ```
 
@@ -323,10 +326,10 @@ criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 for epoch in range(1000):
-  
+
   total_loss = 0
   d = []
-  
+
   # 훈련 데이터를 미니 배치로 분할
   for i in range(100):
     # 훈련 데이터에 인덱스
@@ -337,19 +340,19 @@ for epoch in range(1000):
   # numpy로 변환후 다시 Variable로
   d = np.array(d, dtype='float32')
   d = Variable(torch.from_numpy(d))
-  
+
   optimizer.zero_grad()
   # 순전파
   output = model(d)
-  # 오차 
+  # 오차
   loss = criterion(output, d)
   # 역전파
   loss.backward()
   # 가중치 업데이트
   optimizer.step()
-  
+
   total_loss += loss.data.item()
-  
+
   if (epoch+1) % 100 == 0:
     print(epoch+1, total_loss)
 ```
@@ -411,8 +414,8 @@ for i in range(0, 720):
   dist = (test[i] - pred[i])
   score = pow(dist, 2)
   total_score.append(score)
-  
-# 점수를 0과 1로 정규화  
+
+# 점수를 0과 1로 정규화
 total_score = np.array(total_score)
 max_score = np.max(total_score)
 total_score = total_score / max_score

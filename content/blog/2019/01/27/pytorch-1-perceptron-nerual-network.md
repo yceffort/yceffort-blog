@@ -103,6 +103,7 @@ sklearn에서 제공하는 wine 에는 다음과 같은 필드가 있다.
 pd.DataFrame(wine.data, columns=wine.feature_names)
 ```
 
+<div class="table-responsive">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -173,7 +174,7 @@ pd.DataFrame(wine.data, columns=wine.feature_names)
     </tr>
   </tbody>
 </table>
-
+</div>
 대충 잘랐지만, 178\*13 정도 다.
 
 ```python
