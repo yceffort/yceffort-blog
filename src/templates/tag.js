@@ -45,11 +45,11 @@ const Tag = ({ pageContext, data }) => {
       <SEO
         title="Home"
         keywords={[
-          `gatsby`,
           `javascript`,
           `react`,
           `web development`,
-          `node.js`,
+          `programming`,
+          `blog`,
         ]}
       />
       <div className="index-main">
