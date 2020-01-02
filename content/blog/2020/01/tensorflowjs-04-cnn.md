@@ -89,4 +89,73 @@ HTML과 javascript를 만들어 보았으므로, 테스트를 해볼 차례입�
 
 `Hello Tensorflow`라는 메시지를 보게 된다면, 다음 단계로 넘어갈 준비가 된 것입니다.
 
-🚧작성 중 🚧
+## 3. Load the Data
+
+본 튜토리얼에서는 아래 이미지의 숫자를 인식하는 방법을 학습하기 위한 모델을 만들어 볼 것입니다. 여기에서 말하는 이미지는 28x28px 사이즈의 흑백이미지이며, [MNIST](http://yann.lecun.com/exdb/mnist/)라고 불리웁니다.
+
+![MNIST](https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/img/19dce81db67e1136.png)
+
+이 이미지들로 부터 만든 [sprite file](https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png)도 있습니다.
+
+`data.js`를 통해서 어떻게 데이터가 로딩되는지 확인해보세요. 이 튜토리얼을 한번 하고 나면, 스스로 데이터를 로딩하는 스크립트를 만들어보는 것도 좋습니다.
+
+위 파일에는 `MnistData` 클래스가 있으며, 두 개의 public methods가 있습니다.
+
+- `nextTrainBatch(batchSize)`: 무작위 배치 이미지와 라벨을 학습용 세트에서 리턴합니다.
+- `nextTestBatch(batchSize)`: 무작위 배치 이미지와 라벨을 테스트용 세트에서 리턴합니다.
+
+MnistData 클래스는 또한 데이터를 섞고 정규화하는 중요한 일도 담당합니다.
+
+여기에는 65,000개의 이미지가 있으며, 55,000개의 이미지는 학습용으로 사용하고, 10,000개의 이미지는 나중에 모델의 성능을 측정하기 위한 테스트용으로 둘 것입니다. 그리고 이러한 모든 것들이 브라우저에서 이루어집니다.
+
+> 만약 Node.js가 익숙하시다면, 파일시스템에서 바로 이미지를 로딩해서, 픽셀데이터를 얻기 위한 native image processing을 활용해도 됩니다.
+
+데이터를 로딩해보고, 테스트 해서 한번 제대로 되는지 확인해 봅시다.
+
+```javascript
+import { MnistData } from "./data.js"
+
+async function showExamples(data) {
+  // Create a container in the visor
+  const surface = tfvis
+    .visor()
+    .surface({ name: "Input Data Examples", tab: "Input Data" })
+
+  // Get the examples
+  const examples = data.nextTestBatch(20)
+  const numExamples = examples.xs.shape[0]
+
+  // Create a canvas element to render each example
+  for (let i = 0; i < numExamples; i++) {
+    const imageTensor = tf.tidy(() => {
+      // Reshape the image to 28x28 px
+      return examples.xs
+        .slice([i, 0], [1, examples.xs.shape[1]])
+        .reshape([28, 28, 1])
+    })
+
+    const canvas = document.createElement("canvas")
+    canvas.width = 28
+    canvas.height = 28
+    canvas.style = "margin: 4px;"
+    await tf.browser.toPixels(imageTensor, canvas)
+    surface.drawArea.appendChild(canvas)
+
+    imageTensor.dispose()
+  }
+}
+
+async function run() {
+  const data = new MnistData()
+  await data.load()
+  await showExamples(data)
+}
+
+document.addEventListener("DOMContentLoaded", run)
+```
+
+페이지를 새로고침하면, 몇 초 뒤에 이미지가 있는 패널이 나타날 것입니다.
+
+![](https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/img/b675d1a8c09ddf78.png)
+
+🚧 작성 중 🚧
