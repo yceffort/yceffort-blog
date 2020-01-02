@@ -1,5 +1,5 @@
 ---
-title: "Handwritten digit recognition with CNNs"
+title: "Tensorflow.js - 04. CNN"
 tags: [machine-learning, ai, tensorflow, javascript]
 published: true
 date: 2020-01-02 18:52:09
