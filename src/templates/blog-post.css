@@ -16,7 +16,7 @@
 
 @media only screen and (min-width: 851px) {
   .table-responsive {
-    width: calc(100vw - 650px);
+    width: calc(100vw - 550px);
   }
 
   table {
@@ -24,7 +24,7 @@
   }
 
   img {
-    max-width: calc(100vw - 650px);
+    max-width: calc(100vw - 550px);
   }
 }
 
