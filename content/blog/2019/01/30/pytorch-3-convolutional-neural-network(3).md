@@ -19,13 +19,13 @@ mathjax: true
 
 이른바 합성곱층이다. 입력데이터에 필터를 적용해서 특징값을 추출하는 레이어다. 필터를 적용해서 특징값을 추출하고, 이 필터의 값을 비선형 값으로 바꾸어주는 Activation 함수 (일반적으로 ReLU)로 이루어져 있다.
 
-![convolutional-layer](https://t1.daumcdn.net/cfile/tistory/23561441583ED6AB29){:width="200px"}
+![convolutional-layer](https://t1.daumcdn.net/cfile/tistory/23561441583ED6AB29)
 
 ### Filter
 
 필터는 찾으려는 특징이 입력 데이터에 존재하는지 여부를 검출해주는 함수다.
 
-![filter](https://cdn-images-1.medium.com/max/1600/1*7S266Kq-UCExS25iX_I_AQ.png){:width="600px"}
+![filter](https://cdn-images-1.medium.com/max/1600/1*7S266Kq-UCExS25iX_I_AQ.png)
 
 먼저 왼쪽 과 같은 그림 이 있다고 가정하자. 그리고 해당 특징을 찾으려는 필터를 곱하면 (Convolutaionl) 일정한 결과 값이 나오게 될 것이다. 찾으려는 특징이 존재한다면 큰값이 나오고, 찾으려는 특징이 존재하지 않으면 0에 가까운 값이 나올 것이다. (Activation Layer로 처리하겠지만)
 
@@ -41,7 +41,7 @@ mathjax: true
 
 위 움짤에서 보이는 것처럼, 필터를 적용하고 나면 그 크기가 필터 적용 이전보다 작아지게 된다. 5X5이미지는 3X3 필터의 1 stride를 적용하고 났더니, 결과 크기는 3X3으로 쪼그라 들었다. 그러나 문제는 단 한개의 레이어가 아니고, 여러개의 필터를 적용해서 특징을 추출해 나간다는 것이다. 이 과정이 반복되서 결과 크기가 줄어들게 되면, 처음에 비해서 그 특징을 많이 잃어버릴 수 가 있다. 이를 방지 하기 위한 기법으로 Padding을 쓴다. Padding은 입력값 주위로 특정 값을 넣어서 크기가 줄어드는 것을 인위적으로 방지한다. Padding에는 주로 0을 쓰는 Zero Padding을 많이 쓰게 된다.
 
-![padding](https://adeshpande3.github.io/assets/Pad.png){:width="600px"}
+![padding](https://adeshpande3.github.io/assets/Pad.png)
 
 32x32x3의 입력값에서 5x5x3 필터를 적용 시키게 되면, feature map의 크기는 28x28x3이 된다. 이렇게 사이즈가 작아지는 걸 막기 위해서 Padding을 쓴다. 입력데이터 주위에 2의 두께로 0을 둘러 쌓아주면, 36x36x3이 되고, 5x5x3 필터를 적용하더라도 결과값은 32x32x3 로 유지된다.
 
