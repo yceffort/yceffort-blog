@@ -48,3 +48,21 @@
     max-width: calc(100vw - 3rem);
   }
 }
+
+
+blockquote>p {
+  position: relative;
+  padding-left: 1em;
+  border-left: 0.2em solid #4d91b3;
+  line-height: 1.5em;
+  font-weight: 100;
+  font-style: italic;
+}
+
+blockquote>p::before {
+  content: '\201C';
+}
+
+blockquote>p::after {
+  content: '\201D';
+}
