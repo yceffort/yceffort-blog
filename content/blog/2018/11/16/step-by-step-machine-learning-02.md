@@ -102,7 +102,7 @@ import numpy as np
 shuffle_index = np.random.permutation(60000)
 X_train, y_train = X_train[shuffle_index], y_train[shuffle_index]
 
-# y값이 5인 것들만 
+# y값이 5인 것들만
 y_train_5 = (y_train == 5)
 
 # y값이 5인 것들만 (true, false)로
@@ -193,7 +193,7 @@ array([[53884,   695],
 
 $$precision = \frac{TP}{TP+FP}$$
 
-실제 이게 맞다라고 예측했을때, 정말로 정답일 확률이다. 
+실제 이게 맞다라고 예측했을때, 정말로 정답일 확률이다.
 
 #### 2) Recall (재현율)
 
@@ -233,9 +233,9 @@ f1_score(y_train_5, y_train_pred)
 
 ### 4. Precision/Recall Tradeoff
 
-둘 사이의 Tradeoff를 알기 위해서, `SGDClassifer`가 어떻게 classification을 만들어 내는지 알아보자. 각 인스턴스마다, `SGDClassifier`는 `decision function`(결정함수)를 사용하여 점수를 매기는데, 이 스코어가 `threshold` 보다 높으면 true로 그렇지 않으면 negative로 분류하게 된다. 
+둘 사이의 Tradeoff를 알기 위해서, `SGDClassifer`가 어떻게 classification을 만들어 내는지 알아보자. 각 인스턴스마다, `SGDClassifier`는 `decision function`(결정함수)를 사용하여 점수를 매기는데, 이 스코어가 `threshold` 보다 높으면 true로 그렇지 않으면 negative로 분류하게 된다.
 
-![decision threshold and precision recall trade off](https://lh3.googleusercontent.com/HtSa0QJBxFJv1yCenDFzKRsraMzIx03ksh0NKVEdttMtc7ogrkU-tCF7TzathDnyV0xvGw=s170){:width="400px"}
+![decision threshold and precision recall trade off](https://lh3.googleusercontent.com/HtSa0QJBxFJv1yCenDFzKRsraMzIx03ksh0NKVEdttMtc7ogrkU-tCF7TzathDnyV0xvGw=s170)
 
 왼쪽에는 낮은 점수를 기록한 negative, 오른쪽에는 높은 점수를 기록한 positive가 존재한다. `threshold`가 가운데에 있다고 가정했을 때, 그리고 이 `threshold`가 어느정도이냐에 따라서 Precision 과 Recall값이 달라지게 된다. 즉 5라고 일단 예측해버리면, Recall은 성공하겠지만, 모두 5가 아니라고 판단하면, Precision이 높아지게 될 것이다.
 
@@ -296,4 +296,3 @@ plt.show()
 ![ml-2-2.png](../../../../2018/11/ml-2-2.png)
 
 이 Tradeoff를 감안해서 , 적절한 값을 찾아야 할 것이다.
-

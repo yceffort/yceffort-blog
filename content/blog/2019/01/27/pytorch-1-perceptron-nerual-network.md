@@ -61,7 +61,7 @@ mathjax: true
 
 지금까지 공부해본 신경망 알고리즘으로, 와인을 분류해보는 것을 진행해보자. 학습환경은 google colab을 사용할 것이다. 구글 colab에서 pytorch를 사용하려면 아래와 같이 pytorch를 받으면 된다.
 
-![pytorch-runtime](../../../../2019/01/pytorch-runtime.png){:width="200px"}
+![pytorch-runtime](../../../../2019/01/pytorch-runtime.png)
 
 ```bash
 !pip3 install https://download.pytorch.org/whl/cu80/torch-1.0.0-cp36-cp36m-linux_x86_64.whl
