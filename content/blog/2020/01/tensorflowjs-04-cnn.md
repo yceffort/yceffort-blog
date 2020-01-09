@@ -265,6 +265,86 @@ model.add(
 - `filters`: kernelSize에서 적용한 filter window의 개수입니다. 여기에서는 8로 설정했습니다.
 - `strides`: 슬라이딩 윈도우의 step size 입니다. 이미지 위로 이동할 때마다 이동할 픽셀의 수를 의미합니다. 여기서 우리는 1을 지정하는데, 이는 필터가 1픽셀 단위로 이미지 위에서 이동한다는 것을 의미합니다.
 - `activation`: 합성곱 연산이 끝난뒤에 적용할 [활성화 함수](https://developers.google.com/machine-learning/glossary/#activation_function)입니다. 여기에서는 머신러닝 모델에서 가장 흔히 사용되는 [ReLU](https://developers.google.com/machine-learning/glossary/#ReLU) 적용합니다.
-- `kernelInitializer`: The method to use for randomly initializing the model weights, which is very important to training dynamics. We won't go into the details of initialization here, but VarianceScaling (used here) is generally a good initializer choice.
+- `kernelInitializer`: 랜덤하게 가중치 값을 초기화 하는 메서드로, 다이나믹 학습을 위해 굉장히 중요한 부분이다. 여기에서는 자세한 내용을 다루지는 않을 것이지만, 일반적으로는 (그리고 여기에서는) `VarianceScaling`를 쓴다. [참고](https://js.tensorflow.org/api/latest/#Initializers)
+
+> dense layer 만으로도 이미지 분류기를 만들 수 있지만, 대부분의 이미지 기반 작업에서는 합성곱 레이어가 더 효과적이라는 것이 증명되었습니다.
+
+### 데이터를 평평하게 만들기
+
+```javascript
+model.add(tf.layers.flatten())
+```
+
+이미지는 보통 고차원의 데이터라서, 합성곱 작업을 하게되면 데이터의 크기가 커지는 경향이 있다. 이를 마지막 분류 레이어에 넣기 전에, 하나의 단순한 긴 array로 평평하게 만들 필요가 있다. Dense layer(우리가 마지막 레이어라고 말하는 것)은 `tensor1d`만 받는데, 이는 일반적인 분류 작업에서 보통 이렇게 진행한다.
+
+> 평평해진 레이어에는 가중치가 없습니다. 단순히 입력된 값을 긴 배열로 풀기만 하면 됩니다.
+
+### 확률분포를 계산하기
+
+```javascript
+const NUM_OUTPUT_CLASSES = 10
+model.add(
+  tf.layers.dense({
+    units: NUM_OUTPUT_CLASSES,
+    kernelInitializer: "varianceScaling",
+    activation: "softmax",
+  })
+)
+```
+
+여기에서는 optimizer, loss function 그리고 우리가 추적하고자 하는 지표들을 모델에 입력하고 컴파일합니다.
+
+첫번째 튜토리얼과는 다르게, 손실 함수로 [categoricalCrossentropy](https://developers.google.com/machine-learning/glossary/#cross-entropy)를 사용했습니다. 이름이 암시하듯이, 모델의 최종 결과 값이 확률 분포일 때 사용합니다. `categoricalCrossentropy`는 모델의 마지막 층에서 만들어진 확률분포와, 우리가 주어준 진짜 라벨에서 주어진 확률분포 사이의 오류를 측정합니다.
+
+예를 들어, 결과값이 7인 이미지에 대해서는 결과가 아래와 같이 나올 것입니다.
+
+<table>
+  <tr>
+    <th>index</th>
+    <th>0</th>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+    <th>6</th>
+    <th>7</th>
+    <th>8</th>
+    <th>9</th>
+  </tr>
+  <tr>
+    <td>True label</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Prediction</td>
+    <td>0.1</td>
+    <td>0.01</td>
+    <td>0.01</td>
+    <td>0.01</td>
+    <td>0.20</td>
+    <td>0.01</td>
+    <td>0.01</td>
+    <td>0.60</td>
+    <td>0.03</td>
+    <td>0.02</td>
+  </tr>
+</table>
+
+Categorical cross entropy는 실제 주어진 label과 비교했을 떄 얼마나 비슷한지를 예측하는 숫자를 만들어냅니다.
+
+여기에서 주어진 데이터에서는, 이른바 one-hot encoding이라고 불리우는, 분류 문제에서 흔히 쓰이는 기법을 사용했습니다. 각각 클래스는 주어진 예시들에 대해 그것과 관련된 확률을 가지고 있습니다. 우리가 정확히 어떤 것인지 예측해야 할떄, 그것이 맞다면 1을, 아니라면 0으로 나타낼 수 있습니다. one-hot encoding에 대한 자세한 내용은 [여기](https://developers.google.com/machine-learning/crash-course/representation/feature-engineering)를 참조하세요.
+
+우리가 모니터링할 다른 지표는 분류 문제에 대한 정확성입니다. 이는 모든 예측 중 정확하게 예측한 비율을 의미합니다.
+
 
 🚧 작성 중 🚧
