@@ -43,9 +43,19 @@ const Layout = ({ children }) => {
               margin: `0 auto`,
               padding: `0px 1.0875rem 1.45rem`,
               paddingTop: 0,
+              wordBreak: "break-all",
             }}
           >
-            <main className="p-4">{children}</main>
+            <main
+              className="p-4"
+              ref={node => {
+                if (node) {
+                  node.style.setProperty("padding", "0rem", "important")
+                }
+              }}
+            >
+              {children}
+            </main>
             <footer className="text-center">
               <hr />
               <p className="d-inline">
