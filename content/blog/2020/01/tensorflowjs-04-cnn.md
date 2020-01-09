@@ -158,4 +158,113 @@ document.addEventListener("DOMContentLoaded", run)
 
 ![](https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/img/b675d1a8c09ddf78.png)
 
+## 4. 작업의 개념화
+
+우리의 Input 데이터는 아래와 같을 것 입니다.
+
+![](https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/img/b675d1a8c09ddf78.png)
+
+우리의 목표는 학습된 모델이 이미지 하나를 받으면, 그 이미지가 0~9사이의 숫자중 어떤 숫자에 가장 가까운지 각각 점수를 매겨서 예측하는 것입니다.
+
+각각의 이이미지는 28\*28 크기이며, color channel은 1입니다. (흑백) 따라서, 이미지의 형태를 데이터로 나타내면 `[28, 28, 1]`입니다.
+
+하나의 이미지를 10개의 값으로 매핑하는 작업이라는점, 그리고 이미지의 데이터 형태를 명심하고 다음 섹션으로 넘어가겠습니다.
+
+## 5. 모델 아키텍쳐 디자인
+
+이 섹션에서는 모델 아키텍쳐를 묘사하는 코드를 작성할 것잉ㅂ니다. 모델 아키텍쳐란 "어떤 함수를 사용하여 모델이 실행되는 과정에서 학습하게 할것인지" 또는 "답을 계산하기 위하여 어떤 알고리즘을 모델에서 사용할 것인지" 를 간지나게 말하는 것입니다.
+
+머신러닝에서, 아키텍쳐(알고리즘)을 정의할 것이고, 학습 과정에서 알고리즘의 파라미터를 학습하게 할 것입니다.
+
+```javascript
+function getModel() {
+  const model = tf.sequential();
+
+  const IMAGE_WIDTH = 28;
+  const IMAGE_HEIGHT = 28;
+  const IMAGE_CHANNELS = 1;
+
+  // 첫번째 covolutional 신경망에서는 input 이미지의 형태를 넣어둔다.
+  // 그 다음 합성곱 연산에 필요한 파라미터를 정의한다.
+  model.add(tf.layers.conv2d({
+    inputShape: [IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS],
+    kernelSize: 5,
+    filters: 8,
+    strides: 1,
+    activation: 'relu',
+    kernelInitializer: 'varianceScaling'
+  }));
+
+
+  // MaxPooling Layer는 평균값을 내는 것이 아니라, 영역의 최대값을 활용해서 다운샘플링을 진행한다.
+  model.add(tf.layers.maxPooling2d({poolSize: [2, 2], strides: [2, 2]}));
+
+
+  // conv2d와 maxpooling을 반복한다.
+  // 이 convolution에서 더 많은 필터가 있다는 것을 기억하자.
+  model.add(tf.layers.conv2d({
+    kernelSize: 5,
+    filters: 16,
+    strides: 1,
+    activation: 'relu',
+    kernelInitializer: 'varianceScaling'
+  }));
+  model.add(tf.layers.maxPooling2d({poolSize: [2, 2], strides: [2, 2]}));
+
+  // 2D형태의 필터를  1D 벡터 형태로 평평하게 하여, 마지막 layer에 인풋으로 넣을 수 있도록 한다.
+  // 이는 고차원의 데이터를 마지막 분류 레이어에 전달할 때 하는 일반적인 과정이다.
+  model.add(tf.layers.flatten());
+
+  // 마지막 레이어는 10개의 값이 나오게 된다.
+  // output class (i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9).
+  const NUM_OUTPUT_CLASSES = 10;
+  model.add(tf.layers.dense({
+    units: NUM_OUTPUT_CLASSES,
+    kernelInitializer: 'varianceScaling',
+    activation: 'softmax'
+  }));
+
+
+  // optimizer, loss function, accuracy meetric을 고르고, 컴파일 후에 모델을 리턴한다.
+  const optimizer = tf.train.adam();
+  model.compile({
+    optimizer: optimizer,
+    loss: 'categoricalCrossentropy',
+    metrics: ['accuracy'],
+  });
+
+  return model;
+```
+
+### 합성곱
+
+```javascript
+model.add(
+  tf.layers.conv2d({
+    inputShape: [IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS],
+    kernelSize: 5,
+    filters: 8,
+    strides: 1,
+    activation: "relu",
+    kernelInitializer: "varianceScaling",
+  })
+)
+```
+
+여기에서는 sequential 모델을 사용한다.
+
+우리는 dense layer 대시엔 `conv2d` layer를 사용한다. 여기에서는 합성곱이 어떻게 작동하는지까지 자세하게 설명할 수 없지만, 어떻게 작동하는지 설명해주는 좋은 아티클이 있습니다.
+
+- [Image Kernels Explained Visually](http://setosa.io/ev/image-kernels/)
+- [Convolutional Neural Network for Visual Recognition](http://cs231n.github.io/convolutional-networks/)
+
+`conv2d` object를 구성하는 argument 들에 대해 하나씩 알아봅시다.
+
+- `inputShape`: 모델의 첫번째 레이어에 들어가는 데이터의 형태입니다. 이번 예제에서는, 28\*28크기의 MNIST 흑백이미지를 사용하고 있습니다. 즉 `[row, column, depth]`, `[28, 28, 1]`로 넣을 수 있습니다. 가로 세로 각 28 픽셀이 자리잡고 있으며, color channel은 흑백이미지 이므로 1밖에 없습니다. 한가지 알아둬야 할 것은, input shape안에 batch size를 정의하지 않았다는 것입니다.
+- `kernelSize`: input data에 적용할 합성곱 필터의 윈도우 크기 입니다. 여기에서는 5로 설정했기 때문에, 정사각형 형태의 5x5 합성곱 윈도우가 만들어집니다.
+- `filters`: kernelSize에서 적용한 filter window의 개수입니다. 여기에서는 8로 설정했습니다.
+- `strides`: 슬라이딩 윈도우의 step size 입니다. 이미지 위로 이동할 때마다 이동할 픽셀의 수를 의미합니다. 여기서 우리는 1을 지정하는데, 이는 필터가 1픽셀 단위로 이미지 위에서 이동한다는 것을 의미합니다.
+- `activation`: 합성곱 연산이 끝난뒤에 적용할 [활성화 함수](https://developers.google.com/machine-learning/glossary/#activation_function)입니다. 여기에서는 머신러닝 모델에서 가장 흔히 사용되는 [ReLU](https://developers.google.com/machine-learning/glossary/#ReLU) 적용합니다.
+- `kernelInitializer`: The method to use for randomly initializing the model weights, which is very important to training dynamics. We won't go into the details of initialization here, but VarianceScaling (used here) is generally a good initializer choice.
+
 🚧 작성 중 🚧
