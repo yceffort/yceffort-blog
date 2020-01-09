@@ -3,7 +3,7 @@ title: "브라우저는 어떻게 동작하는가? - 모던 웹브라우저가 �
 date: 2019-08-12 13:42:22
 published: true
 layout: post
-tags: [browser]
+tags: [browser, web]
 ---
 
 ### 🚧작성중 🚧

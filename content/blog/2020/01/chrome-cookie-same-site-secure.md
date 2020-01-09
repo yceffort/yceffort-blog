@@ -1,6 +1,6 @@
 ---
 title: "Chrome Samesite 쿠키 정책"
-tags: [browser]
+tags: [browser, web, javascript]
 published: true
 date: 2020-01-09 12:09:03
 ---
