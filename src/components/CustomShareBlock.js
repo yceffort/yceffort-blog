@@ -26,8 +26,9 @@ const CustomShareBlock = props => {
       <ShareBlockStandard {...shareBlockProps} />
       <p className="text-center">
         <a
-          class="bmc-button"
+          className="bmc-button"
           target="_blank"
+          rel="noopener noreferrer"
           href="https://www.buymeacoffee.com/foryeffort"
         >
           <img

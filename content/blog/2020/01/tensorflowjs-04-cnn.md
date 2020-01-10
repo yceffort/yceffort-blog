@@ -346,5 +346,101 @@ Categorical cross entropy는 실제 주어진 label과 비교했을 떄 얼마�
 
 우리가 모니터링할 다른 지표는 분류 문제에 대한 정확성입니다. 이는 모든 예측 중 정확하게 예측한 비율을 의미합니다.
 
+## 6. 모델 훈련하기
+
+```javascript
+async function train(model, data) {
+  const metrics = ["loss", "val_loss", "acc", "val_acc"]
+  const container = {
+    name: "Model Training",
+    styles: { height: "1000px" },
+  }
+  const fitCallbacks = tfvis.show.fitCallbacks(container, metrics)
+
+  const BATCH_SIZE = 512
+  const TRAIN_DATA_SIZE = 5500
+  const TEST_DATA_SIZE = 1000
+
+  const [trainXs, trainYs] = tf.tidy(() => {
+    const d = data.nextTrainBatch(TRAIN_DATA_SIZE)
+    return [d.xs.reshape([TRAIN_DATA_SIZE, 28, 28, 1]), d.labels]
+  })
+
+  const [testXs, testYs] = tf.tidy(() => {
+    const d = data.nextTestBatch(TEST_DATA_SIZE)
+    return [d.xs.reshape([TEST_DATA_SIZE, 28, 28, 1]), d.labels]
+  })
+
+  return model.fit(trainXs, trainYs, {
+    batchSize: BATCH_SIZE,
+    validationData: [testXs, testYs],
+    epochs: 10,
+    shuffle: true,
+    callbacks: fitCallbacks,
+  })
+}
+```
+
+```javascript
+const model = getModel()
+tfvis.show.modelSummary({ name: "Model Architecture" }, model)
+
+await train(model, data)
+```
+
+새로고침을 하고 몇 초뒤에, 아래와 같이 훈련과정이 담긴 화면이 나올 것입니다.
+
+![](./images/cnn1.png)
+![](./images/cnn2.png)
+
+조금 자세히 살펴봅시다.
+
+### 메트릭 모니터링
+
+```javascript
+const metrics = ["loss", "val_loss", "acc", "val_acc"]
+```
+
+여기에서 우리는 어떤 요소들을 모니터링 할 것이지 선언합니다. 여기에서는 학습 세트의 loss, 정확성 뿐만 아니라 validation set (val_loss, val_acc)의 loss와 정확성을 모니터링합니다. 아래에서 좀더 자세히 알아봅시다.
+
+> 알아두기: Layers API를 사용하는 경우, Loss는 매 배치마다 계산되고, 정확도는 전체 데이터셋의 epoch 마다 계산됩니다.
+
+### 데이터를 tensor로 변환하기
+
+```javascript
+const BATCH_SIZE = 512
+const TRAIN_DATA_SIZE = 5500
+const TEST_DATA_SIZE = 1000
+
+const [trainXs, trainYs] = tf.tidy(() => {
+  const d = data.nextTrainBatch(TRAIN_DATA_SIZE)
+  return [d.xs.reshape([TRAIN_DATA_SIZE, 28, 28, 1]), d.labels]
+})
+
+const [testXs, testYs] = tf.tidy(() => {
+  const d = data.nextTestBatch(TEST_DATA_SIZE)
+  return [d.xs.reshape([TEST_DATA_SIZE, 28, 28, 1]), d.labels]
+})
+```
+
+여기에서 우리는 두개의 데이터셋을 만들었는데, 하나는 학습 과정에서 쓰이는 학습세트고, 다른 하나는 validation 과정에서 쓰이는 세트입니다. 이러한 validation set는 학습과정에서 모델에게 절대 노출되지 않습니다.
+
+우리가 제공한 데이터 클레스는, 이미지 데이터로부터 텐서를 쉽게 얻을 수 있게 만들어줍니다. 그러나 우리는 텐서를 모델에 넘기기전에, [num_examples, image_width, image_height, channels] 형태로 다시 만들어 냅니다. 각각의 데이터셋에는 X input, Y label이 존재합니다.
+
+> trainDataSize는 5500으로, testDataSize는 1000으로 설정되어 있는데, 이는 테스트를 조금더 빠르게 하기 위함입니다. 이 튜토리얼이 끝난 뒤에는 각각 55000과 10000으로 설정해 보시길 바랍니다. 학습은 조금더 오래 걸리겠지만, 여러머신에서 동작하는 브라우저에서는 동작할 것입니다.
+
+```javascript
+return model.fit(trainXs, trainYs, {
+  batchSize: BATCH_SIZE,
+  validationData: [testXs, testYs],
+  epochs: 10,
+  shuffle: true,
+  callbacks: fitCallbacks,
+})
+```
+
+`model.fit`을 학습 루프 시작과정에서 호출합니다. 또한 validationData 속성을 전달하여, 각 학습 이후에 모델이 자신을 테스트하기 위해 사용해야 하는 데이터를 명시합니다. (학습 과정에서는 사용되지 않음.)
+
+validation 데이터를 학습과정에서 넘기지 않는 다는 것은, 학습 과정이 overfitting 되는 것을 방지하고, 이전에 봤던 데이터로 일반화 시키지 않는 다는 것을 의미합니다.
 
 🚧 작성 중 🚧
