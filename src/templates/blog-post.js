@@ -1,5 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button" //Add this line Here
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./blog-post.css"
@@ -65,6 +67,17 @@ const BlogPost = props => {
           <Utterances repo="yceffort/yceffort-blog-comments" />
         </div>
       </div>
+
+      <ScrollUpButton
+        StopPosition={0}
+        ShowAtPosition={150}
+        EasingType="easeOutCubic"
+        AnimationDuration={500}
+        ContainerClassName="ScrollUpButton__Container"
+        TransitionClassName="ScrollUpButton__Toggled"
+        style={{}}
+        ToggledStyle={{}}
+      />
     </Layout>
   )
 }

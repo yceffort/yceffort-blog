@@ -18,11 +18,13 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.1.1",
     "gatsby-plugin-twitter": "^2.1.17",
+    "gatsby-remark-autolink-headers": "^2.1.23",
     "gatsby-remark-embed-gist": "^1.1.9",
     "gatsby-remark-images": "^3.1.34",
     "gatsby-remark-mathjax": "^1.0.0",
     "gatsby-remark-prismjs": "^3.3.29",
     "gatsby-remark-responsive-iframe": "^2.1.1",
+    "gatsby-remark-table-of-contents": "0.0.9",
     "gatsby-source-filesystem": "^2.0.37",
     "gatsby-transformer-remark": "^2.6.45",
     "gatsby-transformer-sharp": "^2.1.19",
@@ -34,7 +36,8 @@
     "react-custom-share": "^0.4.8",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "react-icons": "^3.7.0"
+    "react-icons": "^3.7.0",
+    "react-scroll-up-button": "^1.6.4"
   },
   "devDependencies": {
     "prettier": "^1.17.1"
