@@ -305,7 +305,7 @@ model.add(
 
 예를 들어, 결과값이 7인 이미지에 대해서는 결과가 아래와 같이 나올 것입니다.
 
-<table>
+<table class="table-responsive">
   <tr>
     <th>index</th>
     <th>0</th>
@@ -577,8 +577,6 @@ async function showConfusion() {
 }
 ```
 
-A confusion matrix is similar to per class accuracy but further breaks it down to show patterns of misclassification. It allows you to see if the model is getting confused about any particular pairs of classes.
-
 confusion matrix는 클래스(숫자)당 확률을 보여주는 것과 비슷하지만, 오분류 패턴을 더욱 세분화 해서 보여줍니다. 이것은 모델이 특정 어떤 숫자(데이터) 에 대해 혼란스러워했는지 알려줍니다.
 
 ### 결과
@@ -617,10 +615,4 @@ await showConfusion(model, data)
 - 초기에 해결하고자 하는 문제를 잘 헤쳐나가는지를 파악하기 위해, 어떤 식으로 모델을 평가할지 미리 결정해 둬야 한다.
 - 각 클래스별 정확도와 confusion matrix는 전반적인 정확도를 보는 것보다 모델을 세분화해서 성능을 보여주므로 유용하다.
 
-<iframe
-     src="https://codesandbox.io/embed/04-tensorflow-js-cnn-5gvmn?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="04-tensorflow-js-cnn"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
+[코드보기](https://codesandbox.io/embed/04-tensorflow-js-cnn-5gvmn?fontsize=14&hidenavigation=1&theme=dark)

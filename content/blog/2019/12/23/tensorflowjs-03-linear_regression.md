@@ -511,13 +511,7 @@ testModel(model, data, tensorData)
 
 - 학습과정에서 모니터링할 수 있도록 모델에 적합한 evaluation metric 을 선택해라. 한번 학습된 뒤에는, 예측 정확도가 맞는지 확인하기 위해 테스트 예측을 해보아라.
 
-<iframe
-     src="https://codesandbox.io/embed/tensorflowjs-03-linear-regression-65lku?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="tensorflowjs-03-linear-regression"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-></iframe>
+[코드보기](https://codesandbox.io/embed/tensorflowjs-03-linear-regression-65lku?fontsize=14&hidenavigation=1&theme=dark)
 
 ## 9. 추가로 해볼만한 것들
 
@@ -535,14 +529,6 @@ model.add(tf.layers.dense({ units: 50, activation: "sigmoid" }))
 
 ![](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/img/fe7afd4c351901f6.png)
 
-<iframe
-     src="https://codesandbox.io/embed/magical-khayyam-wwg16?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="tensorflowjs-03-linear-regressio-extra-credit"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
+[코드보기](https://codesandbox.io/embed/tensorflowjs-03-linear-regressio-extra-credit-wwg16?fontsize=14&hidenavigation=1&theme=dark)
 
 [출처](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html)
-
-
