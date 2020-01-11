@@ -450,4 +450,177 @@ return model.fit(trainXs, trainYs, {
 
 validation 데이터를 학습과정에서 넘기지 않는 다는 것은, 학습 과정이 overfitting 되는 것을 방지하고, 이전에 봤던 데이터로 일반화 시키지 않는 다는 것을 의미합니다.
 
-🚧 작성 중 🚧
+## 7. 모델 평가하기
+
+유효성 검사의 정확도는 이전에 학습한 모델이 보지 못한 데이터에 대해, 우리가 만든 모델이 얼마나 잘 예측할 지에 대한 추정치를 제공합니다. 또한 다양한 레이어에 걸쳐 더 자세한 성능 분석을 할수도 있습니다.
+
+`tfjs-vis` 이러한 작업을 도와줄 수 있는 몇가지 메서드 들이 있습니다.
+
+```javascript
+const classNames = [
+  "Zero",
+  "One",
+  "Two",
+  "Three",
+  "Four",
+  "Five",
+  "Six",
+  "Seven",
+  "Eight",
+  "Nine",
+]
+
+function doPrediction(model, data, testDataSize = 500) {
+  const IMAGE_WIDTH = 28
+  const IMAGE_HEIGHT = 28
+  const testData = data.nextTestBatch(testDataSize)
+  const testxs = testData.xs.reshape([
+    testDataSize,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT,
+    1,
+  ])
+  const labels = testData.labels.argMax([-1])
+  const preds = model.predict(testxs).argMax([-1])
+
+  testxs.dispose()
+  return [preds, labels]
+}
+
+async function showAccuracy(model, data) {
+  const [preds, labels] = doPrediction(model, data)
+  const classAccuracy = await tfvis.metrics.perClassAccuracy(labels, preds)
+  const container = { name: "Accuracy", tab: "Evaluation" }
+  tfvis.show.perClassAccuracy(container, classAccuracy, classNames)
+
+  labels.dispose()
+}
+
+async function showConfusion(model, data) {
+  const [preds, labels] = doPrediction(model, data)
+  const confusionMatrix = await tfvis.metrics.confusionMatrix(labels, preds)
+  const container = { name: "Confusion Matrix", tab: "Evaluation" }
+  tfvis.render.confusionMatrix(
+    container,
+    { values: confusionMatrix },
+    classNames
+  )
+
+  labels.dispose()
+}
+```
+
+위의 코드들이 어떤 일을 할까요?
+
+- 예측하기
+- 정확도 계산
+- 메트릭 정보 제공
+
+좀 더 자세히 살펴 봅시다.
+
+### 예측하기
+
+```javascript
+function doPrediction(model, data, testDataSize = 500) {
+  const IMAGE_WIDTH = 28
+  const IMAGE_HEIGHT = 28
+  const testData = data.nextTestBatch(testDataSize)
+  const testxs = testData.xs.reshape([
+    testDataSize,
+    IMAGE_WIDTH,
+    IMAGE_HEIGHT,
+    1,
+  ])
+  const labels = testData.labels.argMax([-1])
+  const preds = model.predict(testxs).argMax([-1])
+
+  testxs.dispose()
+  return [preds, labels]
+}
+```
+
+먼저 우리는 몇 가지 예측을 할 필요가 있습니다. 여기에서는, 500개의 이미지를 골라서 어떤 숫자인지 예측합니다. (나중에 더 많은 이미지를 대상으로 예측해보세요)
+
+`argmax` 함수가 예측한 확률 중에서 가장 높은 확률을 보인 것을 반환합니다. 모델의 결과에는 각 숫자에 대한 확률이 있다는 것을 명심하세요. 여기에서는 가장 확률니 높게 나온 숫자를 받아서 예측에 사용합니다.
+
+또한 여기에서 500개의 이미지를 한번에 예측한다는 것을 알 수 있을 겁ㅂ니다. 이것은 Tensorflow.js가 제공하는 vectorization의 강력함을 엿볼 수 있는 대목입니다.
+
+> 알아두기: 여기에서는 어떤 probability threshold 도 사용하지 않았습니다. 우리는 우리는 상관관계가 낫다 하더라도, 일단 그냥 제일 높은 확률이 나온 값을 취했습니다. 최소 임계점 확률을 설정해 놓은 뒤에, 확률이 이 밑으로 떨어지면 '숫자를 찾지 못함' 이라는 결과 값을 리턴하는 것도 흥미로울 것 입니다.
+
+> `doPrecitions`는 일단 학습된 모델이 어떻게 예측하는지를 보여줍니다. 그러나 완전히 새로운 데이터에 대해서는 예측만 하게 되므로 결과 값을 알 수 없을 것입니다.
+
+### 각 숫자당 정확도
+
+```javascript
+async function showAccuracy() {
+  const [preds, labels] = doPrediction()
+  const classAccuracy = await tfvis.metrics.perClassAccuracy(labels, preds)
+  const container = { name: "Accuracy", tab: "Evaluation" }
+  tfvis.show.perClassAccuracy(container, classAccuracy, classNames)
+
+  labels.dispose()
+}
+```
+
+일련의 예측값과 결과값으로 우리는 얼마나 정확하게 예측한지를 알 수 있습니다.
+
+### Confusion Matrix
+
+```javascript
+async function showConfusion() {
+  const [preds, labels] = doPrediction()
+  const confusionMatrix = await tfvis.metrics.confusionMatrix(labels, preds)
+  const container = { name: "Confusion Matrix", tab: "Evaluation" }
+  tfvis.show.confusionMatrix(container, confusionMatrix, classNames)
+
+  labels.dispose()
+}
+```
+
+A confusion matrix is similar to per class accuracy but further breaks it down to show patterns of misclassification. It allows you to see if the model is getting confused about any particular pairs of classes.
+
+confusion matrix는 클래스(숫자)당 확률을 보여주는 것과 비슷하지만, 오분류 패턴을 더욱 세분화 해서 보여줍니다. 이것은 모델이 특정 어떤 숫자(데이터) 에 대해 혼란스러워했는지 알려줍니다.
+
+### 결과
+
+```javascript
+await showAccuracy(model, data)
+await showConfusion(model, data)
+```
+
+이제 아래와 같은 값이 나타날 것입니다.
+
+![cnn3](./images/cnn3.png)
+
+음, 0과 1을 잘 예측하고 3과 8을 헷갈려 하네요.
+
+## 8. 정리
+
+입력된 데이터에 대해 어떤 카테고리인지 예측하는 것을 분류 작업 (classification task)라고 한다.
+
+분류 작업은 각 결과(label)별로 데이터를 필요로 한다.
+
+- label을 포함한 데이터를 보여주는 일반적인 방식에는 one-hot encoding이 있다.
+
+데이터 준비
+
+- 모델이 학습 중에 보지 못한 데이터를 제공하는 것이 중요하다. 이를 validation set이라고 한다.
+
+나만의 모델을 만들고 실행하기
+
+- 합성곱 모델은 이미지 관련 작업을 할 때 유용하다.
+- 분류 문제에서는 보통 손실 함수로 categorical cross entropy를 사용한다.
+- 학습 과정을 모니터링 함으로써 손실이 점점 줄어드는지, 정확도가 올라가는지 확인해야 한다.
+
+모델 평가하기
+
+- 초기에 해결하고자 하는 문제를 잘 헤쳐나가는지를 파악하기 위해, 어떤 식으로 모델을 평가할지 미리 결정해 둬야 한다.
+- 각 클래스별 정확도와 confusion matrix는 전반적인 정확도를 보는 것보다 모델을 세분화해서 성능을 보여주므로 유용하다.
+
+<iframe
+     src="https://codesandbox.io/embed/04-tensorflow-js-cnn-5gvmn?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="04-tensorflow-js-cnn"
+     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+   ></iframe>
