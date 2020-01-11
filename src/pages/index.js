@@ -58,7 +58,9 @@ const IndexPage = ({ data }) => {
             return (
               <div key={post.node.id} className="container mt-5 y_index">
                 <Link to={post.node.fields.slug} className="text-dark">
-                  <h2 className="title">{post.node.frontmatter.title}</h2>
+                  <h2 className="title" style={{ marginBottom: "0.5rem" }}>
+                    {post.node.frontmatter.title}
+                  </h2>
                 </Link>
                 <small className="d-block text-info">
                   <i>Posted on {post.node.frontmatter.date}</i>
