@@ -5,6 +5,14 @@ published: true
 date: 2020-01-02 18:52:09
 ---
 
+```toc
+# This code block gets replaced with the TOC
+exclude: Table of Contents
+tight: false,
+from-heading: 1
+to-heading: 3
+```
+
 # Handwritten digit recognition with CNNs
 
 이 튜토리얼에서는, Tensorflow.js의 CNN을 활용해 손글씨 숫자를 인식하는 모델을 만들어 볼 것입니다. 먼저, 손으로 쓴 수천개의 숫자 이미지와 이들의 라벨 (어떤 숫자인지)를 분류하는 훈련을 진행합니다. 그런 다음, 모델이 보지 못한 테스트 데이터를 사용하여 분류의 정확도를 평가합니다.
