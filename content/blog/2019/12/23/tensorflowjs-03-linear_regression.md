@@ -544,3 +544,5 @@ model.add(tf.layers.dense({ units: 50, activation: "sigmoid" }))
    ></iframe>
 
 [출처](https://codelabs.developers.google.com/codelabs/tfjs-training-regression/index.html)
+
+
