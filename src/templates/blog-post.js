@@ -53,11 +53,13 @@ const BlogPost = props => {
           <div className="mt-3">
             <h2 className="heading">{post.frontmatter.title}</h2>
             <div className="d-block">{getTechTags(tags)}</div>
-            <br />
             <small>
               <i>Published on </i> {post.frontmatter.date}
             </small>
-            <div dangerouslySetInnerHTML={{ __html: post.html }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: post.html }}
+              style={{ marginTop: "2rem" }}
+            />
             <CustomShareBlock
               title={post.frontmatter.title}
               siteName={siteName}
