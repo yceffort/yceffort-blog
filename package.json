@@ -43,7 +43,8 @@
     "react-icons": "^3.7.0",
     "react-instantsearch-dom": "^6.1.0",
     "react-scroll-up-button": "^1.6.4",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "styled-icons": "^9.1.0"
   },
   "devDependencies": {
     "prettier": "^1.17.1"

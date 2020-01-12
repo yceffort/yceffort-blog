@@ -1,6 +1,7 @@
 "use strict"
 
 const siteConfig = require("./config")
+const queries = require("./src/components/search/algolia")
 
 module.exports = {
   siteMetadata: {
@@ -118,8 +119,16 @@ module.exports = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID || "LA1F1N8028",
+        apiKey:
+          process.env.ALGOLIA_ADMIN_KEY || "8e43aa8b68799a8715f0b0bc978631ba",
+        queries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
+    `gatsby-plugin-styled-components`,
   ],
 }
