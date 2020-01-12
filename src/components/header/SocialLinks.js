@@ -2,6 +2,7 @@ import React from "react"
 import { FaLinkedin, FaGithubSquare } from "react-icons/fa"
 
 import "./SocialLinks.css"
+import FloatingSearch from "../search/floating-search"
 
 const SocialLinks = ({ contacts }) => {
   return (
@@ -16,6 +17,7 @@ const SocialLinks = ({ contacts }) => {
           <FaGithubSquare size={30} style={{ color: "light" }} />
         </span>
       </a>
+      <FloatingSearch />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import MobilePageLinks from "./MobilePageLinks"
 import SocialLinks from "./SocialLinks"
 import "./header.css"
+import FloatingSearch from "../search/floating-search"
 
 const Header = ({ siteTitle, tagline, author, contacts }) => {
   return (
