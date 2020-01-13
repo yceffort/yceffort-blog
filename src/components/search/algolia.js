@@ -27,7 +27,7 @@ const queries = [
   {
     query: postQuery,
     transformer: ({ data }) => flatten(data.posts.edges),
-    indexName: `Posts`,
+    indexName: `yceffort-blog-post`,
     settings,
   },
 ]
