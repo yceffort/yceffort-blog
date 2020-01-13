@@ -7,7 +7,7 @@ import {
 } from "react-instantsearch-dom"
 import algoliasearch from "algoliasearch/lite"
 
-import { Root, HitsWrapper, PoweredBy } from "./styles"
+import { Root, PoweredBy } from "./styles"
 import Input from "./input"
 import * as hitComps from "./hitComps"
 
@@ -56,7 +56,7 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
       ref={ref}
     >
       <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
-      <HitsWrapper show={query.length > 0 && focus} asGrid={hitsAsGrid}>
+      <div>
         {indices.map(({ name, title, hitComp }) => (
           <Index key={name} indexName={name}>
             <header>
@@ -68,7 +68,7 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
           </Index>
         ))}
         <PoweredBy />
-      </HitsWrapper>
+      </div>
     </InstantSearch>
   )
 }

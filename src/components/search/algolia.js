@@ -1,6 +1,6 @@
 const postQuery = `{
   posts: allMarkdownRemark(
-    filter: { fileAbsolutePath: { regex: "/posts/" } }
+    filter: { fileAbsolutePath: { regex: "/content/" } }
   ) {
     edges {
       node {
