@@ -60,7 +60,6 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
         {indices.map(({ name, title, hitComp }) => (
           <Index key={name} indexName={name}>
             <header>
-              <h3>{title}</h3>
               <Stats />
             </header>
             <Results>
