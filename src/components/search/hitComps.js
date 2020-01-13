@@ -1,8 +1,9 @@
 import React, { Fragment } from "react"
 import { Highlight, Snippet } from "react-instantsearch-dom"
 import { Link } from "gatsby"
-import { Calendar } from "styled-icons/octicons/Calendar"
-import { Tags } from "styled-icons/fa-solid/Tags"
+
+import labels from "../../../labels.json"
+import TechTag from "../tags/TechTag.js"
 
 export const PageHit = clickHandler => ({ hit }) => (
   <div>
@@ -15,8 +16,14 @@ export const PageHit = clickHandler => ({ hit }) => (
   </div>
 )
 
+const getTag = tech => {
+  const label = labels.find(l => l.tag === tech)
+  return label ? label : undefined
+}
+
 export const PostHit = clickHandler => ({ hit }) => {
-  const endLink = hit.permalink ? new URL(hit.permalink).pathname : hit.slug
+  const endLink = hit.permalink ? new URL(hit.permalink).pathname : hit.slu
+
   return (
     <div>
       <Link to={endLink} onClick={clickHandler}>
@@ -25,16 +32,9 @@ export const PostHit = clickHandler => ({ hit }) => {
         </h4>
       </Link>
       <div>
-        <Calendar size="1em" />
-        &nbsp;
-        <Highlight attribute="date" hit={hit} tagName="mark" />
-        &emsp;
-        <Tags size="1em" />
-        &nbsp;
         {hit.tags.map((tag, index) => (
           <Fragment key={tag}>
-            {index > 0 && `, `}
-            {tag}
+            {getTag(tag) ? <TechTag {...getTag(tag)} /> : tag}
           </Fragment>
         ))}
       </div>

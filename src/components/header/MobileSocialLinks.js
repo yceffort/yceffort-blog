@@ -6,7 +6,7 @@ import "../layout.css"
 const MobileSocialLinks = ({ contacts }) => {
   return (
     <div className="bottom-bar py-1">
-      <a className=" text-primary" href={contacts.linkedin}>
+      <a className="text-primary" href={contacts.linkedin}>
         <span title="Linked In">
           <FaLinkedin size={26} style={{ color: "primary" }} />
         </span>

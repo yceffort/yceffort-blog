@@ -5,7 +5,7 @@ published: true
 layout: post
 tags: [python]
 ---
-
+e
 파이썬과 파이썬 라이브러리 (beatifulSoup)를 활용하여 네이버 영화 댓글 크롤링 해보기
 
 ## 1. 크롤링하려는 웹페이지의 구조를 살펴보기

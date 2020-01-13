@@ -13,7 +13,7 @@ export default function FloatingSearch() {
 
       <div id="search" className="overlay">
         <div className="popup">
-          <a class="close" href="#">
+          <a className="close" href="#">
             &times;
           </a>
           <Search
