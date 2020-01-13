@@ -20,7 +20,7 @@ export default function FloatingSearch() {
             collapse
             indices={[
               {
-                name: `yceffort_blog`,
+                name: `yceffort-blog-post`,
                 title: `Blog Posts`,
                 hitComp: `PostHit`,
               },
