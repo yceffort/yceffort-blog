@@ -38,7 +38,6 @@ export const PostHit = clickHandler => ({ hit }) => {
           </Fragment>
         ))}
       </div>
-      <Snippet attribute="excerpt" hit={hit} tagName="mark" />
     </div>
   )
 }
