@@ -6,7 +6,6 @@ date: 2020-01-02 18:52:09
 ---
 
 ```toc
-# This code block gets replaced with the TOC
 tight: true,
 from-heading: 1
 to-heading: 3
