@@ -70,3 +70,7 @@ blockquote>p::after {
 figcaption {
   text-align: center;
 }
+
+.toc ul {
+  padding-left: 0.5rem;
+}

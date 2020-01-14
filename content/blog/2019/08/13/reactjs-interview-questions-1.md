@@ -8,147 +8,18 @@ tags: [javascript, react]
 
 [목차](/2019/08/13/reactjs-interview-questions/)
 
-| No. | Questions                                                                                                                                                              |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     | **Core React**                                                                                                                                                         |
-| 1   | [리액트란 무엇인가?](#what-is-react)                                                                                                                                   |
-| 2   | [리액트의 주요 기능은 무엇인가?](#what-are-the-major-features-of-react)                                                                                                |
-| 3   | [JSX란 무엇인가?](#what-is-jsx)                                                                                                                                        |
-| 4   | [element와 component의 차이점은 무엇인가?](#what-is-the-difference-between-element-and-component)                                                                      |
-| 5   | [리액트에서 컴포넌트를 어떻게 만드는가?](#how-to-create-components-in-react)                                                                                           |
-| 6   | [클래스 / 함수 컴포넌트는 각각 언제 사용해야 하는가?](#when-to-use-a-class-component-over-a-function-component)                                                        |
-| 7   | [순수한 컴포넌트는 무엇인가?](#what-are-pure-components)                                                                                                               |
-| 8   | [state는 무엇인가?](#what-is-state-in-react)                                                                                                                           |
-| 9   | [props는 무엇인가?](#what-are-props-in-react)                                                                                                                          |
-| 10  | [state와 props의 차이는 무엇인가?](#what-is-the-difference-between-state-and-props)                                                                                    |
-| 11  | [왜 state를 바로 업데이트 하면 안되는가?](#why-should-we-not-update-the-state-directly)                                                                                |
-| 12  | [setState() 콜백의 용도는 무엇인가?](#what-is-the-purpose-of-callback-function-as-an-argument-of-setstate)                                                             |
-| 13  | [HTML과 React의 이벤트 핸들링 차이는 무엇인가?](#what-is-the-difference-between-html-and-react-event-handling)                                                         |
-| 14  | [JSX 콜백에 메소드나 이벤트 핸들러를 바인딩하는 방법은 무엇인가?](#how-to-bind-methods-or-event-handlers-in-jsx-callbacks)                                             |
-| 15  | [이벤트 핸들러나 콜백에 파라미터를 전달하는 방법은?](#how-to-pass-a-parameter-to-an-event-handler-or-callback)                                                         |
-| 16  | [리액트의 synthetic event는 무엇인가?](#what-are-synthetic-events-in-react)                                                                                            |
-| 17  | [인라인 조건식은 무엇인가?](#what-is-inline-conditional-expressions)                                                                                                   |
-| 18  | [`key` props는 무엇이며, 배열의 요소에서 사용함으로써 얻을 수 있는 이점은 무엇인가?](#what-are-key-props-and-what-is-the-benefit-of-using-them-in-arrays-of-elements)  |
-| 19  | [`ref`의 목적은 무엇인가?](#what-is-the-use-of-refs)                                                                                                                   |
-| 20  | [`ref`는 어떻게 생성하는가?](#how-to-create-refs)                                                                                                                      |
-| 21  | [forward refs란 무엇이인가?](#what-are-forward-refs)                                                                                                                   |
-| 22  | [callback ref와 findDOMNode중 어떤것이 더 선호되는가?](#which-is-preferred-option-with-in-callback-refs-and-finddomnode)                                               |
-| 23  | [string ref가 왜 legacy가 되었는가?](#why-are-string-refs-legacy)                                                                                                      |
-| 24  | [Virtual DOM 은 무엇인가?](#what-is-virtual-dom)                                                                                                                       |
-| 25  | [Virtual DOM은 어떻게 작동하는가?](#how-virtual-dom-works)                                                                                                             |
-| 26  | [Shadow DOM과 Virtual DOM의 차이는 무엇인가?](#what-is-the-difference-between-shadow-dom-and-virtual-dom)                                                              |
-| 27  | [What is React Fiber?](#what-is-react-fiber)                                                                                                                           |
-| 28  | [React Fiber의 목적은 무엇인가?](#what-is-the-main-goal-of-react-fiber)                                                                                                |
-| 29  | [controlled components는 무엇인가?](#what-are-controlled-components)                                                                                                   |
-| 30  | [uncontrolled components는 무엇인가?](#what-are-uncontrolled-components)                                                                                               |
-| 31  | [`createElement`와 `cloneElement`의 차이는 무엇인가?](#what-is-the-difference-between-createelement-and-cloneelement)                                                  |
-| 32  | [React에서 lifting state up은 무엇인가?](#what-is-lifting-state-up-in-react)                                                                                           |
-| 33  | [Component Lifecycle의 각 phase에는 어떤 차이가 있는가?](#what-are-the-different-phases-of-component-lifecycle)                                                        |
-| 34  | [Component Lifecycle에는 어떤 method가 있는가?](#what-are-the-lifecycle-methods-of-react)                                                                              |
-| 35  | [Higher-Order 컴포넌트는 무엇인가?](#what-are-higher-order-components)                                                                                                 |
-| 36  | [HOC 컴포넌트에서 props proxy를 어떻게 만드는가?](#how-to-create-props-proxy-for-hoc-component)                                                                        |
-| 37  | [Context란 무엇인가?](#what-is-context)                                                                                                                                |
-| 38  | [자식 prop는 무엇인가?](#what-is-children-prop)                                                                                                                        |
-| 39  | [React에서 주석을 어떻게 쓰는가?](#how-to-write-comments-in-react)                                                                                                     |
-| 40  | [props 변수가 있는 super 생성자의 목적은 무엇인가?](#what-is-the-purpose-of-using-super-constructor-with-props-argument)                                               |
-| 41  | [reconciliation은 무엇인가??](#what-is-reconciliation)                                                                                                                 |
-| 42  | [동적 key name으로 setState하는 방법은?](#how-to-set-state-with-a-dynamic-key-name)                                                                                    |
-| 43  | [렌더가 될 때 마다 호출되는 function의 일반적인 실수는 무엇인가?](#what-would-be-the-common-mistake-of-function-being-called-every-time-the-component-renders)         |
-| 44  | [lazy함수가 named exports를 지원하는가?](#is-lazy-function-supports-named-exports)                                                                                     |
-| 45  | [리액트가 class 속성에 class 대신 className을 쓰는가?](#why-react-uses-classname-over-class-attribute)                                                                 |
-| 46  | [fragments란 무엇인가?](#what-are-fragments)                                                                                                                           |
-| 47  | [fragment가 div 컨테이너보다 좋은 이유는?](#why-fragments-are-better-than-container-divs)                                                                              |
-| 48  | [react에서 portals란 무엇인가?](#what-are-portals-in-react)                                                                                                            |
-| 49  | [stateless 컴포넌트란?](#what-are-stateless-components)                                                                                                                |
-| 50  | [stateful 컴포넌트란?](#what-are-stateful-components)                                                                                                                  |
-| 51  | [React props에서 유효성 검사를 하는 방법은?](#how-to-apply-validation-on-props-in-react)                                                                               |
-| 52  | [React의 장점은?](#what-are-the-advantages-of-react)                                                                                                                   |
-| 53  | [React의 한계는?](#what-are-the-limitations-of-react)                                                                                                                  |
-| 54  | [React v16에서 error boundaries는?](#what-are-error-boundaries-in-react-v16)                                                                                           |
-| 55  | [React v15에서 error boundaries는?](#how-error-boundaries-handled-in-react-v15)                                                                                        |
-| 56  | [정적 타입 체킹을 하는 최선의 방법은?](#what-are-the-recommended-ways-for-static-type-checking)                                                                        |
-| 57  | [react-dom package의 쓰임새는?](#what-is-the-use-of-react-dom-package)                                                                                                 |
-| 58  | [react-dom의 render 메서드의 목적?](#what-is-the-purpose-of-render-method-of-react-dom)                                                                                |
-| 59  | [ReactDOMServer란?](#what-is-reactdomserver)                                                                                                                           |
-| 60  | [React에서 InnerHtml를 쓰는 방법은?](#how-to-use-innerhtml-in-react)                                                                                                   |
-| 61  | [React에서 스타일을 쓰는 방법은?](#how-to-use-styles-in-react)                                                                                                         |
-| 62  | [React에서 이벤트는 어떻게 다른가?](#how-events-are-different-in-react)                                                                                                |
-| 63  | [constructor에서 setState를 쓴다면?](#what-will-happen-if-you-use-setstate-in-constructor)                                                                             |
-| 64  | [index를 키로 쓸 경우 어떤 일이 벌어지는가?](#what-is-the-impact-of-indexes-as-keys)                                                                                   |
-| 65  | [componentWillMount() method안에서 setState()를 쓰는 것이 바람직한가?](#is-it-good-to-use-setstate-in-componentwillmount-method)                                       |
-| 66  | [initial state에서 props를 쓰면 어떻게 되는가?](#what-will-happen-if-you-use-props-in-initial-state)                                                                   |
-| 67  | [어떻게 조건부로 컴포넌트를 렌더링하는가?](#how-do-you-conditionally-render-components)                                                                                |
-| 68  | [DOM 엘리먼트에서 스프레드 props를 쓸 때 주의해야 할 점은?](#why-we-need-to-be-careful-when-spreading-props-on-dom-elements)                                           |
-| 69  | [React에서 decorator를 쓰는 방법은?](#how-you-use-decorators-in-react)                                                                                                 |
-| 70  | [컴포넌트를 메모이제이션 하는 법은?](#how-do-you-memoize-a-component)                                                                                                  |
-| 71  | [서버사이드렌더링을 하는 방법은?](#how-you-implement-server-side-rendering-or-ssr)                                                                                     |
-| 72  | [React에서 프로덕션 모드를 키는 방법은?](#how-to-enable-production-mode-in-react)                                                                                      |
-| 73  | [CRA는 무엇이고 이점은 무엇인가?](#what-is-cra-and-its-benefits)                                                                                                       |
-| 74  | [마운팅시 라이프사이클 메서드의 순서는?](#what-is-the-lifecycle-methods-order-in-mounting)                                                                             |
-| 75  | [React v16에서 deprecated된 라이프 사이클 메서드는?](#what-are-the-lifecycle-methods-going-to-be-deprecated-in-react-v16)                                              |
-| 76  | [getDerivedStateFromProps() 의 목적은?](#what-is-the-purpose-of-getderivedstatefromprops-lifecycle-method)                                                             |
-| 77  | [getSnapshotBeforeUpdate()의 목적은?](#what-is-the-purpose-of-getsnapshotbeforeupdate-lifecycle-method)                                                                |
-| 78  | [Hooks api가 render props와 HOC를 대체하는가?](#do-hooks-replace-render-props-and-higher-order-components)                                                             |
-| 79  | [네이밍 컴포넌트를 위한 최상의 방법은?](#what-is-the-recommended-way-for-naming-components)                                                                            |
-| 80  | [컴포넌트 클래스에서 메소더의 순서를 정하는 방법은?](#what-is-the-recommended-ordering-of-methods-in-component-class)                                                  |
-| 81  | [스위칭 컴포넌트란 무엇인가?](#what-is-a-switching-component)                                                                                                          |
-| 82  | [왜 setState에 함수를 넘겨야 하는가?](#why-we-need-to-pass-a-function-to-setstate)                                                                                     |
-| 83  | [React에서 strict mode란 무엇인가?](#what-is-strict-mode-in-react)                                                                                                     |
-| 84  | [React 믹스인이란?](#what-are-react-mixins)                                                                                                                            |
-| 85  | [왜 isMounted()가 안티패턴이고, 이를 위한 올바른 해결책이 무엇인가?](#why-is-ismounted-an-anti-pattern-and-what-is-the-proper-solution)                                |
-| 86  | [React에서 지원하는 포인터 이벤트는 무엇인가?](#what-are-the-pointer-events-supported-in-react)                                                                        |
-| 87  | [왜 컴포넌트 명은 대문자로 시작해야 하는가?](#why-should-component-names-start-with-capital-letter)                                                                    |
-| 88  | [React v16에서 커스텀 DOM 속성을 지원하는가?](#are-custom-dom-attributes-supported-in-react-v16)                                                                       |
-| 89  | [constructor와 getInitialState의 차이점은?](#what-is-the-difference-between-constructor-and-getinitialstate)                                                           |
-| 90  | [setState를 호출하지 않고 강제로 컴포넌트를 리렌더링하는 방법은?](#can-you-force-a-component-to-re-render-without-calling-setstate)                                    |
-| 91  | [React에서 es6클래스를 쓸 때 super()와 super(props)의 차이점은?](#what-is-the-difference-between-super-and-superprops-in-react-using-es6-classes)                      |
-| 92  | [JSX에서 반복문을 도는 방법은?](#how-to-loop-inside-jsx)                                                                                                               |
-| 93  | [HTML속성에서 props에 접근하는 방법은?](#how-do-you-access-props-in-attribute-quotes)                                                                                  |
-| 94  | [React의 Prop array에 특정형식의 array를 넘기는 방법은?](#what-is-react-proptype-array-with-shape)                                                                     |
-| 95  | [조건부로 클래스 속성을 추가하는 방법은?](#how-to-conditionally-apply-class-attributes)                                                                                |
-| 96  | [React과 ReactDOM의 차이는?](#what-is-the-difference-between-react-and-reactdom)                                                                                       |
-| 97  | [왜 React-DOM은 React에서 분리되었는가?](#why-reactdom-is-separated-from-react)                                                                                        |
-| 98  | [React 라벨 엘리먼트를 사용하는 방법은?](#how-to-use-react-label-element)                                                                                              |
-| 99  | [여러개의 인라인 스타일을 한꺼번에 쓰는 방법은?](#how-to-combine-multiple-inline-style-objects)                                                                        |
-| 100 | [브라우저 리사이즈 시 뷰를 리렌더링하는 방법은?](#how-to-re-render-the-view-when-the-browser-is-resized)                                                               |
-| 101 | [setState와 replaceState의 차이점은?](#what-is-the-difference-between-setstate-and-replacestate-methods)                                                               |
-| 102 | [state의 변경을 listen하는 방법은?](#how-to-listen-to-state-changes)                                                                                                   |
-| 103 | [React state에서 배열의 특정 엘리먼트를 지우는 올바른 방법은?](#what-is-the-recommended-approach-of-removing-an-array-element-in-react-state)                          |
-| 104 | [HTML 렌더링 없이 React를 사용하는 방법은?](#is-it-possible-to-use-react-without-rendering-html)                                                                       |
-| 105 | [React에서 json을 pretty하게 프린트 하는 방법은?](#how-to-pretty-print-json-with-react)                                                                                |
-| 106 | [왜 React에서 props를 업데이트 하지 못하는가?](#why-you-cant-update-props-in-react)                                                                                    |
-| 107 | [페이지 로딩 중에 input 엘리먼트에 포커스를 주는 방법은?](#how-to-focus-an-input-element-on-page-load)                                                                 |
-| 108 | [state에 있는 객체를 업데이트하는 방법은?](#what-are-the-possible-ways-of-updating-objects-in-state)                                                                   |
-| 109 | [왜 setState()에 object보다 function이 더 나은가?](#why-function-is-preferred-over-object-for-setstate)                                                                |
-| 110 | [브라우저에서 React 런타임의 버전을 알아내는 방법은?](#how-can-we-find-the-version-of-react-at-runtime-in-the-browser)                                                 |
-| 111 | [CTA에서 폴리필을 추가하는 일반적인 방법은?](#what-are-the-approaches-to-include-polyfills-in-your-create-react-app)                                                   |
-| 112 | [CTA에서 http대신 https를 쓰는 법은?](#how-to-use-https-instead-of-http-in-create-react-app)                                                                           |
-| 113 | [CTA에서 상대경로 import를 피하는 방법은?](#how-to-avoid-using-relative-path-imports-in-create-react-app)                                                              |
-| 114 | [React 라우터에 구글 애널리틱스를 붙이는 방법은?](#how-to-add-google-analytics-for-react-router)                                                                       |
-| 115 | [매 초마다 컴포넌트를 업데이트 하는 방법은?](#how-to-update-a-component-every-second)                                                                                  |
-| 116 | [React에서 인라인 스타일로 vendor prefixes를 붙이는 방법은?](#how-do-you-apply-vendor-prefixes-to-inline-styles-in-react)                                              |
-| 117 | [React와 ES6를 활용해서 컴포넌트를 import & export 하는 방법은?](#how-to-import-and-export-components-using-react-and-es6)                                             |
-| 118 | [React 컴포넌트 명에서 주의해야 할 점은?](#what-are-the-exceptions-on-react-component-naming?)                                                                         |
-| 119 | [왜 컴포넌트 생성자는 단 한번만 호출되는가?](#why-is-a-component-constructor-called-only-once)                                                                         |
-| 120 | [React에서 상수를 선언하는 방법은?](#how-to-define-constants-in-react)                                                                                                 |
-| 121 | [React에서는 어떻게 클릭이벤트가 트리거 되는가?](#how-to-programmatically-trigger-click-event-in-react)                                                                |
-| 122 | [React에서 async await을 쓰는 것이 가능한가?](#is-it-possible-to-use-asyncawait-in-plain-react)                                                                        |
-| 123 | [React의 일반적인 디렉토리 구조는?](#what-are-the-common-folder-structures-for-react)                                                                                  |
-| 124 | [유명한 애니메이션을 위한 패키지는?](#what-are-the-popular-packages-for-animation)                                                                                     |
-| 125 | [style 모듈의 이점은 무엇인가?](#what-is-the-benefit-of-styles-modules)                                                                                                |
-| 126 | [React에 특화된 linter엔 무엇이 있는가?](#what-are-the-popular-react-specific-linters)                                                                                 |
-| 127 | [Ajax call은 어떻게 만들고, 어느 라이프사이클 메소드에서 실행해야 하는가?](#how-to-make-ajax-call-and-in-which-component-lifecycle-methods-should-i-make-an-ajax-call) |
-| 128 | [render props란 무엇인가?](#what-are-render-props)                                                                                                                     |
 
----
+```toc
+tight: true,
+from-heading: 2
+to-heading: 3
+```
 
 ## Core React
 
 ### What is React
 
 리액트는 오픈소스 프론트엔드 자바스크립트 라이브러리로, 특히 싱글 페이지 어플리케이션의 사용자 인터페이스 구축을 위해 사용된다. 웹가 모바일 앱의 뷰단을 다르기 위하여 사용되고 있다. 리액트는 페이스북에서 일아흔 Jordan Walke가 만들었다. 최초로 리액트 기반으로 만들어진 서비스는 2011년에 페이스북 뉴스 피드이며, 2012년에는 인스타그램도 리액트로 만들어 졌다.
-
-[👆](#table-of-contents)
 
 ### What are the major features of React?
 
@@ -158,8 +29,6 @@ tags: [javascript, react]
 - 서버사이드렌더링을 지원한다
 - 단방향 데이터흐름 또는 단방향 데이터 바인딩을 따른다
 - 뷰를 개발하는데 있어 재사용 가능한 컴포넌트 사용
-
-[👆](#table-of-contents)
 
 ### What is JSX?
 
@@ -178,8 +47,6 @@ class App extends React.Component {
   }
 }
 ```
-
-[👆](#table-of-contents)
 
 ### What is the difference between Element and Component?
 
@@ -226,8 +93,6 @@ const Button = ({ onLogin }) => React.createElement( 'div', { id: 'login-btn',
 onClick: onLogin }, 'Login' )
 ```
 
-[👆](#table-of-contents)
-
 ### How to create components in React?
 
 두 가지 방법이 존재한다.
@@ -250,21 +115,15 @@ class Greeting extends React.Component {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### When to use a Class Component over a Function Component?
 
 컴포넌트가 **state나 라이프 사이클 메소드를** 필요로 할 때 클래스 컴포넌트를, 그렇지 않으면 함수형 컴포넌트를 활용하면 된다.
 
 > 근데 요즘은 `useState`을 사용하면 함수형 컴포넌트에서도 state사용이 가능하다
 
-[👆](#table-of-contents)
-
 ### What are Pure Components?
 
 `React.PureComponent`는 `React.Component`에서 `shouldComponentUpdate`가 없다는 것만 제외하면 동일하다. `props`나 `state`에 변화가 있을 경우, `PureComponent`는 두 변수에 대해서 [얕은 비교](https://reactjs.org/docs/shallow-compare.html)를 한다. 반면 `Component`는 그런 비교를 하지 않는다. 따라서 `Component`는 `shouldComponentUpdate`가 호출 될 때마다 다시 render한다.
-
-[👆](#table-of-contents)
 
 ### What is state in React?
 
@@ -292,8 +151,6 @@ class User extends React.Component {
 
 `state`는 `props`와 비슷하지만, 컴포넌트가 완전히 소유권을 쥐고 있다는 것이 다르다.다른 어떤 컴포넌트도 한 컴포넌트가 소유하고 있는 `state`에 접근할 수 없다.
 
-[👆](#table-of-contents)
-
 ### What are props in React?
 
 `props`는 컴포넌트의 input 값이다. HTML 태그 속성과 유사한 규칙을 사용하여 ReactComponent에 전달할 수 있는 단일 값 또는 객체 다. 이런 데이터 들은 부모 컴포넌트에서 자식 컴포넌트로 보낼 수 있다.
@@ -316,13 +173,9 @@ class User extends React.Component {
 props.reactProp;
 ```
 
-[👆](#table-of-contents)
-
 ### What is the difference between state and props?
 
 `props`와 `state`는 모두 순수 자바스크립트 오브젝트다. 두 객체 모두 `render`의 output에 영향을 줄 수 있는 정보를 가지고 있지만, 컴포넌트의 기능적인 측면에서는 약간 다르다. `props`는 함수의 파라미터와 비슷한 방식으로 작동하는 반면, `state`는 컴포넌트 내에서 선언된 변수와 비슷하다.
-
-[👆](#table-of-contents)
 
 ### Why should we not update the state directly?
 
@@ -340,8 +193,6 @@ this.setState({ message: "Hello World" });
 ```
 
 주의: state를 직접 할당할 수 있는 곳은 `constructor` 혹은 자바스크립트 클래스의 필드를 선언하는 syntax 뿐이다.
-
-[👆](#table-of-contents)
 
 ### What is the purpose of callback function as an argument of `setState()`?
 
@@ -433,8 +284,6 @@ class Foo {
 
 주의: 콜백이 하위 컴포넌트에 `prop`으로 전달된다면, component가 리렌더링 될 수도 있다. 이러한 경우에는, 성능을 고려해서 1, 2번의 예제를 활용하는 것이 낫다.
 
-[👆](#table-of-contents)
-
 ### How to pass a parameter to an event handler or callback?
 
 이벤트 핸들러와 파라미터 전달을ㅇ 화살표 함수로 감쌀 수 있다.
@@ -458,13 +307,9 @@ handleClick = id => () => {
 };
 ```
 
-[👆](#table-of-contents)
-
 ### What are synthetic events in React?
 
 synthetic event (합성함수) 는 브라우저의 네이티브 이벤트를 위한 크로스 브라우저 래퍼다. 이 api는 브라우저의 네이티브 이벤트와 동일하며, 마찬가지로 `stopPropagation()` `preventDefault()`도 포함하고 있지만, 모든 브라우저에서 동일하게 작동한다는 점이 다르다.
-
-[👆](#table-of-contents)
 
 ### What is inline conditional expressions?
 
@@ -478,8 +323,6 @@ synthetic event (합성함수) 는 브라우저의 네이티브 이벤트를 위
 <h2>You don't have unread messages.</h2>
 ); }
 ```
-
-[👆](#table-of-contents)
 
 ### What are "key" props and what is the benefit of using them in arrays of elements?
 
@@ -510,8 +353,6 @@ const todoItems = todos.map((todo, index) =>
 ### What is the use of refs?
 
 `ref`는 element의 참조값을 반환한다. 대부분 이러한 경우는 피해야 하지만, DOM이나 component에 다이렉트로 접근해야할 때 유용하다.
-
-[👆](#table-of-contents)
 
 ### How to create refs?
 
@@ -560,8 +401,6 @@ class SearchBar extends Component {
 
 주의: 추천할만한 방법은 아니지만, 인라인 `ref` callback을 이용하는 방식도 있다.
 
-[👆](#table-of-contents)
-
 ### What are forward refs?
 
 Ref forwarding은 일부 컴포넌트에서 ref를 받아서 자식 컴포넌트에게 전달하는 것을 의미한다.
@@ -577,8 +416,6 @@ const ButtonElement = React.forwardRef((props, ref) => (
 const ref = React.createRef();
 <ButtonElement ref={ref}>{"Forward Ref"}</ButtonElement>;
 ```
-
-[👆](#table-of-contents)
 
 ### Which is preferred option with in callback refs and findDOMNode()?
 
@@ -616,8 +453,6 @@ class MyComponent extends Component {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### Why are String Refs legacy?
 
 예전에 React를 다뤄보았다면, 옛날 방식인 `ref`를 string으로 쓰는, `ref={'textInput'}` 와 같이 ref속성이 string이고, DOM Node인 `refs.textInput`로 접근하는 방법에 익숙할 것이다. 그러나 이러한 string ref는 하단에서 언급할 문제들 때문에, 레거시로 보는 것이 맞다. 그리고 string ref는 React v16에서 제거 되었다.
@@ -643,13 +478,9 @@ class MyComponent extends Component {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### What is Virtual DOM?
 
 Virtual DOM은 메모리 내에서 표현되는 Real DOM 이다. UI는 메모리 상에서 표현되며, 그리고 real DOM과 동기화 된다. 이는 렌더 함수 호출과 화면에 elements 표시 하는 사이에 일어난다. 이 모든 과정을 `reconciliation`이라고 한다.
-
-[👆](#table-of-contents)
 
 ### How Virtual DOM works?
 
@@ -662,25 +493,17 @@ Virtual DOM은 메모리 내에서 표현되는 Real DOM 이다. UI는 메모리
 3. 계산이 끝나면, Real DOM 중에서 실제로 업데이트가 있었던 부분 만 변경을 가한다.
    ![virtual-dom-3](https://github.com/sudheerj/reactjs-interview-questions/raw/master../../../images/vdom3.png)
 
-[👆](#table-of-contents)
-
 ### What is the difference between Shadow DOM and Virtual DOM?
 
 Shadow DOM은 web component의 scope및 CSS scope 지정을 위해 설계된 web browser 기술이다. Virtual DOM은 브라우저 API 위에 자바스크립트에서 구현되는 개념이다.
-
-[👆](#table-of-contents)
 
 ### What is React Fiber?
 
 Fiber는 React v16에서 새로운 reconciliation 엔진, 그리고 코어 알고리즘을 새로 작성한 것으로 볼 수 있다. React Fiber의 목적은 애니메이션, 레이아웃, 제스쳐, 작업일시정지 및 중단, 여려 유형의 업데이트 우선순위 조절, 동시성 등 여러가지 기본 사항에 대한 성능을 높이는 것이다.
 
-[👆](#table-of-contents)
-
 ### What is the main goal of React Fiber?
 
 React Fiber 의 목표는 애니메이션, 레이아웃, 제스처등의 성능을 높이는 것이다. 렌더링 작업을 chunk별로 작업하고, 여러 프레임 별로 이를 펼치면서 작업하는 점진적 렌더링을 통해 이를 구현했다.
-
-[👆](#table-of-contents)
 
 ### What are controlled components?
 
@@ -693,8 +516,6 @@ handleChange(event) {
   this.setState({value: event.target.value.toUpperCase()})
 }
 ```
-
-[👆](#table-of-contents)
 
 ### What are uncontrolled components?
 
@@ -731,19 +552,13 @@ class UserProfile extends React.Component {
 
 대부분의 경우, 폼에서는 controlled component를 사용하기를 추천한다.
 
-[👆](#table-of-contents)
-
 ### What is the difference between createElement and cloneElement?
 
 JSX는 `React.createElement()` 함수로 UI에 나타낼 React element를 생성한다. 반면 `cloneElement`는 element를 props로 보낼 때 사용한다.
 
-[👆](#table-of-contents)
-
 ### What is Lifting State Up in React?
 
 여러 component 들이 동일한 변경 데이터를 공유해야하는 경우 가까운 부모 component 로 state를 올리는 것이 좋다. 즉, 두개의 자식 component가 부모에 있는 동일한 데이터를 공유할 때. 두개의 자식 component 들은 local state를 유지하는 대신, 부모로 state를 올려야 한다.
-
-[👆](#table-of-contents)
 
 ### What are the different phases of component lifecycle?
 
@@ -767,8 +582,6 @@ DOM에서의 변경을 적용할 때, 내부에서 어떤 과정을 거치는지
 
 ![before-react-16.3](https://github.com/sudheerj/reactjs-interview-questions/blob/master../../../images/phases.png?raw=true)
 
-[👆](#table-of-contents)
-
 ### What are the lifecycle methods of React?
 
 React 16.3+
@@ -790,8 +603,6 @@ React 16.3+
 - `componentDidUpdate`: Mostly it is used to update the DOM in response to prop or state changes.
 - `componentWillUnmount`: It will be used to cancel any outgoing network requests, or remove all event listeners associated with the component.
 
-[👆](#table-of-contents)
-
 ### What are Higher-Order Components?
 
 Higher-order Component (이하 HOC)는 컴포넌트를 받아서 새로운 컴포넌트를 리턴하는 컴포넌트다. 기본적으로, 이러한 패턴은 리액트의 컴포넌트적인 특성에서 유래되었다.
@@ -804,8 +615,6 @@ HOC는 아래와 같은 use case에서 사용할 수 있다.
 - render 하이재킹
 - state 추상화 또는 조작
 - props 조작
-
-[👆](#table-of-contents)
 
 ### How to create props proxy for HOC component?
 
@@ -828,8 +637,6 @@ function HOC(WrappedComponent) {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### What is context?
 
 Context는 props을 탑다운으로 주지 않고도, 어느 레벨에서든 데이터를 컴포넌트 트리에 넘기는 방법이다. 예를 들어 인증받은 사용자, 언어 설정, UI theme 등 어플리케이션 단위에서 다양한 컴포넌트가 사용해야 하는 데이터를 context를 통해서 줄 수 있다.
@@ -837,8 +644,6 @@ Context는 props을 탑다운으로 주지 않고도, 어느 레벨에서든 데
 ```javascript
 const { Provider, Consumer } = React.createContext(defaultValue);
 ```
-
-[👆](#table-of-contents)
 
 ### What is children prop?
 
@@ -862,8 +667,6 @@ ReactDOM.render(
 );
 ```
 
-[👆](#table-of-contents)
-
 ### How to write comments in React?
 
 React/JSX의 주석은 자바스크립트의 다중 주석과 비슷하지만, `{ }`에 쌓여있다는 것이 다르다.
@@ -885,8 +688,6 @@ React/JSX의 주석은 자바스크립트의 다중 주석과 비슷하지만, `
   play React`}
 </div>
 ```
-
-[👆](#table-of-contents)
 
 ### What is the purpose of using super constructor with props argument?
 
@@ -924,13 +725,9 @@ class MyComponent extends React.Component {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### What is reconciliation?
 
 컴포넌트의 props나 state에 변경이 있을때, React는 이전에 렌더링 된 element와 새롭게 렌더링된 것을 비교하여 실제 DOM이 업데이트 되어야 할지를 결정한다. 똑같지 않을때, React는 DOM을 업데이트 한다. 이 과정을 `reconciliation`이라고 한다.
-
-[👆](#table-of-contents)
 
 ### How to set state with a dynamic key name?
 
@@ -942,13 +739,9 @@ handleInputChange(event) {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### What would be the common mistake of function being called every time the component renders?
 
 함수를 파라미터로 넘기는 과정에서 함수가 호출되지 않는지 확인해야 한다.
-
-[👆](#table-of-contents)
 
 ### Is lazy function supports named exports?
 
@@ -974,8 +767,6 @@ import React, { lazy } from "react";
 const SomeComponent = lazy(() => import("./IntermediateComponent.js"));
 ```
 
-[👆](#table-of-contents)
-
 ### Why React uses `className` over `class` attribute?
 
 `class`는 자바스크립트의 예약어 이고, JSX는 javascript를 확장해 만든 것이다. 따라서 `class`를 쓰면 충돌이 일어나기 자바스크립트 예약어와 충동리 발생하기 때문에 `className`을 사용한다. `className` prop에 `string`을 넘겨 주면 된다.
@@ -985,8 +776,6 @@ render() {
   return <span className={'menu navigation-menu'}>{'Menu'}</span>
 }
 ```
-
-[👆](#table-of-contents)
 
 ### What are fragments?
 
@@ -1016,15 +805,11 @@ render() {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### Why fragments are better than container divs?
 
 1. Fragment는 실제로 추가적인 DOM을 만들지 않기 때문에 더 빠르고 메모리 사용량도 적다. 이는 매우 크고 깊은 트리를 만들 때 상당한 이점으로 작용한다.
 2. CSS Grid나 firefox같은 일부 특수한 CSS 메커니즘은 특별한 부모-자식 관계를 가지고 있는데, div를 중간에 추가하는 것은 원하는 레이아웃을 그리기 어렵게 한다.
 3. DOM Inspector를 사용할 때 덜 혼잡스럽다.
-
-[👆](#table-of-contents)
 
 ### What are portals in React?
 
@@ -1036,13 +821,9 @@ ReactDOM.createPortal(child, container);
 
 첫번째 인자는 React Child에서만 렌더링이 가능하며, 여기에는 element, string, fragment 가 포함된다. 두번째 인자는 DOM 엘리먼트다.
 
-[👆](#table-of-contents)
-
 ### What are stateless components?
 
 컴포넌트의 동작이 state와 독립되어 있다면, 이는 stateless 컴포넌트다. 함수나 클래스를 이용해서 stateless 컴포넌트를 만들 수 있다. 하지만 컴포넌트의 라이프 사이클 훅이 필요하지 않다면, 함수형으로 가는 것이 좋다. 함수형 컴포넌트를 선택한다면 많은 이점을 가져갈 수 있다. 코드 사용 및 이해가 쉽고, 조금더 빠르며, 그리고 `this` 키워드의 충돌을 막을 수 있다.
-
-[👆](#table-of-contents)
 
 ### What are stateful components?
 
@@ -1060,8 +841,6 @@ class App extends Component {
   }
 }
 ```
-
-[👆](#table-of-contents)
 
 ### How to apply validation on props in React?
 
@@ -1103,8 +882,6 @@ class User extends React.Component {
 
 주의: 리액트 v15.5부터 PropType이 `React.PropTypes`에서 `prop-types`로 이동했다.
 
-[👆](#table-of-contents)
-
 ### What are the advantages of React?
 
 1. Virtual DOM으로 어플리케이션의 성능을 향상시킬 수 있음
@@ -1113,8 +890,6 @@ class User extends React.Component {
 4. 뷰만 다루는 라이브러리이기 때문에, 다른 프레임워크 (Angular, Backbone) 등과 쉽게 연동 가능
 5. Jest와 같은 툴로 쉽게 유닛/인티그레이션 테스트 가능
 
-[👆](#table-of-contents)
-
 ### What are the limitations of React?
 
 1. 풀 프레임워크가 아니라, view만 다루고 있음.
@@ -1122,8 +897,6 @@ class User extends React.Component {
 3. 전통적인 MVC 프레임워크와 인터그레이팅을 하기 위해서는 추가적인 설정이 필요
 4. inline 템플릿과 JSX로 인해 코드의 복잡성 증가
 5. 오버엔지니어링/보일러플레이팅을 야기하는 작은 단위의 컴포넌트가 너무 많이 존재
-
-[👆](#table-of-contents)
 
 ### What are error boundaries in React v16?
 
@@ -1166,19 +939,13 @@ class ErrorBoundary extends React.Component {
 </ErrorBoundary>
 ```
 
-[👆](#table-of-contents)
-
 ### How error boundaries handled in React v15?
 
 `unstable_handleError` 메서드를 활용한 기본적인 error boundaries만 제공하고 있다. 그리고 v16에서 `componentDidCatch`로 변경되었다.
 
-[👆](#table-of-contents)
-
 ### What are the recommended ways for static type checking?
 
 보통 `PropTypes`를 많이 사용한다. 그러나 크기가 큰 어플리케이션의 경우에는, Flow나 타입스크립트같은, 컴파일 단계에서 타입체킹을 제공하고 자동완성을 지원해주는 정적 타입 체커를 사용하는 것이 좋다.
-
-[👆](#table-of-contents)
 
 ### What is the use of `react-dom` package?
 
@@ -1190,8 +957,6 @@ class ErrorBoundary extends React.Component {
 4. `findDOMNode()`
 5. `createPortal()`
 
-[👆](#table-of-contents)
-
 ### What is the purpose of render method of `react-dom`?
 
 render 메서드는 제공된 컨테이너의 DOM에 있는 React element를 render 하고 Component에 대한 참조를 반환하는데 사용된다. React element가 이전에 렌더링 되었다면 update 를 수행하고 최근의 변경사항을 반영하기 위해 필요에 따라 DOM을 변경하기도 한다.
@@ -1201,8 +966,6 @@ ReactDOM.render(element, container[, callback])
 ```
 
 옵셔널 콜백이 있따면, 컴포넌트가 렌더링/업데이트 된 이후로 실행된다.
-
-[👆](#table-of-contents)
 
 ### What is ReactDOMServer?
 
@@ -1227,8 +990,6 @@ app.get("/", (req, res) => {
 });
 ```
 
-[👆](#table-of-contents)
-
 ### How to use innerHTML in React?
 
 browser DOM에서 `innerHTML`대신 `dangerouslySetInnerHTML`를 사용할 수 있다. `innerHTML`과 마찬가지로, 이 속성 또한 크로스 사이트 스크립팅 공격 (XSS)에 취약하다. `__html`을 키로 하고 HTML text를 값으로 가지는 object를 리턴하면 된다.
@@ -1243,13 +1004,9 @@ function MyComponent() {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### How to use styles in React?
 
 style 속성은 css 문자열 대신 camelCased속성이 있는 자바스크립트 오브젝트를 허용한다. 이는 DOM 스타일 자바스크립트 속성과 일치하며, 효율적이고, XSS 보안 허점을 막아준다.
-
-[👆](#table-of-contents)
 
 ### How events are different in React?
 
@@ -1258,13 +1015,9 @@ React 엘리먼트에서 이벤트를 다루는 것은 문법상 약간의 차�
 1. 리액트 이벤트 핸들러는 lowerCase가 아닌 camelCase로 써야한다.
 2. JSX에서는 문자열이 아닌, 함수 이벤트 핸들러를 파라미터로 보낸다.
 
-[👆](#table-of-contents)
-
 ### What will happen if you use `setState()` in constructor?
 
 `setState()`를 사용하면, 객체 상태가 할당되고, 자식을 포함한 모든 컴포넌트가 다시 렌더링된다. 그리고 아래와 같은 에러메시지가 나타난다. **Can only update a mounted or mounting component.** 따라서 `this.state`를 사용하여 생성자내에서 변수를 초기화 해야 한다.
-
-[👆](#table-of-contents)
 
 ### What is the impact of indexes as keys?
 
@@ -1286,8 +1039,6 @@ React 엘리먼트에서 이벤트를 다루는 것은 문법상 약간의 차�
 }
 ```
 
-[👆](#table-of-contents)
-
 ### Is it good to use `setState()` in `componentWillMount()` method?
 
 `componentWillMount()`에서 비동기 초기화를 하는 것은 피하도록 권장한다. `componentWillMount()`는 마운팅이 일어나기 직전에 바로 실행된다. 이는 `render()`함수가 불리우기 직전이며, 따라서 여기에서 state를 새로 값을 할당 한다 하더라도 리렌더링을 트리거 하지 않는다. 이 메소드 내에서는 사이드 이펙트나 subscription등은 피해야 한다. 따라서 비동기 초기화는 `componentDidMount()`에서 하는 것이 좋다.
@@ -1302,8 +1053,6 @@ componentDidMount() {
     })
 }
 ```
-
-[👆](#table-of-contents)
 
 ### What will happen if you use props in initial state?
 
@@ -1344,8 +1093,6 @@ class MyComponent extends React.Component {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### How do you conditionally render components?
 
 때로는 어떤 상태값에 따라서 렌더링을 다르게 해야하는 경우가 발생한다. JSX는 `false`나 `undefined`는 렌더링하지 않으므로, 특정 조건에 true를 주는 형식으로 조건부 렌더링을 할 수 있다.
@@ -1370,8 +1117,6 @@ const MyComponent = ({ name, address }) => (
 );
 ```
 
-[👆](#table-of-contents)
-
 ### Why we need to be careful when spreading props on DOM elements?
 
 spread prop를 쓴다면, HTML에 알수없는 속성을 추가할 수 있는 위험이 있기 때문에 좋지 못하다. 대신 `...rest` 연산자를 쓴다면, 필요한 props만 추가해서 넣을 수 있다.
@@ -1385,8 +1130,6 @@ const ComponentB = ({ isDisplay, ...domProps }) => (
   <div {...domProps}>{"ComponentB"}</div>
 );
 ```
-
-[👆](#table-of-contents)
 
 ### How you use decorators in React?
 
@@ -1412,8 +1155,6 @@ const setTitle = title => WrappedComponent => {
 
 주의: 데코레이터는 es7 문법에 포함되지 못하고 현재 stage2 단계에 있다.
 
-[👆](#table-of-contents)
-
 ### How do you memoize a component?
 
 함수형 컴포넌트를 기반으로한 메모이제이션이 가능한 라이브러리가 있다. 예를 들어, `moize`라이브러리를 활용하면, 다른 컴포넌트 내에서 컴포넌트를 메모이제이션 할 수 있다.
@@ -1432,8 +1173,6 @@ const Consumer = () => {
 };
 ```
 
-[👆](#table-of-contents)
-
 ### How you implement Server Side Rendering or SSR?
 
 React는 이미 노드 서버에서 렌더링을 다룰 수 있도록 지원되고 있다. 클라이언트 사이드와 동일하게 렌더링할 수 있는 특수한 버전의 DOM renderer가 제공되고 있다.
@@ -1447,15 +1186,11 @@ ReactDOMServer.renderToString(<App />);
 
 이 메소드는 일반적인 HTML을 string으로 내보내며, 이는 서버의 응답 일부를 페이지 본문 내부에 위치시킬 수 있다. 클라이언트 사이드에서, 리액트는 미리 렌더링된 컨텐츠를 감지하고 나머지를 원활하게 렌더링할 수 있다.
 
-[👆](#table-of-contents)
-
 ### How to enable production mode in React?
 
 Webpack의 `DefinePlugin` 메서드를 활용하여, `NODE_ENV`를 `production`으로 설정해야 propType의 유효성 검사 같은 추가적인 경고를 제거할 수 있다.
 
 production 모드와 별도로, 주석을 제거하고 코드르 압축시키는 uglify의 dead-code 코드를 사용하여 minify하면 번들링 사이즈를 줄일 수 있다.
-
-[👆](#table-of-contents)
 
 ### What is CRA and its benefits?
 
@@ -1484,8 +1219,6 @@ $ npm start`
 5. 일반적인 실수에 대해 경고하는 라이브 dev 서버
 6. 배포를 위해 소스맵, 해쉬와 함께 제공되는 JS, CSS, 이미지 번들링 해주는 빌드 스크립트
 
-[👆](#table-of-contents)
-
 ### What is the lifecycle methods order in mounting?
 
 컴포넌트가 생성되고, DOM에 들어가는 과정에서 아래와 같은 라이프 사이클 메서드가 순서대로 호출된다.
@@ -1494,8 +1227,6 @@ $ npm start`
 2. `static getDerivedStateFromProps()`
 3. `render()`
 4. `componentDidMount()`
-
-[👆](#table-of-contents)
 
 ### What are the lifecycle methods going to be deprecated in React v16?
 
@@ -1506,8 +1237,6 @@ $ npm start`
 3. `componentWillUpdate()`
 
 v16.3 부터 `UNSAFE_` prefix가 붙고, v17에서는 삭제된다.
-
-[👆](#table-of-contents)
 
 ### What is the purpose of `getDerivedStateFromProps()` lifecycle method?
 
@@ -1523,8 +1252,6 @@ class MyComponent extends React.Component {
 
 이 메서드는 `componentDidUpdate()`와 함께 쓴다면, `componentWillReceiveProps()`의 모든 유즈케이스에 적용할 수 있다.
 
-[👆](#table-of-contents)
-
 ### What is the purpose of `getSnapshotBeforeUpdate()` lifecycle method?
 
 새로운 메서드 `getSnapshotBeforeUpdate()`는 DOM 업데이트 직전에 호출된다. 이 메서드의 반환값은 `componentDidUpdate()`의 세번째 파라미터로 전달된다.
@@ -1539,13 +1266,9 @@ class MyComponent extends React.Component {
 
 이 메서드는 `componentDidUpdate()`와 함께 쓴다면, `componentWillUpdate()`의 모든 유즈케이스에 적용할 수 있다.
 
-[👆](#table-of-contents)
-
 ### Do Hooks replace render props and higher order components?
 
 render props와 HOC 모두 한개의 자식만 렌더링 하지만, 대부분의 경우 Hooks API를 아용하면 트리에 의존성을 줄이면서 간단하게 구현할 수 있다.
-
-[👆](#table-of-contents)
 
 ### What is the recommended way for naming components?
 
@@ -1567,8 +1290,6 @@ export default class TodoApp extends React.Component {
   // ...
 }
 ```
-
-[👆](#table-of-contents)
 
 ### What is the recommended ordering of methods in component class?
 
@@ -1619,8 +1340,6 @@ Page.propTypes = {
 };
 ```
 
-[👆](#table-of-contents)
-
 ### Why we need to pass a function to setState()?
 
 그 이유는 `setState()`가 비동기로 작동하는데에 있다. React는 성능상의 문제로 인해, state의 변경작업을 배치로 하는데, 이 때문에 `setState()`를 바로 호출한다고 해서 바로 반영되지 않는다. 이 말은, `setState()`를 호출 할 때 그 당시 `state`의 값에 의존하면 안된다는 뜻이다. 따라서 `setState()`에는 이전 값에 접근할 수 있는 함수를 사용하는 것이 좋다. 이는 사용자가 비동기로 작동하는 `setState()`의 특징으로 인해 이전 값에 접근하는 것을 방지해 준다.
@@ -1643,8 +1362,6 @@ this.setState((prevState, props) => ({
 }));
 // this.state.count === 3 as expected
 ```
-
-[👆](#table-of-contents)
 
 ### What is strict mode in React?
 
@@ -1671,8 +1388,6 @@ function ExampleApplication() {
 
 위 예에서, `ComponentOne` `ComponentTwo`만 체크할 것이다.
 
-[👆](#table-of-contents)
-
 ### What are React Mixins?
 
 `Mixins`은 공통적인 기능을 가질 수 있도록 컴포넌트를 분리하는 방법이다. 그러나 사용하지 말아야 한다. HOC 나 데레이터를 사용하면 된다.
@@ -1688,8 +1403,6 @@ const Button = React.createClass({
 });
 ```
 
-[👆](#table-of-contents)
-
 ### Why is `isMounted()` an anti-pattern and what is the proper solution?
 
 `isMounted()`의 일반적인 사용사례는 컴포넌트가 언마운트 된 후에 `setState()`를 호출하는 것을 방지하기 위함이다.
@@ -1703,8 +1416,6 @@ if (this.isMounted()) {
 `setState()`를 호출하기 전에 `isMounted()`를 검사하면 경고를 없앨수있지만, 경고의 목적을 잃어버리는 꼴이 된다. 컴포넌트의 마운트가 해제된 후에 reference를 가지고 있다고 판단하므로 이는 일종의 코드 스멜이라고 볼 수 있다.
 
 좋은 해결책은 컴포넌트의 마운트가 해제된 후 `setState()`가 호출될 수 있는 위치를 찾아 수정하는 것이다. 이러한 상황은 대게 컴포넌트가 데이터를 기다리고 있다가 데이터의 도착전 마운트가 해제 되는, 콜백 상황에서 많이 발생된다. 콜백은 마운트가 해제되기 전에 `componentWillUnMount`에서 취소되어야 한다.
-
-[👆](#table-of-contents)
 
 ### What are the Pointer Events supported in React?
 
@@ -1722,8 +1433,6 @@ if (this.isMounted()) {
 8. onPointerLeave
 9. onPointerOver
 10. onPointerOut
-
-[👆](#table-of-contents)
 
 ### Why should component names start with capital letter?
 
@@ -1751,8 +1460,6 @@ export default myComponent;
 import MyComponent from "./MyComponent";
 ```
 
-[👆](#table-of-contents)
-
 ### Are custom DOM attributes supported in React v16?
 
 가능하다. 과거 React는 알수없는 DOM 속성을 무시했다. JSX에 리액트가 알수 없는 속성을 넣었다면, 리액트는 이를 무시했다.
@@ -1774,8 +1481,6 @@ import MyComponent from "./MyComponent";
 ```
 
 이는 브라우저에 특화된 비표준 속성, 새로운 DOM api, 서드파티 라이브러리 등을 사용할 때 유용하다.
-
-[👆](#table-of-contents)
 
 ### What is the difference between constructor and getInitialState?
 
@@ -1806,8 +1511,6 @@ const MyComponent = React.createClass({
 });
 ```
 
-[👆](#table-of-contents)
-
 ### Can you force a component to re-render without calling setState?
 
 기본적으로, state나 prop의 변화가 있을 때만 컴포넌트가 리렌더링 된다. 만약 `render()` 메서드가 외부의 다른 데이터에 의존적이라면, `forceUpdate()`를 통해서 컴포넌트를 리렌더링 할 수 있다.
@@ -1817,8 +1520,6 @@ component.forceUpdate(callback);
 ```
 
 다만 이러한 방법은 권장되지 않으며, `render()`메소드에서 `this.props`나 `this.state`를 참조하는 것이 권장된다.
-
-[👆](#table-of-contents)
 
 ### What is the difference between `super()` and `super(props)` in React using ES6 classes?
 
@@ -1841,8 +1542,6 @@ class MyComponent extends React.Component {
   }
 }
 ```
-
-[👆](#table-of-contents)
 
 ### How to loop inside JSX?
 
@@ -1867,8 +1566,6 @@ class MyComponent extends React.Component {
 
 JSX 태그는 함수호출로 트랜스파일이 되는데, 이 경우 표현식내에 제어문을 사용할 수 없다. 다만 이는 stage1에 있는 [do](https://github.com/tc39/proposal-do-expressions) proposal로 해결 될 수도 있다.
 
-[👆](#table-of-contents)
-
 ### How do you access props in attribute quotes?
 
 React와 JSX는 속성 값에 string interpolation을 지원하지 않는다. 따라서 아래 코드는 작동하지 않는다.
@@ -1884,8 +1581,6 @@ React와 JSX는 속성 값에 string interpolation을 지원하지 않는다. �
 className='image' src={`images/${this.props.image}`} />
 ```
 
-[👆](#table-of-contents)
-
 ### What is React proptype array with shape?
 
 만약 특정 object를 가진 array를 넘기고 싶다면, `React.PropTypes.arrayOf()`와 함께 `React.PropTypes.shape()`를 쓰면 된다.
@@ -1900,8 +1595,6 @@ ReactComponent.propTypes = {
   ).isRequired
 };
 ```
-
-[👆](#table-of-contents)
 
 ### How to conditionally apply class attributes?
 
@@ -1923,19 +1616,13 @@ ReactComponent.propTypes = {
 <div className={`btn-panel ${this.props.visible ? 'show' : 'hidden'}`}>
 ```
 
-[👆](#table-of-contents)
-
 ### What is the difference between React and ReactDOM?
 
 React 패키지내에는 엘리먼트와 컴포넌트 클래스에 도움을 줄 수 있는 `React.createElement()` `React.Component` `React.children`등을 가지고 있다. React 패키지 내에는 컴포넌트를 만드는데 도움이 되는 이러한 요소들이 있다고 보면 된다. 반면 `React-dom`패키지는 `ReactDOM.render()` 서버사이드 렌더링에 필요한 `react-dom/server`에 속한 `ReactDOMServer.renderToString()` `ReactDOMServer.renderToStaticMarkUp()` 이 있다.
 
-[👆](#table-of-contents)
-
 ### Why ReactDOM is separated from React?
 
 React 팀은 DOM조작과 관련된 모든 기능을 `ReactDOM` 라이브러리로 옮겼다. 이는 React v0.14에서 처음으로 분리되었다. 이 때 패키지를 보자면, `react-native` `react-art` `react-canvas` `react-three`등 패키지 분리가 깔끔해졌으며, `React`패키지 자체에는 브라우저 DOM 조작과 관련된 라이브러리가 없다는 것이 명확해졌다. React가 다수의 환경에서 렌더링을 지원하기 위해, React팀은 React와 React-dom을 분리할 계획을 수립햇다. 이러한 방법론은 웹 버전에서 쓰이는 React와 React-Native사이에 컴포넌트를 쓰는 방법론을 공유할 수 있도록 해준다.
-
-[👆](#table-of-contents)
 
 ### How to use React label element?
 
@@ -1953,8 +1640,6 @@ for는 자바스크립트의 예약어이므로, `htmlFor`를 사용해야 한�
 <input type={'text'} id={'user'} />
 ```
 
-[👆](#table-of-contents)
-
 ### How to combine multiple inline style objects?
 
 spread 연산자를 사용하면 된다.
@@ -1968,8 +1653,6 @@ React Native라면 array를 사용하면 된다.
 ```html
 <button style={[styles.panel.button, styles.panel.submitButton]}>{'Submit'}</button>
 ```
-
-[👆](#table-of-contents)
 
 ### How to re-render the view when the browser is resized?
 
@@ -2004,13 +1687,9 @@ class WindowDimensions extends React.Component {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### What is the difference between `setState()` and `replaceState()` methods?
 
 `setState()`는 과거의 state값을 현재 값으로 합친다. 반면 `replaceState()`는 현재 state를 버리고 넘어오는 `state`로 바꾼다. 이전 key를 모두 제거하는 경우가 아니라면 보통 `useState()`를 사용한다. `replaceState()`대신 `setState()`에서 `false/null`을 사용할 수도 있다.
-
-[👆](#table-of-contents)
 
 ### How to listen to state changes?
 
@@ -2020,8 +1699,6 @@ class WindowDimensions extends React.Component {
 componentWillUpdate(object nextProps, object nextState)
 componentDidUpdate(object prevProps, object prevState)
 ```
-
-[👆](#table-of-contents)
 
 ### What is the recommended approach of removing an array element in React state?
 
@@ -2034,8 +1711,6 @@ removeItem(index) {
   })
 }
 ```
-
-[👆](#table-of-contents)
 
 ### Is it possible to use React without rendering HTML?
 
@@ -2073,8 +1748,6 @@ render() {
 
 `undefined`의 경우에는 작동하지 않는다.
 
-[👆](#table-of-contents)
-
 ### How to pretty print JSON with React?
 
 `<pre>` 태그안에 `JSON.stringify()`를 사용하면 된다.
@@ -2095,13 +1768,9 @@ class User extends React.Component {
 React.render(<User />, document.getElementById('container'))
 ```
 
-[👆](#table-of-contents)
-
 ### Why you can't update props in React?
 
 props은 불변이며, 하향식으로 전달되는 것이 `React`의 철학이다. 이 말인 즉, 부모는 어떤 prop값이든 자식에세 보낼 수 있지만, 자식은 그 prop값을 수정할 수 없다는 것이다.
-
-[👆](#table-of-contents)
 
 ### How to focus an input element on page load?
 
@@ -2131,8 +1800,6 @@ class App extends React.Component{
 ReactDOM.render(<App />, document.getElementById('app'))
 ```
 
-[👆](#table-of-contents)
-
 ### What are the possible ways of updating objects in state?
 
 1. state를 병합할 object를 `setState()`에 서 사용하는 법
@@ -2158,8 +1825,6 @@ this.setState(prevState => ({
 }))
 ```
 
-[👆](#table-of-contents)
-
 ### Why function is preferred over object for `setState()`?
 
 React는 성능의 문제로 인해 여러개의 `setState()`를 배치 형태로 호출하게 된다. 왜냐하면 `this.props`와 `this.state`는 비동기로 업데이트 될 수 있기 때문이다. 다음 state를 계산할 때 이전에 계산된 값을 신뢰하면 안된다.
@@ -2182,8 +1847,6 @@ this.setState((prevState, props) => ({
 }))
 ```
 
-[👆](#table-of-contents)
-
 ### How can we find the version of React at runtime in the browser?
 
 `React.version`을 사용하면 된다.
@@ -2196,8 +1859,6 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
-
-[👆](#table-of-contents)
 
 ### What are the approaches to include polyfills in your `create-react-app`?
 
@@ -2213,8 +1874,6 @@ import 'core-js/fn/number/is-nan'
 ```html
 <script src='https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.includes'></script>
 ```
-[👆](#table-of-contents)
-
 ### How to use https instead of http in create-react-app?
 
 환경설정에 `HTTPS=true`를 세팅하면 된다. 
@@ -2229,8 +1888,6 @@ pacakge.json
 
 아니면 `set HTTPS=true && npm start`로 실행하면 된다.
 
-[👆](#table-of-contents)
-
 ### How to avoid using relative path imports in create-react-app?
 
 루트 디렉토리에 `.env`를 만들고, 임포트 경로를 작성한다.
@@ -2238,8 +1895,6 @@ pacakge.json
 `NODE_PATH=src/app`
 
 개발서벌르 재시작하면, 상대경로 없이 `src/app`에 있는 파일을 import 할 수 있다.
-
-[👆](#table-of-contents)
 
 ### How to add Google Analytics for React Router?
 
@@ -2251,8 +1906,6 @@ history.listen(function (location) {
   window.ga('send', 'pageview', location.pathname + location.search)
 })
 ```
-
-[👆](#table-of-contents)
 
 ### How to update a component every second?
 
@@ -2268,8 +1921,6 @@ componentWillUnmount() {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### How do you apply vendor prefixes to inline styles in React?
 
 react는 자동으로 vender prefix를 붙여주지 않으므로, 수동으로 붙여야 한다.
@@ -2281,8 +1932,6 @@ react는 자동으로 vender prefix를 붙여주지 않으므로, 수동으로 �
   msTransform: 'rotate(90deg)' // 'ms' is the only lowercase vendor prefix
 }} />
 ```
-
-[👆](#table-of-contents)
 
 ### How to import and export components using React and ES6?
 
@@ -2305,8 +1954,6 @@ export default class MyProfile extends React.Component {
 
 위 예제에서는 MyProfile이 멤버가 되어 모듈로 익스포트 되는데, 이는 다른 컴포넌트에서 굳이 이름을 명세하지 않더라도 임포트 할 수 있게 해준다.
 
-[👆](#table-of-contents)
-
 ### What are the exceptions on React component naming?
 
 몇가지 예외적인 경우를 제외하고, 컴포넌트 명은 대문자로 시작해야 한다. 소문자와 . (속성 접근자)을 사용하는 경우 유효한 컴포넌트 명이다. 아래의 예가 그러한 유효한 경우다.
@@ -2319,13 +1966,9 @@ render(){
 }
 ```
 
-[👆](#table-of-contents)
-
 ### Why is a component constructor called only once?
 
 React의 reconciliation 알고리즘은 후속 렌더링 과정에서 사용자 정의 컴포넌트가 똒같은 위치에 나타나면, 이전과 동일 한 요소이므로 새로운 인스턴스를 만드는 대신 이전 인스턴스를 재사용한다고 가정한다.
-
-[👆](#table-of-contents)
 
 ### How to define constants in React?
 
@@ -2338,8 +1981,6 @@ class MyComponent extends React.Component {
 ```
 
 현재 static 필드는 stage3에 있다.
-
-[👆](#table-of-contents)
 
 ### How to programmatically trigger click event in React?
 
@@ -2356,13 +1997,9 @@ callback을 통한 ref prop를 사용하여 HTMLInputElement 객체에 대한 �
 this.inputElement.click()
 ```
 
-[👆](#table-of-contents)
-
 ### Is it possible to use async/await in plain React?
 
 React 에서 async/await 을 사용하고 싶다면 Babel 과 transform-async-to-generator 플러그인이 필요하다. React Native에서는 기본적으로 지원하고 있다.
-
-[👆](#table-of-contents)
 
 ### What are the common folder structures for React?
 
@@ -2412,13 +2049,9 @@ components/
 └─ ProfileHeader.css
 ```
 
-[👆](#table-of-contents)
-
 ### What are the popular packages for animation?
 
 React Transition Group과 React Motion이 React 생태계에서 유명한 애니메이션 패키지다.
-
-[👆](#table-of-contents)
 
 ### What is the benefit of styles modules?
 
@@ -2448,13 +2081,9 @@ export const space = [
 import { space, colors } from './styles'
 ```
 
-[👆](#table-of-contents)
-
 ### What are the popular React-specific linters?
 
 자바스크립트 lint로는 eslint가 유명하다. 코드 스타일을 분석할 수 있는 다양한 플러그인이 있다. React에서 가장 유명한 것은 `eslint-plugin-react`다. 기본적으로 몇가지 베스트 프랙티스를 확인하여, 이 규칙을 바탕으로 iterator의 키에서 부터 prop type까지 확인해 준다. 다른 유명한 플러그인으로는 `eslint-plugin-jsx-a11y`가 있는데, 이는 접근성과 관련된 일반적인 문제를 해결하는데 도움을 준다. JSX는 `alt` `tabindex`와 같은 HTML과 약간 다른 문법을 제공하므로, 일반적인 플러그인으로 는 확인이 어렵다.
-
-[👆](#table-of-contents)
 
 ### How to make AJAX call and in which component lifecycle methods should I make an AJAX call?
 
@@ -2506,8 +2135,6 @@ class MyComponent extends React.Component {
 }
 ```
 
-[👆](#table-of-contents)
-
 ### What are render props?
 
 **Render Props**는 값이 함수인 prop을 활용하여 컴포넌트 간에 코드를 share할 수 있게 해주는 방법이다. 아래 컴포넌트는 `render prop`을 활용하여 React element를 리턴한다.
@@ -2519,6 +2146,4 @@ class MyComponent extends React.Component {
 ```
 
 React Router 와 DownShift 라이브러리가 이 패턴을 사용한다.
-
-[👆](#table-of-contents)
 
