@@ -22,11 +22,9 @@ const getTag = tech => {
 }
 
 export const PostHit = clickHandler => ({ hit }) => {
-  const endLink = hit.permalink ? new URL(hit.permalink).pathname : hit.slu
-
   return (
     <div>
-      <Link to={endLink} onClick={clickHandler}>
+      <Link to={hit.slug} onClick={clickHandler}>
         <h4>
           <Highlight attribute="title" hit={hit} tagName="mark" />
         </h4>
