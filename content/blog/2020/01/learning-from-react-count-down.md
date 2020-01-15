@@ -62,7 +62,7 @@ setTimeout은 자바스크립트 엔진 단에서 실행되므로, 브라우저�
 
 실제로 jquery의 기본 animate 들은 setTimeout을 통해서 사용되고 있다.
 
-## 해결책 1) `requestAnimationFrame`
+## 해결책 1) requestAnimationFrame
 
 [참고](https://developer.mozilla.org/ko/docs/Web/API/Window/requestAnimationFrame)
 
@@ -74,7 +74,7 @@ window.requestAnimationFrame(callback)
 
 화면에 새로운 애니메이션을 업데이트 할 준비가 될 때마다 호출하는 것이 좋다. 일반적으로 대부분의 브라우저에서는 디스플레이 주사율에 맞춰 콜백을 호출한다. 성능을 위해서, 백그라운드 탭, hidden, iframe 등에서는 실행 되지 않는다.
 
-이 함수는 0이 아닌 고유한 요청 id를 리턴하는데, `window.cancelAnimationFrame(requestId)`로 해당 요청을 취소할 수 있다.
+이 함수는 0이 아닌 고유한 요청 id를 리턴하는데, window.cancelAnimationFrame(requestId)로 해당 요청을 취소할 수 있다.
 
 ## 해결책 2) EventEmitter 사용
 
