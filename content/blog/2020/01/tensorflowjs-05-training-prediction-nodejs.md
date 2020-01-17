@@ -281,4 +281,188 @@ module.exports = {
 }
 ```
 
-🚧작성중🚧
+## 6. 모델을 서버에서 훈련시키기
+
+server.js 라는 새로운 파일을 작성한다음, 서버에서 훈련과 평가를 담당하는 모델을 만들어서 동작하게 합니다. 먼저, HTTP server를 만들고, `socket.io` API을 사용해 소켓을 활용해 양방향 통신을 하도록합니다.
+
+아래 코드를 server.js에 작성해주세요.
+
+```javascript
+require("@tensorflow/tfjs-node")
+
+const http = require("http")
+const socketio = require("socket.io")
+const pitch_type = require("./pitch_type")
+
+const TIMEOUT_BETWEEN_EPOCHS_MS = 500
+const PORT = 8001
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+// 서버를 시작하고, 모델을 훈련시키고, 현재 상태를 소켓 연결로 내보낸다.
+async function run() {
+  const port = process.env.PORT || PORT
+  const server = http.createServer()
+  const io = socketio(server)
+
+  server.listen(port, () => {
+    console.log(`  > Running socket on port: ${port}`)
+  })
+
+  io.on("connection", socket => {
+    socket.on("predictSample", async sample => {
+      io.emit("predictResult", await pitch_type.predictSample(sample))
+    })
+  })
+
+  let numTrainingIterations = 10
+  for (var i = 0; i < numTrainingIterations; i++) {
+    console.log(`Training iteration : ${i + 1} / ${numTrainingIterations}`)
+    await pitch_type.model.fitDataset(pitch_type.trainingData, { epochs: 1 })
+    console.log("accuracyPerClass", await pitch_type.evaluate(true))
+    await sleep(TIMEOUT_BETWEEN_EPOCHS_MS)
+  }
+
+  io.emit("trainingComplete", true)
+}
+
+run()
+```
+
+여기까지 왔다면, 서버를 실행하고 테스트 할 수 있습니다. 밑에서 보이는 로그처럼, 서버에서 각 iteration 마다 하나의 epoch으로 학습하는 모습을 볼 수 있습니다. (또한 `model.fitDataset` API를 활용해서 한번의 호출로 여러 epoch에 걸쳐 학습할 수도 있습니다.) 만약 여기에서 에러를 접하게 된다면, node나 npm 설치상황을 확인해보시기 바랍니다.
+
+```shell
+$ npm run start-server
+...
+  > Running socket on port: 8001
+Epoch 1 / 1
+eta=0.0 ========================================================================================================>
+2432ms 34741us/step - acc=0.429 loss=1.49
+```
+
+Ctrl+C로 서버를 중단시킵니다. 다음 단계에서 다시 이 부분을 실행할 것입니다.
+
+## 7. 클라이언트 페이지를 만들고 display 용 코드 만들기
+
+서버가 준비되었으므로, 다음 단계는 브라우저에서 실행할 클라이언트 코드를 작성하는 것입니다. 간단한 페이지를 만들어서, 서버에서 모델 예측을 호출하고 결과를 표시합니다. `socket.io`를 활용해서 클라이언트/서버 커뮤니케이션을 진행합니다.
+
+먼저 `./baseball`폴더에 index.html 을 만들고 아래 코드를 복사합니다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pitch Training Accuracy</title>
+  </head>
+  <body>
+    <h3 id="waiting-msg">Waiting for server...</h3>
+    <p>
+      <span style="font-size:16px" id="trainingStatus"></span>
+    </p>
+
+    <p></p>
+    <div id="predictContainer" style="font-size:16px;display:none">
+      Sensor data: <span id="predictSample"></span>
+      <button
+        style="font-size:18px;padding:5px;margin-right:10px"
+        id="predict-button"
+      >
+        Predict Pitch
+      </button>
+      <p>
+        Predicted Pitch Type:
+        <span style="font-weight:bold" id="predictResult"></span>
+      </p>
+    </div>
+
+    <script src="dist/bundle.js"></script>
+    <style>
+      html,
+      body {
+        font-family: Roboto, sans-serif;
+        color: #5f6368;
+      }
+      body {
+        background-color: rgb(248, 249, 250);
+      }
+    </style>
+  </body>
+</html>
+```
+
+`client.js`를 `./baseball` 폴더에 만들고 아래 내용을 복사합니다.
+
+```javascript
+import io from "socket.io-client"
+const predictContainer = document.getElementById("predictContainer")
+const predictButton = document.getElementById("predict-button")
+
+const socket = io("http://localhost:8001", {
+  reconnectionDelay: 300,
+  reconnectionDelayMax: 300,
+})
+
+const testSample = [2.668, -114.333, -1.908, 4.786, 25.707, -45.21, 78, 0] // Curveball
+
+predictButton.onclick = () => {
+  predictButton.disabled = true
+  socket.emit("predictSample", testSample)
+}
+
+// functions to handle socket events
+socket.on("connect", () => {
+  document.getElementById("waiting-msg").style.display = "none"
+  document.getElementById("trainingStatus").innerHTML = "Training in Progress"
+})
+
+socket.on("trainingComplete", () => {
+  document.getElementById("trainingStatus").innerHTML = "Training Complete"
+  document.getElementById("predictSample").innerHTML =
+    "[" + testSample.join(", ") + "]"
+  predictContainer.style.display = "block"
+})
+
+socket.on("predictResult", result => {
+  plotPredictResult(result)
+})
+
+socket.on("disconnect", () => {
+  document.getElementById("trainingStatus").innerHTML = ""
+  predictContainer.style.display = "none"
+  document.getElementById("waiting-msg").style.display = "block"
+})
+
+function plotPredictResult(result) {
+  predictButton.disabled = false
+  document.getElementById("predictResult").innerHTML = result
+  console.log(result)
+}
+```
+
+클라이언트가 `trainingComplete` 소켓 메시지를 처리하여 예측 버튼을 표시합니다. 이 버튼을 클릭하면 클라이언트는 샘플 센서 데이터가 포함된 소켓 메시지를 전송합니다. `predictResult` 메시지를 받으면 페이지에 예측을 표시합니다.
+
+## 8. 앱 실행하기
+
+아래 두 코드를 실행해서 클라이언트 / 서버 를 실행합니다.
+
+```shell
+[In one terminal, run this first]
+$ npm run start-client
+
+[In another terminal, run this next]
+$ npm run start-server
+```
+
+브라우저에서 http://localhost:8080/ 를 엽니다. 모델 학습이 끝나면, Predict Sample 버튼을 눌러보세요. 브라우저에서 예측 결과가 뜰 것입니다. 그리고 테스트 csv 파일의 몇가지 예제를 활용해서 샘플 센서 데이터를 자유롭게 수정하고, 모델이 얼마나 정확하게 예측하는지 확인해보세요.
+
+## 9. 배운것
+
+본 튜토리얼에서는, Tensorflow.js를 활용한 간닪한 머신러닝 웹 어플리케이션을 만들어 보았습니다. 센서 데이터를 활용해서 구질이 무엇인지 분류하는 모델을 만들어 보았습니다. node.js 코드를 작성해서 서버를 만들고, 클라이언트에 데이터를 통해 학습한 모델을 전송합니다.
+
+[tensorflow.org/js](https://www.tensorflow.org/js)를 방문해서, 더욱 많은 예쩨와 데모를 보시고, 당신의 어플리케이션에서 Tensorflow.js를 어떻게 활용할수 있을지 살펴보세요.
+
+
+https://codesandbox.io/s/tensorflowjs-05-training-prediction-nodejs-tc6c4
+
