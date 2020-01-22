@@ -461,7 +461,7 @@ $ npm run start-server
 
 본 튜토리얼에서는, Tensorflow.js를 활용한 간닪한 머신러닝 웹 어플리케이션을 만들어 보았습니다. 센서 데이터를 활용해서 구질이 무엇인지 분류하는 모델을 만들어 보았습니다. node.js 코드를 작성해서 서버를 만들고, 클라이언트에 데이터를 통해 학습한 모델을 전송합니다.
 
-[tensorflow.org/js](https://www.tensorflow.org/js)를 방문해서, 더욱 많은 예쩨와 데모를 보시고, 당신의 어플리케이션에서 Tensorflow.js를 어떻게 활용할수 있을지 살펴보세요.
+[tensorflow.org/js](https://www.tensorflow.org/js)를 방문해서, 더욱 많은 예제와 데모를 보시고, 당신의 어플리케이션에서 Tensorflow.js를 어떻게 활용할수 있을지 살펴보세요.
 
 
 https://codesandbox.io/s/tensorflowjs-05-training-prediction-nodejs-tc6c4
