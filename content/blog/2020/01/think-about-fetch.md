@@ -5,8 +5,6 @@ published: true
 date: 2020-01-21 18:57:45
 ---
 
-# 자바스크립트에서 http 요청하기
-
 ```toc
 tight: true,
 from-heading: 2
@@ -38,8 +36,6 @@ xmlHttp.open("GET", "/yceffort/request.txt", true)
 
 xmlHttp.send()
 ```
-
-(어느 대학교에서는 `readyState` 값을 시험으로 내더라)
 
 어차피 쓸 일도 거의 없고, 스펙은 위 링크에서 자세히 나와있을 테니 생략한다.
 
@@ -134,10 +130,12 @@ fetch("/yceffort/data1.json", {
 
 데이터를 제공하는 api 서버가 존재하고, 여기에서 모든 응답을 json으로 내려 준다고 가정하자. 어떠한 경우에도 사용자에게 에러를 보여주지 않고 (100% 커버할 순 없지만) 최대한 자연스럽게 fetch를 해야 한다면 어떻게 해야할까?
 
+### 5-1. 에러 처리
+
 ```javascript
 const response = await `/yceffort/data1`
 
-// 200이 아닐 경우
+// 200이 아닐 경우의 처리
 if (!response.ok) {
   captureException(`failed to fetch /yceffort/data1. [${response.code}]`)
 }
@@ -145,6 +143,17 @@ if (!response.ok) {
 try {
   const result = await response.json()
 } catch (e) {
+  // json 으로 파싱을 못할때의 처리
   captureException(`failed to parse /yceffort/data1, ${e}`)
 }
 ```
+
+### 5-2. Abortable Fetch
+
+### 5-3. fetch 중 사용자에게 Spinner 보여주기
+
+### 5-4. fetch in react
+
+## 6. 결론
+
+🚧🚧🚧🚧🚧🚧
