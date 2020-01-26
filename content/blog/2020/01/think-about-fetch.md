@@ -150,10 +150,86 @@ try {
 
 ### 5-2. Abortable Fetch
 
-### 5-3. fetch 중 사용자에게 Spinner 보여주기
+[참고](https://developers.google.com/web/updates/2017/09/abortable-fetch?hl=ko)
 
-### 5-4. fetch in react
+몇몇 fetch 요청은 그 시간이 오래 걸리거나, 사용자의 요청으로 취소를 할 수도 있어야 하는 경우가 발생한다. 그 경우 사용하는 것이 [AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)다.
+
+```javascript
+const controller = new AbortController()
+const signal = controller.signal
+
+setTimeout(() => controller.abort(), 5000)
+
+fetch(url, { signal })
+  .then(response => {
+    return response.text()
+  })
+  .then(text => {
+    console.log(text)
+  })
+```
+
+5초 뒤에 자동으로 abort 되는 코드이다. fetch를 abort하게되면, request와 response 모두 취소된다. 따라서, `response.text()`도 취소된다.
+
+```
+DOMException: The user aborted a request.
+```
+
+fetch시에 발생한 exception이 abort인지를 구별하기 위해서는 아래와 같이 처리하면 된다.
+
+```javascript
+fetch(url, { signal })
+  .then(response => {
+    return response.text()
+  })
+  .then(text => {
+    console.log(text)
+  })
+  .catch(err => {
+    if (err.name === "AbortError") {
+      console.log("Fetch aborted by user")
+    } else {
+      console.error("other error", err)
+    }
+  })
+```
+
+### 5-3. fetch in react
+
+이렇게 복잡한 fetch를 리액트스럽게 처리하는 라이브러리가 여기저기 있다.
+
+- [use-http](https://github.com/alex-cory/use-http)
+- [useSWR](https://github.com/zeit/swr)
+
+대충 여기서 얘기 한 것 들을 기준으로, `useFetch`를 만들어 보자.
+
+```javascript
+const useFetch = (url, options) => {
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const controller = new AbortController()
+  const signal = controller.signal
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(url, {...options, {signal});
+        const result = await res.json();
+        setResponse(result);
+        setIsLoading(false)
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchData();
+  }, []);
+  return { response, error, isLoading, signal };
+};
+```
 
 ## 6. 결론
 
-🚧🚧🚧🚧🚧🚧
+잘 만들어진 걸 가져다 쓰자.
