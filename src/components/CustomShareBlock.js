@@ -4,8 +4,6 @@ import React from "react"
 import { FaTwitter, FaLinkedin, FaFacebook, FaEnvelope } from "react-icons/fa"
 import { ShareBlockStandard, ShareButtonIconOnly } from "react-custom-share"
 
-import "./CustomShareBlock.css"
-
 const CustomShareBlock = props => {
   const { url, title, siteName } = props
 
@@ -24,20 +22,6 @@ const CustomShareBlock = props => {
   return (
     <div className="mt-4">
       <ShareBlockStandard {...shareBlockProps} />
-      <p className="text-center">
-        <a
-          className="bmc-button"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.buymeacoffee.com/foryeffort"
-        >
-          <img
-            src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
-            alt="Buy me a coffee"
-          />
-          <span>Buy me a coffee</span>
-        </a>
-      </p>
     </div>
   )
 }
