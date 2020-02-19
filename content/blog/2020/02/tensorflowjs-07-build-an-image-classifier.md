@@ -252,3 +252,4 @@ async function app() {
 
 이 예제에서, Tensorflow.js를 활용하여 간단한 머신러닝 학습 웹 어플리케이션을 구현했습니다. 웹캠에서 이미지를 분류하기 위해 미리 학습된 MobileNet 모델을 로드하고 사용했습니다. 그런 다음 모델을 커스텀하여 이미지를 세가지 사용자 정의 범주로 분류합니다.
 
+[예제](https://codesandbox.io/s/tensorflowjs-07-build-an-image-classifier-28kc5)
