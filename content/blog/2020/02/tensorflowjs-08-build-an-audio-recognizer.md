@@ -314,6 +314,128 @@ model.add(tf.layers.flatten())
 model.add(tf.layers.dense({ units: 3, activation: "softmax" }))
 ```
 
+input 모델의 형태는 `[NUM_FRAMES, 232, 1]`입니다. 이는 각 프레임이 23의 오디오를 갖고 있으며, 또 이들은 각각 232개의 서로 다른 진동수를 포함하고 있습니다. (232인 이유는, 사람의 목소리를 인식하는데 필요한 frequency의 양입니다) 이번 코드랩에서는, 단어 전체를 말하는 대신 소리를 만들기 때문에 3프레임 짜리 (~70ms) 샘플을 사용하고 있습니다.
 
+모델을 훈련시키기 위해 모델을 컴파일 합니다.
 
-⚠️ 작성중
+```javascript
+const optimizer = tf.train.adam(0.01)
+model.compile({
+  optimizer,
+  loss: "categoricalCrossentropy",
+  metrics: ["accuracy"],
+})
+```
+
+여기에서는 [아담](https://arxiv.org/abs/1412.6980)을 사용했는데, 이는 딥러닝에서 가장 자주 사용되는 보편적인 옵티마이저입니다. loss와 분류를 위한 손실함수에는 `categoricalCrossEntropy`를 사용했습니다. 간단하게 말해, 이 방법론은 예측값이 어느정도의 확률로 나오는지 (각 클래스당)를 계싼하며, 100%~0%의 값으로 나옵니다. 여기에 또한 metric을 모니터링 하기 위해 `accuracy`를 변수로 넘겨주었습니다. 이는 각각의 모델들이 훈련을 거치면서 몇퍼센트의 정확도를 갖게 되는지 알려 줄 것입니다.
+
+#### 학습
+
+학습은 모든 데이터를 총 1ㅐ회 하며, 배치사이즈는 16이고, 현재의 정확도가 화면상에 나타날 것입니다.
+
+```javascript
+await model.fit(xs, ys, {
+  batchSize: 16,
+  epochs: 10,
+  callbacks: {
+    onEpochEnd: (epoch, logs) => {
+      document.querySelector("#console").textContent = `Accuracy: ${(
+        logs.acc * 100
+      ).toFixed(1)}% Epoch: ${epoch + 1}`
+    },
+  },
+})
+```
+
+## 9. 슬라이더를 실시간으로 움직이기
+
+이제 우리 모델을 훈련시킬 수 있으니, 실시간으로 예측하고 슬라이더를 움직이는 코드를 추가합니다. `Train` 버튼 바로 밑에 아래 코드를 추가해주세요.
+
+```html
+<br /><br />
+<button id="listen" onclick="listen()">Listen</button>
+<input type="range" id="output" min="0" max="10" step="0.1" />
+```
+
+그리고 아래 코드를 `index.js`에 추가해주세요.
+
+```javascript
+async function moveSlider(labelTensor) {
+  const label = (await labelTensor.data())[0]
+  document.getElementById("console").textContent = label
+  if (label == 2) {
+    return
+  }
+  let delta = 0.1
+  const prevValue = +document.getElementById("output").value
+  document.getElementById("output").value =
+    prevValue + (label === 0 ? -delta : delta)
+}
+
+function listen() {
+  if (recognizer.isListening()) {
+    recognizer.stopListening()
+    toggleButtons(true)
+    document.getElementById("listen").textContent = "Listen"
+    return
+  }
+  toggleButtons(false)
+  document.getElementById("listen").textContent = "Stop"
+  document.getElementById("listen").disabled = false
+
+  recognizer.listen(
+    async ({ spectrogram: { frameSize, data } }) => {
+      const vals = normalize(data.subarray(-frameSize * NUM_FRAMES))
+      const input = tf.tensor(vals, [1, ...INPUT_SHAPE])
+      const probs = model.predict(input)
+      const predLabel = probs.argMax(1)
+      await moveSlider(predLabel)
+      tf.dispose([input, probs, predLabel])
+    },
+    {
+      overlapFactor: 0.999,
+      includeSpectrogram: true,
+      invokeCallbackOnNoiseAndUnknown: true,
+    }
+  )
+}
+```
+
+### 코드 살펴보기
+
+#### 실시간 예측
+
+`listen()` 함수는 마이크를 득고 실시간으로 예측하는 역할을 합니다. 이 코드는 `collect()`와 굉장히 유사합니다. 유일한 차이점은, 학습된 모델을 바탕으로 예측을 한다는 점입니다.
+
+```javascript
+const probs = model.predict(input)
+const predLabel = probs.argMax(1)
+await moveSlider(predLabel)
+```
+
+결과물인 `model.predict(input)`는 `[1, numClasses]`의 형태를 가지고 있습니다. 이는 클래스에 대한 각 확률 분포를 표현합니다. 더 간단히 말하자면, 이는 합계가 1인 각 출력 클래스에 대한 신뢰도 일 뿐입니다. 텐서는 단일크기이기 때문에 1의 합계를 가집니다.
+
+확룰 분포를 가장 가능성이 높은 클래스를 나타내는 단일 정수로 변환하기 위해서는, `probs.argMax(1)`를 호출해야되는데, 이는 가장 확류이 높은 클래스의 index를 보여줍니다.
+
+#### 슬라이더 움직이기
+
+`moveSlider()` 함수는 만약 레이블이 0이라면 왼쪽으로, 1이라면 오른쪽으로, 2라면 움직이지 않습니다.
+
+#### Disposing tensors
+
+GPU 메모리를 정리하기 위해서, `tf.dispose()`함수를 호출하는 굉장히 중요합니다. 이 함수 대신 `tf.tidy()`를 사용하는 방법도 있습니다만, 이는 async 함수로 사용할 수 없습니다.
+
+```javascript
+tf.dispose([input, probs, predLabel])
+```
+
+## 10. 최종 결과물 확인
+
+브라우저에서 index.html을 열고, 이전 섹션에서 처럼 3개의 명령에 해당하는 각각의 버튼을 활용해서 데이터를 수집합니다. 데이터를 수집하기 위해서는 각 버튼을 3~4초를 누른 채 유지해야 합니다.
+
+샘플을 수집한 뒤에는, 학습 버튼을 누릅니다. 이 후에 모델이 학습하기 시작하며, 정확도가 90% 이상까지 향상될 것입니다. 모델 성능이 좋지 못하다면, 더 많은 데이터를 수집하세요. 
+
+학습이 끝나면, '듣기' 버튼을 눌러 마이크를 활용해 슬라이더를 제어하세요.
+
+더많은 예제를 http://js.tensorflow.org/ 에서 확인하세요.
+
