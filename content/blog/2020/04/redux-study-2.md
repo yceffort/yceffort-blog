@@ -143,11 +143,9 @@ store.dispatch({
 리듀서는 이전의 상태값과 액션을 받아다가, 다음 상태를 반환하는 단순한 함수다. 여기에서는 이전의 상태값이 아닌 새로운 상태 오브젝트를 리턴해야 한다. 단일 리듀서로 시작할 수 있으며, 앱이 커지면 상태트리의 일부를 관리하는 작은 리듀러들로 구성할 수 있다. 리듀서는 단순히 함수이기 때문에, 순서를 조절하거나, 추가 데이터를 넘기거나, 페이징같은 기능을 하기 위한 재사용한 리듀서를 만들 수도 있다.
 
 ```javascript
-called, pass additional data, or even make reusable reducers for common tasks such as pagination.
-
-function visibilityFilter(state = 'SHOW_ALL', action) {
+function visibilityFilter(state = "SHOW_ALL", action) {
   switch (action.type) {
-    case 'SET_VISIBILITY_FILTER':
+    case "SET_VISIBILITY_FILTER":
       return action.filter
     default:
       return state
@@ -156,19 +154,19 @@ function visibilityFilter(state = 'SHOW_ALL', action) {
 
 function todos(state = [], action) {
   switch (action.type) {
-    case 'ADD_TODO':
+    case "ADD_TODO":
       return [
         ...state,
         {
           text: action.text,
-          completed: false
-        }
+          completed: false,
+        },
       ]
-    case 'COMPLETE_TODO':
+    case "COMPLETE_TODO":
       return state.map((todo, index) => {
         if (index === action.index) {
           return Object.assign({}, todo, {
-            completed: true
+            completed: true,
           })
         }
         return todo
@@ -178,7 +176,7 @@ function todos(state = [], action) {
   }
 }
 
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore } from "redux"
 const reducer = combineReducers({ visibilityFilter, todos })
 const store = createStore(reducer)
 ```
