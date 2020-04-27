@@ -1,5 +1,5 @@
 ---
-title: "리덕스 공부해보기 (1)"
+title: "리덕스 공부해보기 (1) - 개요"
 tags: [typescript, javascript, react]
 published: true
 date: 2020-04-25 22:38:25
