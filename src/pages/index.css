@@ -13,7 +13,7 @@ p,
 }
 
 .sidebar {
-  width: 90%;
+  width: 100%;
 }
 
 .y_index {
@@ -31,4 +31,10 @@ p,
     flex-direction: row;
     justify-content: space-around;
   }
+}
+
+.post-main {
+  width: 100%;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 }
