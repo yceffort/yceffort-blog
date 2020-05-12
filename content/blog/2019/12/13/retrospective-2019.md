@@ -4,6 +4,7 @@ date: 2019-12-13 21:25:46
 published: true
 layout: post
 tags: [diary]
+published: false
 ---
 
 2019년도 이제 2주가 채 남지 않았습니다. 2019년에 대해 잠시 뒤돌아 보는 시간을 갖도록 하겠습니다.
