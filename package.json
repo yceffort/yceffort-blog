@@ -8,7 +8,6 @@
     "@weknow/gatsby-remark-codepen": "^0.1.0",
     "algoliasearch": "^3.35.1",
     "bootstrap": "^4.3.1",
-    "dotenv": "^8.2.0",
     "emotion": "^10.0.9",
     "gatsby": "^2.18.17",
     "gatsby-image": "^2.1.1",
@@ -47,6 +46,7 @@
     "styled-icons": "^9.1.0"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "prettier": "^1.17.1"
   },
   "keywords": [
