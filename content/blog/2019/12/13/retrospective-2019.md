@@ -1,7 +1,6 @@
 ---
 title: "2019년 회고"
 date: 2019-12-13 21:25:46
-published: true
 layout: post
 tags: [diary]
 published: false
