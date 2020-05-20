@@ -1,6 +1,6 @@
 ---
 title: "javascript 일반 함수와 화살표 함수의 차이"
-date: 2019-07-09 09:39:42
+date: 2020-05-19 09:39:42
 published: true
 layout: post
 tags: [javascript]
@@ -8,17 +8,41 @@ tags: [javascript]
 
 ES6에서부터 생긴 `arrow function`은 일반적으로 `()=>{}`의 모양을 하고 있으며, 동작도 비슷해보인다. 하지만 이 두 선언방식은 두가지 분명한 차이를 가지고 있다.
 
+하지만 그전에 this를 알아야 한다.
+
+## 0. this
+
+`this` 는 현재 실행 문맥을 뜻한다. 즉, 호출한 것이 누구냐는 것이다.
+
+```javascript
+console.log(this === window) // true
+```
+
+위 코드에서는 `console.log`를 호출한 것이 window이기 때문에 true를 리턴한다.
+
+```javascript
+const hello = {
+  hi: function() {
+    console.log(this === window)
+    console.log(this)
+  },
+}
+hello.hi() // false
+```
+
+위 코드에서 `this`는 `hi`다. 즉, `this`는 현재 실행 문맥을 의미한다.
+
 ## 1. this와 arguments의 차이
 
 화살표 함수는 `this`와 `arguments`를 바인딩하지 않는다. 그 대신, 일반적인 `this`와 `arguments`와 동일한 범위를 가지고 있다.
 
 ```javascript
 function createObject() {
-  console.log('Inside `createObject`:', this.foo);
+  console.log('Inside `createObject`:', this.foo, this);
   return {
     foo: 42,
     bar: function() {
-      console.log('Inside `bar`:', this.foo);
+      console.log('Inside `bar`:', this.foo, this);
     },
   };
 }
@@ -28,29 +52,36 @@ createObject.call({foo: 21}).bar();
 위 함수의 결과는
 
 ```
-Inside `createObject`: 21
-Inside `bar`: 42
+Inside `createObject`: 21, {foo: 21}
+Inside `bar`: 42, bar: f
 ```
-가 된다. 그러나 화살표 함수에서는 약간 다르다.
+
+가 된다. 위 `console.log`에서의 this는 `call`인자로 넘겨준 `{foo:21}`이고, `bar`가 호출되는 시점에서 `this`는 `bar`이다. `bar`시점에서 `this.foo`는, `{foo:42}`가 된다.
+
+
+그러나 화살표 함수에서는 약간 다르다.
 
 ```javascript
 function createObject() {
-  console.log('Inside `createObject`:', this.foo);
+  console.log('Inside `createObject`:', this.foo, this);
   return {
     foo: 42,
-    bar: () => console.log('Inside `bar`:', this.foo),
+    bar: () => console.log('Inside `bar`:', this.foo, this),
   };
 }
 
 createObject.call({foo: 21}).bar(); 
 ```
+
 결과는
+
 ```
-Inside `createObject`: 21
-Inside `bar`: 21
+Inside `createObject`: 21, {foo: 21}
+Inside `bar`: 21, {foo: 21}
 ```
 
-즉, 화살표 함수안에서의 `this`는 `createObject`안의 `this`를 따르게 된다. 이는 화살표 함수가 현재 환경의 `this`를 따르게 하고 싶을 때 유용하다는 뜻이다. 이 말인 즉슨, 화살표함수에서는 `bind`와 `call`을 사용할 수 없다는 뜻이기도 하다.
+즉, 화살표 함수안에서의 `this`는 `createObject`안의 `this`를 따르게 된다.  이는 화살표 함수가 현재 환경의 `this`를 따르게 하고 싶을 때 유용하다는 뜻이다. 
+
 
 
 ## 2. 화살표 함수는 `new`로 호출할수 없다.
