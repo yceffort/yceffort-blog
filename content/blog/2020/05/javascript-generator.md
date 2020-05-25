@@ -1,7 +1,7 @@
 ---
 title: "자바스크립트 제네레이터"
 tags: [javascript]
-published: true
+published: false
 date: 2020-05-20 22:33:36
 ---
 

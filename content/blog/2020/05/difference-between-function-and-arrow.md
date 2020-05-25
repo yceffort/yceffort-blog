@@ -1,7 +1,7 @@
 ---
 title: "javascript 일반 함수와 화살표 함수의 차이"
 date: 2020-05-19 09:39:42
-published: true
+published: false
 layout: post
 tags: [javascript]
 ---
