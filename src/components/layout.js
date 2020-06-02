@@ -36,11 +36,7 @@ const Layout = ({ children }) => {
               margin: `0 auto`,
               paddingTop: 0,
               wordBreak: "break-all",
-            }}
-            ref={node => {
-              if (node) {
-                node.style.setProperty("padding", "1rem", "important")
-              }
+              padding: "1rem"
             }}
           >
             <main
