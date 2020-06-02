@@ -39,14 +39,7 @@ const Layout = ({ children }) => {
               padding: "1rem"
             }}
           >
-            <main
-              className="p-4"
-              ref={node => {
-                if (node) {
-                  node.style.setProperty("padding", "0rem", "important")
-                }
-              }}
-            >
+            <main className="p-4">
               {children}
             </main>
             <footer className="text-center" style={{ marginTop: "1rem" }}>
