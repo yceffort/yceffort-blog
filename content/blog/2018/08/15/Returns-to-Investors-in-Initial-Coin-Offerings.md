@@ -3,7 +3,7 @@ title: "ICO에서 투자자들의 이익"
 date: 2018-08-15 16:31:56
 layout: post
 tags: [blockchain, ICO]
-published: false
+published: true
 ---
 
 Digital Tulips? Returns to Investors in Initial Coin Offerings 
@@ -28,3 +28,5 @@ Digital Tulips? Returns to Investors in Initial Coin Offerings
 | ![returns-of-ICO-4](../../../../2018/08/returns-of-ICO-4.png) |
 | :- |
 | ICO에 투자한 후 평균 구매 후 보유 누적 수익률을 보여준다. 비교를 위해, 토큰에 투자했을 때 평균 수익을 회색선으로, 비트코인의 평균 수익률을 황색선으로 보여준다. |
+
+🚧 WIP 🚧

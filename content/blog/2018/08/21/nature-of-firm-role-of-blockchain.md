@@ -3,7 +3,7 @@ title: "Draft) '기업의 본질'로 돌아오다, 블록체인의 역할."
 date: 2018-08-21 03:00:00
 layout: post
 tags: [blockchain]
-published: false
+published: true
 ---
 
 The Return of ‘The Nature of the Firm’: The Role of the Blockchain
@@ -17,4 +17,6 @@ The Return of ‘The Nature of the Firm’: The Role of the Blockchain
 그의 이 논문 이후, 아무것도 변하지 않았다. 그러나 블록체인의 출현으로 기업을 정의하는데 있어 변화가 명백해지고 있다. 블록체인과 코즈 둘다 기본 작업은 '거래를 구성하는 방법' 이다. 
 
 블록체인 지지자들은 정부와 규제의 필욧어을 없애고 경제를 리메이크할 자유주의적 형혁명을 포함하여 너무 많은 것을 주장해왔다. 비평가들은 대게 기술이 일시적인 현상이고, 지금까지 만들어온 응용 프로그램은 본질적인 사회적 가치를 거의 나타내지 않는다고 주장하면서 블록체인의 많은 부분들을 놓쳤다.
+
+🚧 WIP 🚧
 

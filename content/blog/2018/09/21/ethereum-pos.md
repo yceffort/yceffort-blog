@@ -4,7 +4,6 @@ date: 2018-09-21 13:37:17
 published: true
 layout: post
 tags: [blockchain, ethereum]
-# published: false
 ---
 
 아래 글은 [이더리움 공식 깃헙 FAQ](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQs)에서 일부분을 발췌해서 번역한 글입니다.

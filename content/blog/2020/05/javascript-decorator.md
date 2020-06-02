@@ -1,7 +1,7 @@
 ---
 title: "자바스크립트 데코레이터"
 tags: [javascript]
-published: false
+published: true
 date: 2020-05-19 22:33:36
 ---
 

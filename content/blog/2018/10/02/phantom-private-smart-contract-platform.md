@@ -3,7 +3,7 @@ title: "Phantom: 프라이빗 스마트 컨트랙트 플랫폼"
 date: 2018-10-02 06:25:00
 layout: post
 tags: [blockchain, smartcontract]
-published: false
+published: true
 ---
 
 PHANTOM: Private Smart Contract Platform
@@ -92,3 +92,6 @@ You may be wondering why you would even need a Smart Bridge as it seems as thoug
 8.  Conclusion
 
 The PHANTOM blockchain project has been developed to bring privacy use cases to life by utilizing a community to drive the project. The decentralization of its protocol allows for the operators to control the destiny of the system. By giving power to the people we are also giving them an network to help grow the system to bring economic growth and awareness to the project. Having an interoperable blockchain opens doors for those who want to customize their project and use a privacy based module to interact with others in the ecosystem. PHANTOM gives the power back to the people.
+
+
+🚧 WIP 🚧
