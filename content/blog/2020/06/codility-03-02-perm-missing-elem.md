@@ -47,3 +47,5 @@ function solution(A) {
 ### 해설
 
 ![sum of n](https://i.stack.imgur.com/qYmeo.gif)
+
+https://app.codility.com/demo/results/trainingS58ZMJ-NBP/

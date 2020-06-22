@@ -19,7 +19,7 @@ A[6] = 9
 7은 한번만 등장하므로 7을 리턴해야 한다.
 ```
 
-### 답
+### 풀이
 
 ```javascript
 function solution(A) {
