@@ -5,7 +5,7 @@ published: true
 date: 2020-06-22 20:25:19
 ---
 
-## Binary Gap
+## 1-1 Binary Gap
 
 ### 문제
 
@@ -39,5 +39,9 @@ function solution(N) {
     }
 }
 ```
+
+### 해설
+
+배열의 마지막 요소를 `pop`하는 것만 기억하면 될 듯.
 
 https://app.codility.com/demo/results/training3C4SN2-EXK/
