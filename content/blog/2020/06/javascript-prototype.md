@@ -261,7 +261,7 @@ console.log(Person.constructor === Function);
 
 ## 정리!!!
 
-- `[[Prototype]]`은 자바스크립트의 모든 객체가 가진 값이며,  `__proto__`로 접근할 수 있다. 이것을 이용해 상속을 구현하며, 타고타고 올라가면 Object를 만나고 `Object.__proto__`는 null이다.
+- `[[Prototype]]`은 자바스크립트의 모든 객체가 가진 값이며,  `__proto__`로 접근할 수 있다. (혹은 `Object.getPrototypeOf(obj))`도 가능하다. 사실 똑같다.) 이것을 이용해 상속을 구현하며, 타고타고 올라가면 `Object.prototype`을 만나고 `Object.__proto__`는 null이다.
 - `prototype`은 `new`로 새로운 object를 만들었을때 (생성자로 사용될때), 이 함수로 생성될 객체의 부모 역할을 할 객체를 가리킨다. (`XXX.prototype`)
 - `XXX.prototype` 객체는 `constructor`를 갖는데, `constructor`는 자신의 입장에서 자신을 생성한 객체를 가리킨다. 따라서 `XXX`를 가리킨다.
 

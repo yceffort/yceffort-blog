@@ -346,9 +346,9 @@ model.add(
   </tr>
 </table>
 
-Categorical cross entropy는 실제 주어진 label과 비교했을 떄 얼마나 비슷한지를 예측하는 숫자를 만들어냅니다.
+Categorical cross entropy는 실제 주어진 label과 비교했을 때 얼마나 비슷한지를 예측하는 숫자를 만들어냅니다.
 
-여기에서 주어진 데이터에서는, 이른바 one-hot encoding이라고 불리우는, 분류 문제에서 흔히 쓰이는 기법을 사용했습니다. 각각 클래스는 주어진 예시들에 대해 그것과 관련된 확률을 가지고 있습니다. 우리가 정확히 어떤 것인지 예측해야 할떄, 그것이 맞다면 1을, 아니라면 0으로 나타낼 수 있습니다. one-hot encoding에 대한 자세한 내용은 [여기](https://developers.google.com/machine-learning/crash-course/representation/feature-engineering)를 참조하세요.
+여기에서 주어진 데이터에서는, 이른바 one-hot encoding이라고 불리우는, 분류 문제에서 흔히 쓰이는 기법을 사용했습니다. 각각 클래스는 주어진 예시들에 대해 그것과 관련된 확률을 가지고 있습니다. 우리가 정확히 어떤 것인지 예측해야 할때, 그것이 맞다면 1을, 아니라면 0으로 나타낼 수 있습니다. one-hot encoding에 대한 자세한 내용은 [여기](https://developers.google.com/machine-learning/crash-course/representation/feature-engineering)를 참조하세요.
 
 우리가 모니터링할 다른 지표는 분류 문제에 대한 정확성입니다. 이는 모든 예측 중 정확하게 예측한 비율을 의미합니다.
 
