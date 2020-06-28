@@ -7,6 +7,12 @@ date: 2020-06-28 22:42:01
 
 [Case Study: Analyzing Notion app performance](https://3perf.com/blog/notion/)를 제멋대로 요약한 글입니다. 왠만하면 저 글을 참고하세요.
 
+```toc
+tight: true,
+from-heading: 2
+to-heading: 3
+```
+
 ## 자바스크립트의 비용
 
 보통 `로딩 속도`를 이야기하면, 네트워크 성능을 떠올리는 경우가 많다. 네트워킹이라는 관점에서는 노션은 꽤 괜찮았다. [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2?hl=ko)를 사용하고, 파일을 gzip으로 압축했으며, [CDN 프록시](https://cdn.hosting.kr/cdn%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94/)를 위해 클라우드페어를 잘 쓰고 있었다. 그러나 `로딩 속도`를 차지 하는 다른 한켠에는 `처리 성능`이 포함되어 있다. gzip을 압축해제하고, 이미지는 디코드 되야 하며, 자바스크립트는 실행되어야 한다. 이런 것들이 처리 성능에 포함되어 있다.
