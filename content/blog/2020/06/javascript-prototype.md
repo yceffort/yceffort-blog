@@ -111,7 +111,7 @@ console.log(d)
 3. 만약 `dummy.__proto__`가 그 속성을 가지고 있다면, `dummy.__proto__`가 갖고 있는 속성을 사용한다.
 4. 만약 `dummy.__proto__`마저 그 속성을 가지고 있지 않으면, `dummy.__proto__.__proto__`가 가지고 있는지 확인한다. 기본적으로 여기서 함수의 prototype의 `__proto__`는 `window.Object.prototype`이다.
 5. 그래서 이제 `dummy.__proto__.__proto__` (`dummy.prototype`의 `__proto__`) (`Object.prototype`)에서 그 속성을 찾는다.
-6. 근데 이제 그 위의 ``dummy.__proto__.__proto__.__proto__`를 찾으려고 하지만, 더이상은 없으므로 
+6. 근데 이제 그 위의 `dummy.__proto__.__proto__.__proto__`를 찾으려고 하지만, 더이상은 없으므로 
 7. undefined로 결론 짓는다.
 
 위의 지독한 과정을 (....) 코드로 살펴보자.
@@ -319,3 +319,5 @@ console.log(
  
 );
 ```
+
+![프로토타입 정리](images/proto.001.jpeg)
