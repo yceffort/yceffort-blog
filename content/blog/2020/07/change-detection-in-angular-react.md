@@ -38,7 +38,7 @@ to-heading: 3
 
 ## Rating Widget
 
-레이팅 위젯을 만든다고 가정해보자. 대략 아래와 같은 모습을 취할 것이다.
+별점 위젯을 만든다고 가정해보자. 대략 아래와 같은 모습을 취할 것이다.
 
 ![rating-widget](https://admin.indepth.dev/content/images/2020/01/1_4OWcFci2w7bTNpEDaZHoEQ.gif)
 
@@ -271,4 +271,71 @@ render 함수가 호출될 때마다, 컴포넌트에 있는 프로퍼티를 보
 
 
 이 값은 가상 돔의 `className`에 사용되는 값이다. 이 가상 돔 트리에 기반하여, 리액트는 class 값을 포함하는 리스트 아이템을 생성하게 된다.
+
+만약 값이 0에서 1로 바뀌었다면 
+
+`{ className: rating > 0 ? 'solid' : 'outline' }`
+
+이 값은 이제 solid가 될 것이다. 리액트가 변화감지를 수행하면, render 함수를 호출하여 새로운 버전의 가상 돔 트리를 만들어 낸다. `className` 의 속성은 이제 `solid`값으로 변경되었다. **각 change detection이 호출될 때 마다 render function이 호출된다는 것은 굉장히 중요한 사실이다.** 이 말은, 함수가 호출될때마다, 완전히 다른 가상 돔트리를 리턴한다는 것이다.
+
+![](https://admin.indepth.dev/content/images/2019/11/image-13.png)
+
+이렇게 만들어진 두 가상 DOM에서 비교 알고리즘을 실행하여, 두 가상 DOM 사이의 변경사항 집합을 얻는다. 우리의 경우에는 `className`의 차이 일 것이다. 차이점이 발견되면, 알고리즘은 해당 DOM 노드를 수정하는 패치를 생성한다. 이경우 패치는 `className`속성을 새 가상 돔에서 solid라는 값으로 변경할 것이다. 그리고 업데이트 된 버전에서 가상 돔은 다음 변경 감지 주기 동안 비교 대상으로 사용될 것이다.
+
+컴포넌트에서 새로운 가상 DOM 트리를 가져와 이전 버전의 트리와 비교하고, DOM의 관련된 부분을 업데이트 하기 위한 패치를 생성하고 업데이트를 수행하는 것이 리액트 Change Detection의 핵심 요소다.
+
+## 언제 Change Detection이 실행되는가?
+
+Change Detection에 대한 이해를 하기 위해서는, React의 렌더 함수 또는 Angular의 측정이 언제 호출되는지 알아야 한다.
+
+생각해보면, 변화를 감지하는 방법엔 두가지가 있다. 먼저 프레임워크에 변화가 있거나 혹은 변화가 있을 수 있는 것들을 알려서, Change Detection을 실행해야 한다는 것을 알리는 것이다.
+
+
+### React
+
+리액트에서는 change detection을 수동으로 해야 한다. 그것은 바로 `setState`다.
+
+```javascript
+export class RatingComponent extends React.Component {
+    ...
+    handleClick(event) {
+        this.setState({rating: Number(event.target.dataset.value)})
+    };
+}
+```
+
+리액트에서는 이를 자동으로 하는 방법이 없다. 모든 변경감지 사이클은 `setState`로 부터 시작된다.
+
+### Angular
+
+앵귤러에서는 두가지 옵션이 다 있다. changeDetector 서비스를 활용해서 수동으로 트리거할 수도 있다.
+
+```javascript
+class RatingWidget {
+    constructor(changeDetector) {
+        this.cd = changeDetector;
+    }
+
+    handleClick(event) {
+        this.rating = Number(event.target.dataset.value);
+        this.cd.detectChanges();
+    };
+}
+```
+
+그러나, 프레임워크에서 자동으로 Chnage Detection을 하게 할 수 있다. 여기에서는, 단순히 property를 업데이트 해야 한다.
+
+```javascript
+class RatingWidget {
+    handleClick(event) {
+        this.rating = Number(event.target.dataset.value);
+    };
+}
+```
+
+하지만 앵귤러에서는 어떻게 change detection을 실행해야 한다는 것을 알까?
+
+앵귤러가 제공하는 메커니즘을 활용하여, 템플릿의 UI 이벤트에 바인딩 하기 떄문에 모든 UI 이벤트 리스너에 대해 알수 있다.이 이벤트 리스너를 가로챈다는 것은, 애플리케이션 코드 실행이 끝난후 변경 탐지 실행을 스케줄링할 수 있다는 것을 의미한다. 이것은 기발한 아이디어지만, 이 메커니즘으로 모든 비동기 이벤트를 가로챌수는 없다.
+
+`setTimout`이나 `XHR` 과 같은 이벤트에 앵귤러 매커니즘을 바인딩 할 수 없으므로, Change Detection이 자동으로 이루어질 수 없다. 이러한 문제를 해결하기 위해 zone.js라는 라이브러리를 사용한다. 브라우저의 모든 비동기 이벤트를 패치한다음, 특정 이벤트가 발생할때 앵귤러에 알릴 수 있다. UI 이벤트와 마찬가지로, 앵귤러는 어플리케이션 의 실행이 완료될 때 까지 기다렸다가 자동으로 변경을 탐지할 수 있다.
 
