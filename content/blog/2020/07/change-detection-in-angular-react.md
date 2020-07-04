@@ -13,7 +13,6 @@ from-heading: 2
 to-heading: 3
 ```
 
-
 요즘 거의 대부분의 웹 어플리케이션에서 Change Detection을 찾을 수 있다. 이는 인기있는 웹 프레임워크의 필수적인 부분이다. Data Grids나 stateful jquery 플러그인 등도 충분히 발전된 Change Detection를 가지고 있다. 그리고 아마도 대부분의 어플리케이션 코드 베이스에는 Change Detection가 존재할 가능성이 크다.
 
 소프트웨어 설계에 관심있는 사람은 이 메커니즘을 잘 이해 해야 한다. DOM 업데이트와 같이 눈에 띄는 부분을 담당하기 때문에, Change Detection이 아키텍쳐의 가장 중요한 부분이라고 생각한다. 응용프로그램의 성능에 영향을 미치는 영역이기도 하다.
