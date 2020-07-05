@@ -208,7 +208,7 @@ console.log((0,_utils__WEBPACK_IMPORTED_MODULE_0__/* .add */ .IH)(1, 2));
 
 최종 번들에 `webpack`이라고 되어 있는, 번들 모듈에서 코드를 import/export 하는 일을 담당하는 코드가 삽입되어 있음을 볼 수 있다. 이번 빌드에서는, `utils.js`와 `index.js`안에 있는 심볼들을 모두 같은 네임스페이스 안에 두는 대신에, 코드 실행히에 다이나믹하게 `add`함수를 `__webpack_require__`로 불러오고 있음을 알 수 있다.
 
-이 코드는 CommonJS가 export 명을 임의로 표현하기 떄문에 필요하다. 예를 들어, 아래 코드는 완전히 유효한 구조다.
+이 코드는 CommonJS가 export 명을 임의로 표현하기 때문에 필요하다. 예를 들어, 아래 코드는 완전히 유효한 구조다.
 
 ```javascript
 module.exports[localStorage.getItem(Math.random())] = () => { … };
