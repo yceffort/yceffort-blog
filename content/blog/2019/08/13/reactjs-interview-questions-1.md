@@ -965,7 +965,7 @@ render 메서드는 제공된 컨테이너의 DOM에 있는 React element를 ren
 ReactDOM.render(element, container[, callback])
 ```
 
-옵셔널 콜백이 있따면, 컴포넌트가 렌더링/업데이트 된 이후로 실행된다.
+옵셔널 콜백이 있다면, 컴포넌트가 렌더링/업데이트 된 이후로 실행된다.
 
 ### What is ReactDOMServer?
 

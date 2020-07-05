@@ -24,7 +24,7 @@ module.exports = {
 };
 ```
 
-`production`모드는 프로덕션 환경에서 실제 앱을 빌드할 떄 사용한다. 이 모드를 사용하면 웹팩은 코드 최소화, dev 라이브러리 삭제, [등등](https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a)의 최적화를 진행하게 된다.
+`production`모드는 프로덕션 환경에서 실제 앱을 빌드할 때 사용한다. 이 모드를 사용하면 웹팩은 코드 최소화, dev 라이브러리 삭제, [등등](https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a)의 최적화를 진행하게 된다.
 
 ## minification 을 켜두기
 
@@ -263,7 +263,7 @@ import imageUrl from './image.png';
 // and `imageUrl` will include its url: `/2fcd56a1920be.png`
 ```
 
-`svg-url-loader`는 `url-loader`와 비슷하지만, 파일을 URL encoding한다는 점이 다르다. 이는 SVG파일에 유용한데, 그 이유는 SVG는 단순히 텍스트 이므로, 인코딩시 더 사이즈가 줄어들기 떄문이다.
+`svg-url-loader`는 `url-loader`와 비슷하지만, 파일을 URL encoding한다는 점이 다르다. 이는 SVG파일에 유용한데, 그 이유는 SVG는 단순히 텍스트 이므로, 인코딩시 더 사이즈가 줄어들기 때문이다.
 
 ```javascript
 // webpack.config.js

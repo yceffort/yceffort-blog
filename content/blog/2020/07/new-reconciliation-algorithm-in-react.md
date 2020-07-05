@@ -1,6 +1,6 @@
 ---
 title: "Fiber: 리액트의 새로운 재조정 알고리즘인 Fiber에 대해 살펴보기"
-tags: [javascript, web]
+tags: [javascript, web, react]
 published: false
 date: 2020-07-04 18:23:12
 ---
@@ -164,7 +164,7 @@ class ClickCounter {
 
 첫번째 렌더링 이후, React는 UI를 렌더링하는데 사용한 어플리케이션 상태를 반영하는 fiber 트리를 반환하게 된다. 이를 `work`라고 한다. 리액트가 업데이트 작업을 시작하면, 화면에 미래의 상태를 반영할 `workInProcess` 트리를 만들게 된다.
 
-Fiber에서 수행되는 모든 `work`는 `workInProgress`트리에서 수행된다. 리액트가 `current`트리를 거칠 떄마다, 각 각의 존재하는 fiber 노드는 `workInProgress` 트리를 구성하는 대체 노드를 생성한다. 이 노드는 `render`메소드에 의해 반환된 데이터에 의해 만들어진다. 업데이트 작업이 진행되고 모든 작업이 끝나게 되면, 리액트는 화면에 보여줄 대체 트리를 표시한다. `workInProgress`트리가 화면에 렌더링 되면, 이는 현재의 `current` 트리가 된다.
+Fiber에서 수행되는 모든 `work`는 `workInProgress`트리에서 수행된다. 리액트가 `current`트리를 거칠 때마다, 각 각의 존재하는 fiber 노드는 `workInProgress` 트리를 구성하는 대체 노드를 생성한다. 이 노드는 `render`메소드에 의해 반환된 데이터에 의해 만들어진다. 업데이트 작업이 진행되고 모든 작업이 끝나게 되면, 리액트는 화면에 보여줄 대체 트리를 표시한다. `workInProgress`트리가 화면에 렌더링 되면, 이는 현재의 `current` 트리가 된다.
 
 리액트의 핵심 원칙중 한가지는 일관성이다. 리액트는 항상 DOM 업데이트를 한번에 하지, 각각의 결과물을 따로 보여주지 않는다. `workInProgress`트리는 유저에게는 보이지 않는 일종의 임시 트리로 간주된다. 따라서 리액트가 모든 컴포넌트에 대해 해당 작업을 끝내게 되면, 이 변화를 화면에 보여주게 된다.
 

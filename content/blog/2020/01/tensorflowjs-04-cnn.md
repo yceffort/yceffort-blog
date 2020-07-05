@@ -81,7 +81,7 @@ to-heading: 3
 console.log("Hello TensorFlow")
 ```
 
-> 여기에서 알려드린 코드에서는, 스크립트 태그로 로딩을 하고 있습니다. 많은 수의 자바스크립트 개발자들은 npm 으로 dependencies를 설치하고, 번들러로 프로젝트를 빌드하는 것을 선호합니다. 만약 할 수 있따면, `tensorflow.js`와 `tfjs-vis`를 npm으로 설치해보세요.
+> 여기에서 알려드린 코드에서는, 스크립트 태그로 로딩을 하고 있습니다. 많은 수의 자바스크립트 개발자들은 npm 으로 dependencies를 설치하고, 번들러로 프로젝트를 빌드하는 것을 선호합니다. 만약 할 수 있다면, `tensorflow.js`와 `tfjs-vis`를 npm으로 설치해보세요.
 
 > 브라우저의 제약사항에 따라서, CORS 제한을 우회하기 위하여 로컬 브라우저에서 실행해야 할지도 모릅니다. [Python SimpleServer](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)나 [Node Http server](https://www.npmjs.com/package/http-server) 두 가지 옵션이 있습니다. 아니면 Glitch와 같은 온라인 코딩 플랫폼을 이용하셔도 좋습니다.
 
