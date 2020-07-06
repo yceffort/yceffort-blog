@@ -177,7 +177,7 @@ interactive: 229ms, dcl: 230ms, complete: 956ms
 
 ![example2.png](images/example2.png)
 
-`DOMContentLoaded`가 거의 `onload`와 동시에 호출된 것을 알 수 있다. 일반적인 HTML과는 다르게, CSSOM을 생성하기 위해 CSS 파일도 가져와야 한다. 또한 파서 차단 자바스크립트가 포함되어 있어 CSS 파일이 다운로드 될떄까지 차단되어 있는 것을 볼 수 있다.
+`DOMContentLoaded`가 거의 `onload`와 동시에 호출된 것을 알 수 있다. 일반적인 HTML과는 다르게, CSSOM을 생성하기 위해 CSS 파일도 가져와야 한다. 또한 파서 차단 자바스크립트가 포함되어 있어 CSS 파일이 다운로드 될때까지 차단되어 있는 것을 볼 수 있다.
 
 [이번엔 `async` 키워드를 추가해보자.](https://googlesamples.github.io/web-fundamentals/fundamentals/performance/critical-rendering-path/measure_crp_async.html)
 
@@ -185,7 +185,7 @@ interactive: 229ms, dcl: 230ms, complete: 956ms
 
 이번에는 HTML이 파싱된 이후에 `domContentLoaded`가 실행된 것을 볼 수 있다. 브라우저가 자바스크립트를 차단하지 않는다는 것을 알게 되었고, 다른 파서 차단 스크립트가 없으므로 CSSDOM 생성 또한 동시에 처리 가능하다.
 
-만약 이 모든 코드를 인라인으로 떄려박게 되면, 위의 예제와 비슷한 성능을 느낄 수 있다. HTML 페이지는 더 커지지만, 페이지 안에 모든 요소가 있으므로 외부 리소스가 올때까지 기다릴 필요가 없기 때문이다.
+만약 이 모든 코드를 인라인으로 때려박게 되면, 위의 예제와 비슷한 성능을 느낄 수 있다. HTML 페이지는 더 커지지만, 페이지 안에 모든 요소가 있으므로 외부 리소스가 올때까지 기다릴 필요가 없기 때문이다.
 
 ## 성능 분석
 
