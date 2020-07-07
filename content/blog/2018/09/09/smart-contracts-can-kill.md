@@ -3,7 +3,7 @@ title: "스마트 컨트랙트는 죽일 수 있다"
 date: 2018-09-09 18:20:16
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 Law School Professor: “Smart Contracts Can Kill”

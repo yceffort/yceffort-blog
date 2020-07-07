@@ -3,7 +3,7 @@ title: "블록체인과 스마트 컨트랙트: 결합의 스테로이드?"
 date: 2018-09-14 12:02:07
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 Smart Contracts and Blockchains: Steroid for Collusion?

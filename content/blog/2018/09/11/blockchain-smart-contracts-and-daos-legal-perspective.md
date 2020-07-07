@@ -3,7 +3,7 @@ title: "블록체인과 스마트 컨트랙트와 DAO의 법적인 관점"
 date: 2018-09-11 18:20:16
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 Blockchain, Smart Contracts and DAOs from a Legal Perspective

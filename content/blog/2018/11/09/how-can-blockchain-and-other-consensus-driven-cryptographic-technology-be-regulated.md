@@ -3,7 +3,7 @@ title: "블록체인과 합의 기반 암호화폐는 어떻게 규제할 수 �
 date: 2018-11-09 04:44:01
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 How Can Blockchain and Other Consensus Driven Cryptographic Technology be Regulated?

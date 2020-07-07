@@ -3,7 +3,7 @@ title: "블록체인을 활용한 디지털 투표"
 date: 2018-11-10 04:44:01
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 Digital Voting with the use of Blockchain Technology

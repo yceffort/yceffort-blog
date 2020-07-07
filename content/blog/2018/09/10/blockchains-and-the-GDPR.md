@@ -3,7 +3,7 @@ title: "블록체인과 GDPR"
 date: 2018-09-10 18:20:16
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 Blockchains and the GDPR

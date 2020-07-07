@@ -2,7 +2,7 @@
 title: "Phantom: 프라이빗 스마트 컨트랙트 플랫폼"
 date: 2018-10-02 06:25:00
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 published: true
 ---
 

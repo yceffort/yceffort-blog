@@ -3,7 +3,7 @@ title: "블록체인이 안전한 투표를 위한 답이 아닐 수도 있다."
 date: 2018-11-11 10:52:41
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 Are Blockchains the Answer for Secure Elections? Probably Not

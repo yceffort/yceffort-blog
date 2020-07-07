@@ -3,7 +3,7 @@ title: "왜 대부분의 스마트 컨트랙트 사례가 실현 불가능한가
 date: 2018-11-08 19:44:01
 published: true
 layout: post
-tags: [blockchain, smartcontract]
+tags: [blockchain, smart-contract]
 ---
 
 인기 있는 블록체인 플랫폼을 개발하면서, 나는 때때로 Ethereum과 같은 스마트 컨트랙트가 MultiChain 로드맵에 있는지 질문을 받는다. 내가 항상 하는 대답은 항상 '아니오, 아니면 아직 아니다'이다.
