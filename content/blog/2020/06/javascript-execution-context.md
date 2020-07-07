@@ -91,27 +91,6 @@ function foo() {
 }
 
 foo()
-
-var Person = function (name) {
-  this.name = name;
-};
-
-var fooApply = {};
-var foolCall = {};
-var fooBind = {}
-
-// apply 메소드는 생성자함수 Person을 호출한다.
-// 이때 this에 객체 foo를 바인딩한다.
-Person.apply(fooApply, ['name']);
-console.log(fooApply); // { name: 'name' }
-
-// call도 동일하다. 다만 배열이 아니라 하나씩 넘기면 된다.
-Person.call(foolCall, 'name');
-console.log(foolCall); // { name: 'name' }
-
-// bind는 명시적으로 실행을 해주어야 된다.,
-Person.bind(fooBind, 'name')('hello')
-console.log(fooBind)
 ```
 
 위 코드를 실행하면, 실행컨텍스트 스택이 아래와 같이 생성되고 소멸된다. 현재 실행중인 컨텍스트에서 이 컨텍스트와 관련없는 코드가 실행되면, 새로운 컨텍스트를 만든다. 이 컨텍스를 스택에 쌓고, 제어권은 이 추가된 컨텍스트에 이동된다.
