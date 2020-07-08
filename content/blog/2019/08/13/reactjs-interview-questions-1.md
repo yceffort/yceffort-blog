@@ -1,5 +1,5 @@
 ---
-title: "리액트 인터뷰 질문 & 답 (1)"
+title: "리액트 면접 질문 모음 (1)"
 date: 2019-08-20 16:22:35
 published: true
 layout: post
