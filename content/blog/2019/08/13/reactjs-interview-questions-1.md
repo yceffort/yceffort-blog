@@ -576,11 +576,11 @@ DOM에서의 변경을 적용할 때, 내부에서 어떤 과정을 거치는지
 
    16.3 이후
 
-![react-16.3-phases](https://github.com/sudheerj/reactjs-interview-questions/raw/master../../../images/phases16.3.jpg?raw=true)
+![react-16.3-phases](https://github.com/sudheerj/reactjs-interview-questions/raw/master/images/phases16.3.jpg)
 
 16.3 이전
 
-![before-react-16.3](https://github.com/sudheerj/reactjs-interview-questions/blob/master../../../images/phases.png?raw=true)
+![before-react-16.3](https://github.com/sudheerj/reactjs-interview-questions/raw/master/images/phases.png)
 
 ### What are the lifecycle methods of React?
 
