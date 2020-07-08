@@ -113,6 +113,12 @@ console.log(add(1, 2));
 
 이 질문에 답을 하기 위해서는, `webpack`의 `ModuleConcatenationPlugin`이 어떻게 동작하는지 살펴볼 필요가 있다. 그리고, 정적 분석에 대해 살펴보아야 한다. (static analyzability) 이 플러그인은 모든 모듈의 범위를 하나의 클로저로 연결하고, 코드가 브라우저에서 더 빠르게 실행할 수 있도록 도와준다.
 
+> In the past, one of webpack’s trade-offs when bundling was that each module in your bundle would be wrapped in individual function closures. These wrapper functions made it slower for your JavaScript to execute in the browser. In comparison, tools like Closure Compiler and RollupJS ‘hoist’ or concatenate the scope of all your modules into one closure and allow for your code to have a faster execution time in the browser.
+
+[ModuleConcatenationPlugin](https://webpack.js.org/plugins/module-concatenation-plugin/)
+
+> 과거 웹팩에서는 함수를 각각의 클로저에 번들링 해두었지만, 이제는 모든 모듈을 하나의 클로저에 묶어두어 브라우저에서 더욱 빠르게 실행 될 수 있도록 한다.
+
 ```javascript
 // utils.js
 export const add = (a, b) => a + b;
