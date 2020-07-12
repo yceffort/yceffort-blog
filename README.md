@@ -10,7 +10,7 @@ gatsby (react with javascript) + heroku + cloudflare
 ---
 title: 'Make a Blog With React'
 tags: ["react", "nodejs"]
-featuredImage: "../../../src../../../images/gatsby-icon.png"
+featuredImage: "images/gatsby-icon.png"
 imageWidth: 200
 imageHeight: 200
 published: true

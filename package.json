@@ -1,7 +1,7 @@
 {
   "name": "yceffort-blog",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "yceffort <https://github.com/yceffort>",
   "dependencies": {
     "@emotion/core": "^10.0.10",
@@ -63,9 +63,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/yceffort/yceffort-blog"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/yceffort/yceffort-blog/issues"
   }
 }
