@@ -106,7 +106,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Raleway`],
+        fonts: [`Noto Sans KR`],
       },
     },
     {
