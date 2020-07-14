@@ -38,3 +38,8 @@ p,
   padding-left: 1rem !important;
   padding-right: 1rem !important;
 }
+
+.mt-5, .my-5 {
+  margin-bottom: 3rem !important;
+  margin-top: auto !important;
+}
