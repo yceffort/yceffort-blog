@@ -10,6 +10,7 @@ import Sidebar from "../components/sidebar/Sidebar"
 import TechTag from "../components/tags/TechTag"
 import CustomShareBlock from "../components/CustomShareBlock"
 import Utterances from "../components/Utterances"
+import 'gatsby-remark-mathjax-ssr/mathjax.css'
 
 const BlogPost = props => {
   const post = props.data.markdownRemark
@@ -105,6 +106,7 @@ export const query = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        mathjax
       }
     }
   }

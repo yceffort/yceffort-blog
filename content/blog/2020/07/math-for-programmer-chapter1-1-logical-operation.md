@@ -2,7 +2,7 @@
 title: "프로그래머 기초 수학 1-1 - 명제와 논리연산
 "
 tags: [programming, math]
-published: false
+published: true
 mathjax: true
 date: 2020-07-15 21:53:30
 ---
@@ -18,7 +18,7 @@ to-heading: 3
 
 - 달은 지구의 위성이다 (참)
 - 고래는 어류다 (거짓)
-- $7 x 8 =56$ (참)
+- $7 \times 8 =56$ (참)
 - $x^2 - 2x - 1 = 0$  ($x$ 값이 정해지지 않아 알수 없다. 이는 명제다 가이다.)
 
 ## 논리연산
