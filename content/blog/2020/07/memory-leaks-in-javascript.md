@@ -275,7 +275,7 @@ JS Heap 그래프도 역시 메모리 사용이 증가되고 있음을 보여준
 
 꽤 기쁜 발견이지만, 이 예제는 간단한 축에 속한다. 이 예제 처럼 큰 할당은 일반적으로 볼 수 있는 경우는 아니다. 위 예제에서는 DOM 노드에서의 누수 문제도 포함하고 있다. 위 스냅샷에서는 노드들을 쉽게 찾을 수 있지만, 규모 가 큰 사이트에서는 복잡해서 찾기 쉽지 않을 것이다. 최신 버전 크롬은 이런 작업에 맞는 도구를 하나더 제공하는데, `Record Heap Allocations`다.
 
-> 현재 최신버전 ㅡ롬에서는 `Allocation instrumentation on Timeline`으로 바뀌었습니다.
+> 현재 최신버전 크롬에서는 `Allocation instrumentation on Timeline`으로 바뀌었습니다.
 
 ### Recording Heap allocations to find leaks
 
