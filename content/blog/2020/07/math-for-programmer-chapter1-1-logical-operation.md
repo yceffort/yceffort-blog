@@ -1,6 +1,5 @@
 ---
-title: "프로그래머 기초 수학 1-1 - 명제와 논리연산
-"
+title: "프로그래머 기초 수학 1-1 - 명제와 논리연산"
 tags: [programming, math]
 published: true
 mathjax: true
