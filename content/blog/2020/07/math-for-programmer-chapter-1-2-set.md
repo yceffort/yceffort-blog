@@ -88,7 +88,7 @@ B \cup A = \{ x | x \in B ) \lor (x \in A) \} = A \cup B
 \\
 B \cap A = \{ x | x \in B ) \land (x \in A) \} = A \cap B
 \\
-B-A = B \cap A^c \not = A \cap B^c = A - b
+B-A = B \cap A^c \not = A \cap B^c = A-B
 $$
 
 결합법칙 역시 합집합과, 교집합의 경우애는 성립하지만, 차집합은 성립하지 않는다.
