@@ -3,7 +3,7 @@ title: "프로그래머 기초 수학 2-3 - 유리수, 무리수, 실수"
 tags: [programming, math]
 published: true
 mathjax: true
-date: 2020-07-23 21:34:51
+date: 2020-07-29 00:36:41
 ---
 
 ## 유리수
