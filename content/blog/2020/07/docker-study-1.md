@@ -27,7 +27,7 @@ to-heading: 3
 
 ## 컨테이너 생성
 
-```sh
+```shell
 $ docker run -i -t ubuntu:14.04
 
 Unable to find image 'ubuntu:14.04' locally
@@ -51,7 +51,7 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 
 저장소를 단순히 내려 받고 싶을 땐, pull을 사용하면 된다.
 
-```sh
+```shell
 ubuntu@study:~$ docker pull centos:7
 
 7: Pulling from library/centos
@@ -63,7 +63,7 @@ docker.io/library/centos:7
 
 `images`로 현재 있는 이미지를 확인할 수 있다.
 
-```sh
+```shell
 ubuntu@study:~$ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 centos              7                   b5b4d78bc90c        2 months ago        203MB
@@ -72,14 +72,14 @@ ubuntu              14.04               6e4f1fe62ff1        7 months ago        
 
 `create`으로 컨테이너를 생성할 수도 있다.
 
-```sh
+```shell
 ubuntu@study:~$ docker create -i -t --name mycentos centos:7
 42d20904cc1afff9dc499363f158789fd1860f7ede99dcadfaa8bbc201bbc119
 ```
 
 `start` 와 `attach`로 컨테이너 시작 및 진입을 할 수 있음.
 
-```sh
+```shell
 ubuntu@study:~$ docker start mycentos
 mycentos
 ubuntu@study:~$ docker attach mycentos
@@ -89,7 +89,7 @@ anaconda-post.log  bin  dev  etc  home  lib  lib64  media  mnt  opt  proc  root 
 
 `ps`로 지금까지 생성한 컨테이너 목록 확인
 
-```sh
+```shell
 ubuntu@study:~$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 42d20904cc1a        centos:7            "/bin/bash"         2 minutes ago       Up 9 seconds                            mycentos
@@ -97,7 +97,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 `ps` 명령어는 정지 되지 않은 컨테이너 목록만 출력. 정지 하지 않고, 단순히 빠져 나오기만 하고 싶다면, `control+p+q`로 나올 수 있다.  모든 컨테이너를 보고 싶다면 `-a`를 붙이면 된다.
 
-```sh
+```shell
 ubuntu@study:~$ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
 42d20904cc1a        centos:7            "/bin/bash"         4 minutes ago       Up About a minute                               mycentos
@@ -106,7 +106,7 @@ ec01158d61da        ubuntu:14.04        "/bin/bash"         18 minutes ago      
 
 `rm` 명령어를 이용해서 삭제할 수 있다.
 
-```sh
+```shell
 ubuntu@study:~$ docker rm mycentos
 Error response from daemon: You cannot remove a running container 42d20904cc1afff9dc499363f158789fd1860f7ede99dcadfaa8bbc201bbc119. Stop the container before attempting removal or force remove
 ubuntu@study:~$ docker stop mycentos
@@ -127,7 +127,7 @@ ubuntu@study:~$
 
 컨테이너도 가상 머신과 마찬가지로, 가상 IP 주소를 할당 받을 수 있다. 기본적으로 `178.17.0.X`를 순차적으로 할당한다.
 
-```sh
+```shell
 ubuntu@study:~$ docker run -i -t --name network_test ubuntu:14.04
 root@b505ea44b935:/# ifconfig
 eth0      Link encap:Ethernet  HWaddr 02:42:ac:11:00:02  
@@ -151,7 +151,7 @@ root@b505ea44b935:/#
 
 아무런 설정도 하지 않았다면, 외부에서 접근할 수 없으며 도커가 설치된 호스트에서만 접근할 수 있다. 
 
-```sh
+```shell
 ubuntu@study:~$ docker run -i -t --name network_test -p 80:80 ubuntu:14.04
 ```
 
@@ -181,7 +181,7 @@ ubuntu@study:~$ docker run -i -t --name network_test -p 80:80 ubuntu:14.04
 
 이번엔 데이터베이서 컨테이너와 웹서버 컨테이너를 각각 별도로 설치하여 연결해보자.
 
-```sh
+```shell
 ubuntu@study:~$ docker run -d --name wordpressdb -e MYSQL_ROOT_PASSWORD=test -e MYSQL_DATABASE=wordpress mysql:5.7
 ubuntu@study:~$ docker run -d -e WORDPRESS_DB_PASSWORD=test --name wordpress --link wordpressdb:mysql -p 80 wordpress
 ubuntu@study:~$ docker port wordpress
@@ -196,7 +196,7 @@ ubuntu@study:~$ docker port wordpress
 - `-e`: 환경변수를 설정한다.
 - `--link`: 내부 IP를 알 필요 없이, 항상 컨테이너에 alias로 접근할 수 있도록 하는 것. 즉 두 번째로 싱행된 웹서버 컨테이너는, wordpressdb의 ip를 몰라도, `mysql`이라는 호스트 이름으로 요청을 전송하면, `wordpressdb` 컨테이너의 내부 IP로 접근할 수 있다. 그러나 해당 명령어는 deprecated 되어 있으며, 도커 브릿지를 사용해서 연결해야 한다.
 
-```sh
+```shell
 ubuntu@study:~$ docker exec wordpress curl mysql:3306 --silent
 J
 5.7.31
@@ -211,7 +211,7 @@ J
 
 ### 1. 호스트와 볼륨을 공유하는 방법
 
-```sh
+```shell
 ubuntu@study:~$ docker run -d --name wordpressdb_hostvolume -e MYSQL_ROOT_PASSWORD=test -e MYSQL_DATABASE=wordpress -v /home/wordpress_db:/var/lib/mysql mysql:5.7
 f5dcb2c9ae66b4e20486a63961f607ce7a341a71a8a975d45388aa8de70bd468
 
@@ -229,7 +229,7 @@ ca-key.pem  client-cert.pem  ib_buffer_pool  ib_logfile0  ibtmp1       performan
 
 `-v` 옵션으로 볼륨을 사용하는 컨테이너를, 다른 컨테이너와 공유하는 것이다. 컨테이너 생성시 `--volumes-from `을 사용하면 `-v`를 사용한 컨테이너의 볼륨 디렉토리를 공유할 수 있다.
 
-```sh
+```shell
 ubuntu@study:~$ docker run -i -t --name volume_overide -v /home/wordpress_db:/home/testdir_2 alicek106/volume_test
 Unable to find image 'alicek106/volume_test:latest' locally
 latest: Pulling from alicek106/volume_test
@@ -255,7 +255,7 @@ root@03ae3b0ae3c0:/#
 
 마지막 방법은 docker에서 제공해주는 방법을 사용하는 것이다.
 
-```sh
+```shell
 ubuntu@study:~$ docker volume create --name myvolume
 myvolume
 ubuntu@study:~$ docker volume ls
@@ -268,11 +268,11 @@ local               myvolume
 
 그리구 위의 볼륨을 활용해 컨테이너를 만들 수 있다.
 
-```sh
+```shell
 ubuntu@study:~$ docker run -i -t --name myvolume_1 -v myvolume:/root/ ubuntu:14.04
 ```
 
-```sh
+```shell
 ubuntu@study:~$ docker run -i -t --name myvolume_1 -v myvolume:/root/ ubuntu:14.04
 root@f351516e97a1:/# echo hell, volume! >> /root/volume
 root@f351516e97a1:/# exit                              
@@ -284,7 +284,7 @@ hell, volume!
 
 같은 볼륨을 공유하는 두개의 컨테이너에서, 하나는 파일을 생성하고, 다른 하나에서는 생성한 파일을 읽었는데 모두 정상적으로 작동하는 것을 보아 볼륨을 공유하고 있다는 것을 알 수 있다.
 
-```sh
+```shell
 ubuntu@study:~$ docker inspect --type volume myvolume
 [
     {
@@ -303,7 +303,7 @@ ubuntu@study:~$ docker inspect --type volume myvolume
 
 `docker volume create`를 사용하지 않아도, `-v`옵션으로 볼륨을 그냥 만들어 버릴 수 있다. `-v \root` 형태로 실행하면, 무작위 형태의 이름을 가진 볼륨을 생성해 자동으로 그것을 사용한다. 
 
-```sh
+```shell
 ubuntu@study:~$ docker volume prune
 WARNING! This will remove all local volumes not used by at least one container.
 Are you sure you want to continue? [y/N] y

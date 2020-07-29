@@ -69,7 +69,7 @@ module.exports = {
 
 이 설정에서는 `index.js`를 엔트리 포인트로 진행하고, 프로덕션 빌드 최적화를 진행했다. `webpack` 을 실행한 뒤에는 [최종 결과물을 확인](https://github.com/mgechev/commonjs-example/blob/master/commonjs/dist/out.js)해볼 수 있는데, 아래와 같다.
 
-```sh
+```shell
 $ cd dist && ls -lah
 625K Apr 13 13:04 out.js
 ```
