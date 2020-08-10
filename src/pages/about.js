@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import "./index.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { FaCheckCircle } from "react-icons/fa"
+import { FaQuestionCircle } from "react-icons/fa"
 
 import Sidebar from "../components/sidebar/Sidebar"
 import TechTag from "../components/tags/TechTag"
@@ -33,26 +33,17 @@ const AboutPage = props => {
           <div className="mt-3">
             <h2 className="heading">About</h2>
             <p>
-              <i>S, K를 거쳐 스타트업에서 일하고 있는 제이지입니다.</i>
+              <i></i>
             </p>
             <br />
-            <h4>Tech</h4>
+            {/* <h4>Tech</h4> */}
             <div>
               <span className="text-success d-inline-block" title="blazing">
-                <FaCheckCircle size={26} style={{ color: "success" }} />
+                <FaQuestionCircle size={26} style={{ color: "orange" }} />
               </span>
               <p className="d-inline-block ml-3 w-75 align-top">
-                곧 업데이트 될 예정입니다.
-              </p>
-              <div className="ml-5">
-                <TechTag
-                  tag="react"
-                  tech="React"
-                  name={tags["react"]}
-                  size={20}
-                  color="deepskyblue"
-                />
-              </div>
+                WIP
+              </p>              
             </div>
             {/* <div>
               <span className="text-success d-inline-block" title="tags">
